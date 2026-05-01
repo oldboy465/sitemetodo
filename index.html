@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método Soluções | Inteligência em Gestão e Software</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            /* Cores extraídas da Logo */
+            --primary-blue: #094b7c; 
+            --accent-cyan: #1a88a8;  
+            --accent-orange: #f4a236; 
+            --bg-light: #f8fafc;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --white: #ffffff;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+
+        body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.8; overflow-x: hidden; }
+
+        /* --- Header & Navigation --- */
+        header { background: var(--white); box-shadow: 0 4px 20px rgba(9, 75, 124, 0.08); position: fixed; width: 100%; top: 0; z-index: 1000; }
+
+        .upperbar {
+            background: linear-gradient(90deg, var(--primary-blue), #063152);
+            color: var(--white); padding: 8px 5%; font-size: 0.85rem; display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .upperbar a { color: var(--accent-orange); text-decoration: none; font-weight: 600; margin-left: 15px; transition: var(--transition); }
+        .upperbar a:hover { color: var(--white); }
+
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; max-width: 1400px; margin: 0 auto; }
+
+        .logo-container img { height: 60px; width: auto; }
+
+        .nav-links { display: flex; list-style: none; gap: 35px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--primary-blue); font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; transition: var(--transition); }
+        .nav-links a:hover { color: var(--accent-orange); }
+
+        .btn-contato-nav {
+            background: var(--accent-orange); color: var(--white) !important; padding: 12px 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(244, 162, 54, 0.3);
+        }
+        .btn-contato-nav:hover { background: var(--primary-blue); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(9, 75, 124, 0.3); }
+
+        /* --- Hero Section Atualizada (Lado a Lado) --- */
+        .hero {
+            padding: 160px 5% 80px;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+            display: flex; align-items: center; justify-content: space-between; gap: 50px; min-height: 90vh;
+            max-width: 1500px; margin: 0 auto;
+        }
+
+        .hero-text { flex: 1.2; max-width: 650px; }
+        .hero-text h1 { font-size: 3.5rem; color: var(--primary-blue); line-height: 1.1; margin-bottom: 25px; font-weight: 800; }
+        .hero-text h1 span { color: var(--accent-orange); }
+        .hero-text p { font-size: 1.25rem; margin-bottom: 40px; color: var(--text-muted); font-weight: 500; }
+
+        /* Novo container de imagem para preencher o lado direito */
+        .hero-image { flex: 1; display: flex; justify-content: flex-end; align-items: center; position: relative; }
+        .hero-image img { width: 100%; max-width: 700px; border-radius: 20px; box-shadow: 0 30px 60px rgba(9, 75, 124, 0.15); border: 8px solid var(--white); z-index: 2; position: relative; }
+        
+        /* Detalhe visual atrás da imagem */
+        .hero-image::after { content: ''; position: absolute; width: 80%; height: 80%; background: var(--accent-cyan); opacity: 0.1; border-radius: 20px; bottom: -20px; right: -20px; z-index: 1; }
+
+        .btn-group { display: flex; gap: 20px; flex-wrap: wrap; }
+        .btn-primary { background: var(--primary-blue); color: var(--white); padding: 16px 35px; font-size: 1.1rem; text-decoration: none; border-radius: 8px; font-weight: bold; transition: var(--transition); box-shadow: 0 10px 25px rgba(9, 75, 124, 0.2); }
+        .btn-primary:hover { background: var(--accent-cyan); transform: translateY(-3px); }
+        .btn-secondary { background: transparent; color: var(--primary-blue); border: 2px solid var(--primary-blue); padding: 14px 35px; font-size: 1.1rem; text-decoration: none; border-radius: 8px; font-weight: bold; transition: var(--transition); }
+        .btn-secondary:hover { border-color: var(--accent-orange); color: var(--accent-orange); }
+
+        /* --- Métricas / Faixa de Confiança --- */
+        .metrics-bar { background: var(--primary-blue); padding: 40px 5%; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px; position: relative; z-index: 10; margin-top: -30px; border-radius: 15px; max-width: 1300px; margin-left: auto; margin-right: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .metric-item { text-align: center; color: var(--white); }
+        .metric-item h3 { font-size: 2.5rem; color: var(--accent-orange); margin-bottom: 5px; }
+        .metric-item p { font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-cyan); }
+
+        /* --- Seção Híbrida: Gestão + Sistemas --- */
+        .approach-section { padding: 120px 5%; max-width: 1400px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 80px; }
+        .section-header h2 { font-size: 2.8rem; color: var(--primary-blue); position: relative; display: inline-block; }
+        .section-header h2::after { content: ''; position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: var(--accent-orange); border-radius: 2px; }
+        .section-header p { margin-top: 30px; font-size: 1.2rem; color: var(--text-muted); max-width: 800px; margin-left: auto; margin-right: auto; }
+
+        .approach-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px; }
+        
+        .approach-card { background: var(--white); border-radius: 20px; padding: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); transition: var(--transition); border-top: 5px solid transparent; position: relative; overflow: hidden; }
+        .approach-card::before { content: ''; position: absolute; top: 0; right: 0; width: 150px; height: 150px; background: radial-gradient(circle, rgba(26, 136, 168, 0.1) 0%, transparent 70%); border-radius: 0 0 0 100%; transition: var(--transition); }
+        .approach-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(9, 75, 124, 0.08); border-top-color: var(--accent-orange); }
+        .approach-card:hover::before { transform: scale(1.5); }
+        
+        .approach-icon { font-size: 3rem; color: var(--accent-cyan); margin-bottom: 25px; display: inline-block; padding: 20px; background: rgba(26, 136, 168, 0.05); border-radius: 15px; }
+        .approach-card:hover .approach-icon { color: var(--accent-orange); background: rgba(244, 162, 54, 0.1); }
+        
+        .approach-card h3 { font-size: 1.8rem; color: var(--primary-blue); margin-bottom: 20px; }
+        .approach-card p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 25px; }
+        .approach-list { list-style: none; }
+        .approach-list li { margin-bottom: 12px; font-weight: 500; display: flex; align-items: center; gap: 10px; color: var(--text-dark); }
+        .approach-list li i { color: var(--accent-orange); font-size: 0.9rem; }
+
+        /* --- Banner Estatística e Engenharia --- */
+        .tech-banner { background: linear-gradient(to right, var(--primary-blue), #063152); padding: 100px 5%; margin: 80px 0; display: flex; align-items: center; justify-content: space-between; color: var(--white); gap: 50px; }
+        .tech-content { flex: 1; max-width: 600px; }
+        .tech-content h2 { font-size: 2.5rem; margin-bottom: 25px; color: var(--accent-cyan); }
+        .tech-content p { font-size: 1.15rem; margin-bottom: 20px; opacity: 0.9; }
+        .tech-visual { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .tech-box { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; text-align: center; backdrop-filter: blur(10px); }
+        .tech-box i { font-size: 2.5rem; color: var(--accent-orange); margin-bottom: 15px; }
+        .tech-box h4 { font-size: 1.2rem; margin-bottom: 10px; }
+
+        /* --- Footer --- */
+        footer { background: #041829; color: var(--white); padding: 80px 5% 30px; border-top: 5px solid var(--accent-orange); }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 50px; max-width: 1400px; margin: 0 auto; margin-bottom: 60px; }
+        .footer-col h4 { margin-bottom: 30px; font-size: 1.3rem; color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 1px; }
+        .footer-col p, .footer-col a { color: #94a3b8; text-decoration: none; margin-bottom: 15px; display: block; font-size: 1rem; transition: var(--transition); }
+        .footer-col a:hover { color: var(--accent-orange); padding-left: 5px; }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.95rem; color: #64748b; }
+
+        @media (max-width: 1024px) {
+            .hero { flex-direction: column; text-align: center; padding-top: 150px; }
+            .hero-text { margin: 0 auto; }
+            .hero-image { justify-content: center; width: 100%; margin-top: 40px; }
+            .hero-image::after { display: none; }
+            .btn-group { justify-content: center; }
+            .tech-banner { flex-direction: column; text-align: center; }
+            .tech-content { max-width: 100%; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="upperbar">
+            <span><i class="fas fa-chart-pie"></i> Excelência em Administração & Engenharia de Dados</span>
+            <div>
+                <a href="mailto:contato@metodosolucoes.com"><i class="fas fa-envelope"></i> E-mail</a>
+                <a href="https://wa.me/5598982506920"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            </div>
+        </div>
+        <nav>
+            <div class="logo-container">
+                <img src="logo_metodo.png" alt="Método Soluções Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" style="color: var(--accent-orange);">Início</a></li>
+                <li><a href="solucoes.html">Sistemas SaaS</a></li>
+                <li><a href="servicos.html">Consultoria & Gestão</a></li>
+                <li><a href="contato.html" class="btn-contato-nav">Agendar Diagnóstico</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Estratégia Sólida. <br><span>Sistemas Inteligentes.</span></h1>
+            <p>Transformando Dados em Decisões Estratégicas. Unimos a profundidade da Administração de Empresas e Estatística Aplicada à robustez da Engenharia de Software para escalar instituições públicas e privadas.</p>
+            <div class="btn-group">
+                <a href="servicos.html" class="btn-primary">Soluções Corporativas</a>
+                <a href="solucoes.html" class="btn-secondary">Conhecer Soluções Digitais</a>
+            </div>
+        </div>
+        
+        <!-- Nova área da Imagem que preenche o espaço à direita -->
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200" alt="Painel de Dados e Estratégia">
+        </div>
+    </section>
+
+    <div class="metrics-bar">
+        <div class="metric-item">
+            <h3>Gestão</h3>
+            <p>Planejamento Orçamentário</p>
+        </div>
+        <div class="metric-item">
+            <h3>Dados</h3>
+            <p>Modelagem Estatística</p>
+        </div>
+        <div class="metric-item">
+            <h3>Código</h3>
+            <p>Arquitetura MVC & Python</p>
+        </div>
+    </div>
+
+    <section class="approach-section">
+        <div class="section-header">
+            <h2>Nossa Dupla Especialidade</h2>
+            <p>A Método Soluções não apenas desenvolve softwares; nós reestruturamos processos organizacionais. Nossa abordagem garante que a tecnologia sirva a propósitos de negócios reais e mensuráveis.</p>
+        </div>
+
+        <div class="approach-grid">
+            <div class="approach-card">
+                <div class="approach-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Gestão Estratégica</h3>
+                <p>Implementação de metodologias de resultados e acompanhamento de metas reais. Estruturação de orçamentos, auditoria de processos e otimização de fluxos institucionais.</p>
+                <ul class="approach-list">
+                    <li><i class="fas fa-check"></i> Planejamento Estratégico Situacional</li>
+                    <li><i class="fas fa-check"></i> Controle de Execução Orçamentária</li>
+                    <li><i class="fas fa-check"></i> Mapeamento de Processos (AS-IS/TO-BE)</li>
+                </ul>
+            </div>
+
+            <div class="approach-card">
+                <div class="approach-icon"><i class="fas fa-laptop-code"></i></div>
+                <h3>Sistemas Personalizados</h3>
+                <p>Desenvolvimento SaaS com foco em experiência do usuário e robustez técnica. Criamos plataformas corporativas para refletir a inteligência mapeada na consultoria.</p>
+                <ul class="approach-list">
+                    <li><i class="fas fa-check"></i> Soluções em Python, HTML e CSS</li>
+                    <li><i class="fas fa-check"></i> Gestão à Vista e Dashboards</li>
+                    <li><i class="fas fa-check"></i> Automação de Helpdesks e Processos</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="tech-banner">
+        <div class="tech-content">
+            <h2>Metodologia Baseada em Evidências</h2>
+            <p>A intuição é importante, mas a matemática é implacável. Nossa equipe integra profunda formação acadêmica para assegurar que as soluções entregues possuam validade estatística e escalabilidade computacional.</p>
+            <p>Análises de viabilidade financeira, tratamento de anomalias em banco de dados e inteligência artificial aplicadas diretamente ao seu planejamento anual.</p>
+        </div>
+        <div class="tech-visual">
+            <div class="tech-box">
+                <i class="fas fa-calculator"></i>
+                <h4>Estatística<br>Aplicada</h4>
+            </div>
+            <div class="tech-box">
+                <i class="fas fa-project-diagram"></i>
+                <h4>Engenharia de<br>Software</h4>
+            </div>
+            <div class="tech-box" style="grid-column: span 2;">
+                <i class="fas fa-university"></i>
+                <h4>Excelência Acadêmica & Corporativa</h4>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <img src="logo_metodo.png" alt="Método" style="height: 50px; margin-bottom: 20px; filter: brightness(0) invert(1);">
+                <p>Sistemas Inteligentes e Consultoria Estatística Aplicada. Transformando a gestão pública e privada no Maranhão e no Brasil.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Eixos de Atuação</h4>
+                <a href="servicos.html"><i class="fas fa-angle-right"></i> Consultoria em Administração</a>
+                <a href="servicos.html"><i class="fas fa-angle-right"></i> Modelagem Estatística</a>
+                <a href="solucoes.html"><i class="fas fa-angle-right"></i> Portfólio de Software</a>
+            </div>
+            <div class="footer-col">
+                <h4>Atendimento Especializado</h4>
+                <p><i class="fab fa-whatsapp" style="color: var(--accent-orange);"></i> (98) 98250-6920</p>
+                <p><i class="fas fa-envelope" style="color: var(--accent-orange);"></i> contato@metodosolucoes.com</p>
+                <p><i class="fas fa-map-marker-alt" style="color: var(--accent-orange);"></i> Sede: São Luís, MA</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Método Soluções. Liderança baseada em evidências. Todos os direitos reservados.
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato & Diagnóstico | Método Soluções</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            /* Paleta da Logo Método */
+            --primary-blue: #094b7c; 
+            --accent-cyan: #1a88a8;  
+            --accent-orange: #f4a236; 
+            --bg-light: #f8fafc;
+            --text-dark: #1e293b;
+            --white: #ffffff;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+        body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+
+        /* --- Navegação --- */
+        header { background: var(--white); box-shadow: 0 4px 15px rgba(9, 75, 124, 0.05); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 3px solid var(--accent-cyan); }
+
+        .upperbar { background: var(--primary-blue); color: white; padding: 6px 5%; font-size: 0.85rem; display: flex; justify-content: space-between; }
+        .upperbar i { color: var(--accent-orange); margin-right: 6px; }
+
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; max-width: 1400px; margin: 0 auto; }
+        .logo-container img { height: 60px; border-radius: 4px; }
+
+        .nav-links { display: flex; list-style: none; gap: 30px; }
+        .nav-links a { text-decoration: none; color: var(--primary-blue); font-weight: 700; transition: var(--transition); text-transform: uppercase; font-size: 0.9rem; }
+        .nav-links a:hover { color: var(--accent-orange); }
+
+        /* --- Cabeçalho da Página --- */
+        .page-header {
+            padding: 180px 5% 80px;
+            background: linear-gradient(135deg, rgba(9, 75, 124, 0.95), rgba(26, 136, 168, 0.9)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=2000') center/cover;
+            color: white; text-align: center;
+        }
+
+        .page-header h1 { font-size: 3rem; margin-bottom: 15px; color: var(--accent-orange); font-weight: 800; }
+        .page-header p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; font-weight: 300; }
+
+        /* --- Estrutura Grid de Contato --- */
+        .contact-container { padding: 80px 5%; max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; flex-grow: 1; }
+
+        /* --- Formulário --- */
+        .contact-form {
+            background: var(--white); padding: 50px; border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(9, 75, 124, 0.05); transition: var(--transition); border-top: 5px solid var(--accent-orange);
+        }
+        .contact-form:hover { transform: translateY(-5px); box-shadow: 0 25px 50px rgba(9, 75, 124, 0.1); }
+
+        .contact-form h2 { color: var(--primary-blue); margin-bottom: 30px; font-size: 1.8rem; }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; margin-bottom: 10px; font-weight: 600; color: var(--primary-blue); font-size: 0.95rem; }
+
+        .form-control {
+            width: 100%; padding: 14px 18px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 1rem;
+            transition: var(--transition); background-color: #f8fafc; color: var(--text-dark);
+        }
+
+        .form-control:focus { outline: none; border-color: var(--accent-cyan); background-color: var(--white); box-shadow: 0 0 0 4px rgba(26, 136, 168, 0.1); }
+        textarea.form-control { resize: vertical; min-height: 140px; }
+
+        .btn-submit {
+            background: var(--primary-blue); color: white; border: none; padding: 18px 30px; font-size: 1.1rem;
+            font-weight: bold; border-radius: 10px; cursor: pointer; width: 100%; transition: var(--transition); text-transform: uppercase; letter-spacing: 1px;
+        }
+        .btn-submit:hover { background: var(--accent-orange); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(244, 162, 54, 0.3); }
+
+        /* --- Informações Visuais --- */
+        .contact-info { display: flex; flex-direction: column; gap: 35px; justify-content: center; }
+
+        .info-card {
+            background: var(--white); padding: 35px; border-radius: 18px; display: flex; align-items: flex-start; gap: 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.03); transition: var(--transition); text-decoration: none; color: var(--text-dark); border: 1px solid #f1f5f9;
+        }
+
+        .info-card:hover { transform: translateX(-10px); box-shadow: 0 15px 30px rgba(9, 75, 124, 0.08); border-left: 5px solid var(--accent-cyan); }
+
+        .info-icon {
+            width: 60px; height: 60px; background: rgba(9, 75, 124, 0.08); color: var(--primary-blue);
+            border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; flex-shrink: 0; transition: var(--transition);
+        }
+
+        .info-card:hover .info-icon { background: var(--accent-orange); color: var(--white); }
+
+        .info-text h3 { font-size: 1.3rem; margin-bottom: 8px; color: var(--primary-blue); }
+        .info-text p { color: #64748b; font-size: 1rem; line-height: 1.5; }
+        .highlight-text { font-size: 0.85rem; font-weight: bold; margin-top: 8px; display: inline-block; color: var(--accent-cyan); }
+
+        /* --- Footer --- */
+        footer { background: #041829; color: white; padding: 30px 5%; text-align: center; margin-top: auto; border-top: 3px solid var(--primary-blue); }
+
+        /* --- Mobile --- */
+        @media (max-width: 992px) {
+            .contact-container { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .info-card:hover { transform: translateY(-5px); translateX: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="upperbar">
+            <span><i class="fas fa-headset"></i> Atendimento Especializado em Gestão & Software</span>
+            <span><i class="fas fa-map-marker-alt"></i> São Luís, MA</span>
+        </div>
+        <nav>
+            <div class="logo-container">
+                <img src="logo_metodo.png" alt="Método Soluções">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="solucoes.html">Sistemas SaaS</a></li>
+                <li><a href="servicos.html">Consultoria & Gestão</a></li>
+                <li><a href="contato.html" style="color: var(--accent-orange);">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <h1>Fale com um Especialista</h1>
+        <p>Preencha o formulário ou utilize nossos canais diretos para agendar uma reunião de diagnóstico. Seja para organizar o seu planejamento orçamentário ou construir um sistema customizado.</p>
+    </div>
+
+    <main class="contact-container">
+        
+        <!-- Bloco do Formulário -->
+        <div class="contact-form">
+            <h2>Solicitar Análise de Viabilidade</h2>
+            <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Mensagem enviada com sucesso! Em breve um de nossos consultores/desenvolvedores entrará em contato.');">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo</label>
+                        <input type="text" id="nome" class="form-control" placeholder="Seu nome ou cargo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="instituicao">Empresa / Instituição</label>
+                        <input type="text" id="instituicao" class="form-control" placeholder="Nome da organização" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">E-mail Corporativo</label>
+                        <input type="email" id="email" class="form-control" placeholder="email@instituicao.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">WhatsApp / Telefone</label>
+                        <input type="tel" id="telefone" class="form-control" placeholder="(00) 00000-0000" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="servico">Escopo de Interesse Principal</label>
+                    <select id="servico" class="form-control" required>
+                        <option value="" disabled selected>Selecione a área do projeto...</option>
+                        <option value="saas">Sistemas Customizados / Arquitetura Python MVC</option>
+                        <option value="dados">Análise Estatística & Limpeza de Base de Dados</option>
+                        <option value="gestao">Gestão Estratégica, Processos e Orçamento Público/Privado</option>
+                        <option value="outro">Consultoria Integrada (Gestão + Software)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensagem">Detalhes do Projeto ou Desafio</label>
+                    <textarea id="mensagem" class="form-control" placeholder="Descreva os gargalos gerenciais ou as especificações do sistema que você precisa construir/refatorar..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Enviar Solicitação <i class="fas fa-paper-plane" style="margin-left: 10px;"></i></button>
+            </form>
+        </div>
+
+        <!-- Bloco de Informações Diretas -->
+        <div class="contact-info">
+            
+            <a href="https://wa.me/5598982506920" target="_blank" class="info-card">
+                <div class="info-icon" style="background: rgba(37, 211, 102, 0.1); color: #25D366;">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <div class="info-text">
+                    <h3>Atendimento via WhatsApp</h3>
+                    <p>(98) 98250-6920</p>
+                    <span class="highlight-text">Disponível para contato direto e suporte de sistemas.</span>
+                </div>
+            </a>
+
+            <a href="mailto:contato@metodosolucoes.com" class="info-card">
+                <div class="info-icon">
+                    <i class="fas fa-envelope-open-text"></i>
+                </div>
+                <div class="info-text">
+                    <h3>E-mail Institucional</h3>
+                    <p>contato@metodosolucoes.com</p>
+                    <span class="highlight-text">Envie termos de referência ou requisitos de software.</span>
+                </div>
+            </a>
+
+            <div class="info-card" style="cursor: default;">
+                <div class="info-icon">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <div class="info-text">
+                    <h3>Localização & Atendimento</h3>
+                    <p>Sede base em <strong>São Luís, Maranhão</strong>.</p>
+                    <span class="highlight-text">Atendemos empresas, universidades e clínicas em todo o Brasil via consultoria remota e implantação de infraestrutura em nuvem.</span>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Método Soluções. Inteligência em Gestão e Engenharia de Software.</p>
+    </footer>
+
+</body>
+</html>

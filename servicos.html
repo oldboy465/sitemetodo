@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultoria Estatística & Gestão Estratégica | Método Soluções</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            /* Cores extraídas da Logo */
+            --primary-blue: #094b7c; 
+            --accent-cyan: #1a88a8;  
+            --accent-orange: #f4a236; 
+            --bg-light: #f4f7f9;
+            --text-dark: #1e293b;
+            --white: #ffffff;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+        body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.7; overflow-x: hidden; }
+
+        /* --- Navigation --- */
+        header { background: var(--white); box-shadow: 0 2px 20px rgba(0,0,0,0.05); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 3px solid var(--accent-cyan); }
+
+        .upperbar { background: var(--primary-blue); color: white; padding: 8px 5%; font-size: 0.85rem; display: flex; justify-content: space-between; font-weight: 500; }
+        .upperbar i { color: var(--accent-orange); margin-right: 5px; }
+
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; max-width: 1400px; margin: 0 auto; }
+
+        .logo-container img { height: 60px; }
+
+        .nav-links { display: flex; list-style: none; gap: 30px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--primary-blue); font-weight: 700; transition: var(--transition); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.5px; }
+        .nav-links a:hover { color: var(--accent-orange); }
+
+        /* --- Hero Seção --- */
+        .services-hero {
+            padding: 220px 5% 120px;
+            background: linear-gradient(135deg, rgba(9, 75, 124, 0.95), rgba(26, 136, 168, 0.85)), url('https://images.unsplash.com/photo-1454165833767-027ffea7028c?auto=format&fit=crop&q=80&w=2000') center/cover fixed;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .services-hero::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 15px; background: var(--accent-orange); }
+
+        .services-hero h1 { font-size: 3.8rem; margin-bottom: 25px; font-weight: 800; letter-spacing: -1px; }
+        .services-hero p { font-size: 1.3rem; max-width: 900px; margin: 0 auto; opacity: 0.95; font-weight: 300; }
+
+        /* --- Layout de Categoria de Serviços --- */
+        .category-title { text-align: center; margin: 80px 0 40px; }
+        .category-title h2 { font-size: 2.5rem; color: var(--primary-blue); display: inline-block; position: relative; }
+        .category-title h2::after { content: ''; position: absolute; width: 50%; height: 4px; background: var(--accent-orange); bottom: -10px; left: 25%; border-radius: 2px; }
+
+        .services-grid-container { padding: 20px 5% 100px; max-width: 1400px; margin: 0 auto; }
+
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 40px; margin-bottom: 60px; }
+
+        .service-card {
+            background: var(--white); padding: 50px 40px; border-radius: 20px; transition: var(--transition);
+            border: 1px solid rgba(26, 136, 168, 0.15); display: flex; flex-direction: column; gap: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02); position: relative; overflow: hidden;
+        }
+        
+        .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--accent-cyan); transition: var(--transition); }
+        .service-card:hover::before { width: 100%; opacity: 0.03; }
+
+        .service-card:hover { transform: translateY(-15px); box-shadow: 0 30px 60px rgba(9, 75, 124, 0.1); border-color: var(--accent-cyan); }
+
+        .service-icon {
+            width: 80px; height: 80px; background: rgba(244, 162, 54, 0.15); color: var(--accent-orange);
+            border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; transition: var(--transition);
+        }
+
+        .service-card:hover .service-icon { background: var(--accent-orange); color: var(--white); transform: scale(1.1) rotate(5deg); }
+
+        .service-card h3 { color: var(--primary-blue); font-size: 1.6rem; font-weight: 700; margin-bottom: 10px; }
+        .service-card p { color: #475569; font-size: 1.05rem; flex-grow: 1; }
+
+        .service-list { list-style: none; margin-top: 15px; background: var(--bg-light); padding: 20px; border-radius: 12px; }
+        .service-list li { padding: 8px 0; font-size: 0.95rem; display: flex; align-items: flex-start; gap: 12px; color: var(--primary-blue); font-weight: 500; }
+        .service-list li i { color: var(--accent-cyan); margin-top: 4px; }
+
+        /* --- Seção de Metodologia Diferenciada --- */
+        .methodology { background: var(--primary-blue); padding: 120px 5%; text-align: center; color: var(--white); position: relative; }
+        .methodology::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 30px solid transparent; border-right: 30px solid transparent; border-top: 30px solid var(--bg-light); }
+
+        .methodology-box { max-width: 1000px; margin: 0 auto; }
+        .methodology h2 { color: var(--accent-orange); margin-bottom: 30px; font-size: 3rem; }
+        .methodology p { font-size: 1.25rem; line-height: 2; font-weight: 300; }
+        .methodology strong { color: var(--accent-cyan); font-weight: 700; }
+
+        /* --- Footer --- */
+        footer { background: #061e33; color: white; padding: 60px 5% 30px; text-align: center; border-top: 4px solid var(--accent-cyan); }
+        .footer-cta { display: inline-block; margin-bottom: 40px; background: var(--accent-orange); color: var(--white); padding: 15px 40px; border-radius: 8px; font-size: 1.2rem; font-weight: bold; text-decoration: none; transition: var(--transition); }
+        .footer-cta:hover { background: var(--white); color: var(--accent-orange); box-shadow: 0 10px 20px rgba(244, 162, 54, 0.2); }
+
+        @media (max-width: 768px) {
+            .services-hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .services-grid { grid-template-columns: 1fr; }
+            .upperbar { flex-direction: column; text-align: center; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="upperbar">
+            <span><i class="fas fa-university"></i> Consultoria Especializada em Planejamento Público e Privado</span>
+            <span><i class="fas fa-envelope"></i> contato@metodosolucoes.com</span>
+        </div>
+        <nav>
+            <div class="logo-container">
+                <img src="logo_metodo.png" alt="Método Soluções">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="solucoes.html">Sistemas SaaS</a></li>
+                <li><a href="servicos.html" style="color: var(--accent-orange);">Serviços</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="services-hero">
+        <h1>Inteligência que Alavanca Resultados</h1>
+        <p>Unimos expertise acadêmica em Estatística e Engenharia de Software com prática de gestão para oferecer soluções que transformam a realidade organizacional. Do orçamento anual ao código-fonte da sua operação.</p>
+    </section>
+
+    <main class="services-grid-container">
+
+        <!-- CATEGORIA: GESTÃO & PLANEJAMENTO -->
+        <div class="category-title">
+            <h2>Governança e Planejamento</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-chess-knight"></i></div>
+                <h3>Gestão Estratégica</h3>
+                <p>Definição de diretrizes de longo prazo e alinhamento da operação com a visão de futuro da organização. Desenvolvemos planos de ação sólidos focados em execução orçamentária e sustentabilidade institucional.</p>
+                <ul class="service-list">
+                    <li><i class="fas fa-arrow-right"></i> Planejamento Estratégico Situacional</li>
+                    <li><i class="fas fa-arrow-right"></i> Controle e Remanejamento de Orçamento</li>
+                    <li><i class="fas fa-arrow-right"></i> Análise de Cenários e Riscos</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-project-diagram"></i></div>
+                <h3>Mapeamento de Processos</h3>
+                <p>Eliminação de gargalos e burocracia desnecessária através do desenho e otimização de fluxos. Ideal para instituições que necessitam de conformidade e auditoria precisa em suas operações diárias.</p>
+                <ul class="service-list">
+                    <li><i class="fas fa-arrow-right"></i> Modelagem AS-IS e TO-BE</li>
+                    <li><i class="fas fa-arrow-right"></i> Padronização de Procedimentos (POP)</li>
+                    <li><i class="fas fa-arrow-right"></i> Redução de Custos Operacionais</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-wallet"></i></div>
+                <h3>Gestão Financeira & Desempenho</h3>
+                <p>Controle rigoroso do fluxo de caixa e inteligência financeira para suporte à decisão. Avaliação de superávit, emissão de pareceres técnicos e prestação de contas com validação matemática.</p>
+                <ul class="service-list">
+                    <li><i class="fas fa-arrow-right"></i> Fluxo de Caixa e DRE</li>
+                    <li><i class="fas fa-arrow-right"></i> Planejamento e Execução Orçamentária</li>
+                    <li><i class="fas fa-arrow-right"></i> Análise Estatística de Custos</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- CATEGORIA: ESTATÍSTICA E ENGENHARIA -->
+        <div class="category-title">
+            <h2>Ciência de Dados & Software</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-chart-bar"></i></div>
+                <h3>Consultoria Estatística Aplicada</h3>
+                <p>Tratamento avançado de dados acadêmicos e empresariais. Realizamos a limpeza, estruturação e análise de bancos de dados para identificar correlações ocultas e validar hipóteses de negócios ou pesquisas científicas.</p>
+                <ul class="service-list">
+                    <li><i class="fas fa-code-branch"></i> Testes de Hipóteses e Regressões</li>
+                    <li><i class="fas fa-code-branch"></i> Limpeza e Tratamento de Falsos Positivos</li>
+                    <li><i class="fas fa-code-branch"></i> Metodologia Científica e Amostragem</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-eye"></i></div>
+                <h3>Gestão à Vista & Dashboards</h3>
+                <p>Criação de ambientes de transparência onde os dados orientam o comportamento e a produtividade da equipe. Sistemas integrados para monitorar a satisfação (Helpdesk) e desempenho em tempo real.</p>
+                <ul class="service-list">
+                    <li><i class="fas fa-code-branch"></i> Desenvolvimento de Dashboards Físicos e Digitais</li>
+                    <li><i class="fas fa-code-branch"></i> Implementação de Quadros de Indicadores</li>
+                    <li><i class="fas fa-code-branch"></i> Automação de Relatórios Analíticos</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+                <h3>Engenharia de Software Sob Medida</h3>
+                <p>Desenvolvimento full-stack de aplicações para gerenciar os processos delineados na consultoria. Construímos desde a arquitetura de banco de dados até a interface final do usuário, garantindo escalabilidade.</p>
+                <ul class="service-list">
+                    <li><i class="fas fa-code-branch"></i> Desenvolvimento em Python com Arquitetura MVC</li>
+                    <li><i class="fas fa-code-branch"></i> Framework Flask e Interfaces HTML/CSS</li>
+                    <li><i class="fas fa-code-branch"></i> Migração e Hospedagem de Servidores</li>
+                </ul>
+            </div>
+        </div>
+
+    </main>
+
+    <section class="methodology">
+        <div class="methodology-box">
+            <h2>Nosso Diferencial Metodológico</h2>
+            <p>Diferente de consultorias genéricas, a <strong>Método Soluções</strong> utiliza a <strong>Estatística Aplicada e a Ciência da Computação</strong> como base de toda análise. Nossa equipe atua coordenando o planejamento de grandes instituições e traz esse rigor corporativo para o seu negócio. Não trabalhamos com "achismos", trabalhamos com significância estatística, metodologias ágeis e modelagem de dados robusta para garantir que cada decisão seja a mais rentável, automatizada e segura para o cliente.</p>
+        </div>
+    </section>
+
+    <footer>
+        <a href="contato.html" class="footer-cta">Solicitar uma Consultoria Especializada <i class="fas fa-arrow-right" style="margin-left: 10px;"></i></a>
+        <p style="margin-top: 30px; opacity: 0.6; font-size: 0.9rem;">&copy; 2026 Método Soluções. Liderança baseada em evidências, gestão e tecnologia.</p>
+    </footer>
+
+</body>
+</html>
