@@ -3,108 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contato & Diagnóstico | Método Soluções</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Diagnóstico & Contato | Método Soluções</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            /* Paleta da Logo Método */
             --primary-blue: #094b7c; 
+            --primary-dark: #04243d;
             --accent-cyan: #1a88a8;  
             --accent-orange: #f4a236; 
-            --bg-light: #f8fafc;
-            --text-dark: #1e293b;
+            --bg-light: #f1f5f9;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
             --white: #ffffff;
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --transition: all 0.3s ease;
+            --shadow-card: 0 10px 40px -10px rgba(9, 75, 124, 0.15);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Segoe UI', sans-serif; }
         body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
 
-        /* --- Navegação --- */
-        header { background: var(--white); box-shadow: 0 4px 15px rgba(9, 75, 124, 0.05); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 3px solid var(--accent-cyan); }
-
-        .upperbar { background: var(--primary-blue); color: white; padding: 6px 5%; font-size: 0.85rem; display: flex; justify-content: space-between; }
-        .upperbar i { color: var(--accent-orange); margin-right: 6px; }
-
+        /* --- Header --- */
+        header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 2px solid var(--accent-cyan); }
+        .upperbar { background: var(--primary-dark); color: var(--white); padding: 8px 5%; font-size: 0.85rem; display: flex; justify-content: space-between; font-weight: 500; letter-spacing: 0.5px; }
+        .upperbar i { color: var(--accent-orange); margin-right: 8px; }
         nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; max-width: 1400px; margin: 0 auto; }
-        .logo-container img { height: 60px; border-radius: 4px; }
-
+        .logo-container span { font-weight: 900; font-size: 1.8rem; color: var(--primary-blue); }
+        .logo-container span span { color: var(--accent-orange); }
+        
         .nav-links { display: flex; list-style: none; gap: 30px; }
-        .nav-links a { text-decoration: none; color: var(--primary-blue); font-weight: 700; transition: var(--transition); text-transform: uppercase; font-size: 0.9rem; }
-        .nav-links a:hover { color: var(--accent-orange); }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 600; font-size: 0.95rem; text-transform: uppercase; transition: var(--transition); }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-orange); }
+        .menu-toggle { display: none; font-size: 1.8rem; color: var(--primary-blue); cursor: pointer; }
 
-        /* --- Cabeçalho da Página --- */
-        .page-header {
-            padding: 180px 5% 80px;
-            background: linear-gradient(135deg, rgba(9, 75, 124, 0.95), rgba(26, 136, 168, 0.9)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=2000') center/cover;
-            color: white; text-align: center;
-        }
+        /* --- Hero Contact --- */
+        .hero-contact { padding: 160px 5% 80px; background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-blue) 100%); color: var(--white); text-align: center; }
+        .hero-contact h1 { font-size: 3.2rem; font-weight: 900; color: var(--accent-orange); margin-bottom: 20px; letter-spacing: -1px; }
+        .hero-contact p { font-size: 1.2rem; max-width: 750px; margin: 0 auto; font-weight: 300; opacity: 0.9; }
 
-        .page-header h1 { font-size: 3rem; margin-bottom: 15px; color: var(--accent-orange); font-weight: 800; }
-        .page-header p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; font-weight: 300; }
+        /* --- Main Layout --- */
+        .contact-wrapper { padding: 80px 5%; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 400px; gap: 50px; flex-grow: 1; align-items: flex-start; }
 
-        /* --- Estrutura Grid de Contato --- */
-        .contact-container { padding: 80px 5%; max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; flex-grow: 1; }
+        /* --- Formulario Premium --- */
+        .form-card { background: var(--white); border-radius: 24px; padding: 50px; box-shadow: var(--shadow-card); border-top: 6px solid var(--primary-blue); }
+        .form-card h2 { font-size: 2rem; color: var(--primary-dark); margin-bottom: 10px; font-weight: 800; }
+        .form-card > p { color: var(--text-muted); margin-bottom: 35px; font-size: 1.05rem; }
 
-        /* --- Formulário --- */
-        .contact-form {
-            background: var(--white); padding: 50px; border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(9, 75, 124, 0.05); transition: var(--transition); border-top: 5px solid var(--accent-orange);
-        }
-        .contact-form:hover { transform: translateY(-5px); box-shadow: 0 25px 50px rgba(9, 75, 124, 0.1); }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px; }
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
+        .form-group.full { grid-column: span 2; }
+        
+        .form-group label { font-size: 0.95rem; font-weight: 700; color: var(--primary-blue); }
+        .form-control { width: 100%; padding: 16px; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 1rem; color: var(--text-dark); transition: var(--transition); font-weight: 500; }
+        .form-control:focus { outline: none; border-color: var(--accent-cyan); background: var(--white); box-shadow: 0 0 0 4px rgba(26, 136, 168, 0.15); }
+        textarea.form-control { resize: vertical; min-height: 150px; }
 
-        .contact-form h2 { color: var(--primary-blue); margin-bottom: 30px; font-size: 1.8rem; }
+        .btn-submit { background: var(--primary-blue); color: var(--white); font-weight: 800; font-size: 1.15rem; padding: 20px; border: none; border-radius: 12px; cursor: pointer; width: 100%; transition: var(--transition); text-transform: uppercase; letter-spacing: 1px; display: flex; justify-content: center; align-items: center; gap: 10px; box-shadow: 0 10px 20px rgba(9, 75, 124, 0.2); }
+        .btn-submit:hover { background: var(--accent-orange); box-shadow: 0 10px 25px rgba(244, 162, 54, 0.3); transform: translateY(-3px); }
 
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        /* --- Info Cards --- */
+        .info-sidebar { display: flex; flex-direction: column; gap: 25px; }
+        .info-box { background: var(--white); padding: 30px; border-radius: 20px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 15px; text-decoration: none; border: 2px solid transparent; transition: var(--transition); position: relative; overflow: hidden; }
+        .info-box:hover { border-color: var(--accent-cyan); transform: translateY(-5px); }
+        
+        .icon-circle { width: 60px; height: 60px; border-radius: 16px; background: rgba(9, 75, 124, 0.05); color: var(--primary-blue); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; transition: var(--transition); }
+        .info-box:hover .icon-circle { background: var(--accent-orange); color: var(--white); }
+        
+        .info-box h3 { color: var(--primary-dark); font-size: 1.3rem; font-weight: 800; }
+        .info-box p { color: var(--text-muted); font-size: 1rem; font-weight: 500; }
+        .info-tag { font-size: 0.8rem; background: var(--bg-light); color: var(--accent-cyan); padding: 6px 12px; border-radius: 8px; font-weight: 700; align-self: flex-start; text-transform: uppercase; }
 
-        .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; margin-bottom: 10px; font-weight: 600; color: var(--primary-blue); font-size: 0.95rem; }
-
-        .form-control {
-            width: 100%; padding: 14px 18px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 1rem;
-            transition: var(--transition); background-color: #f8fafc; color: var(--text-dark);
-        }
-
-        .form-control:focus { outline: none; border-color: var(--accent-cyan); background-color: var(--white); box-shadow: 0 0 0 4px rgba(26, 136, 168, 0.1); }
-        textarea.form-control { resize: vertical; min-height: 140px; }
-
-        .btn-submit {
-            background: var(--primary-blue); color: white; border: none; padding: 18px 30px; font-size: 1.1rem;
-            font-weight: bold; border-radius: 10px; cursor: pointer; width: 100%; transition: var(--transition); text-transform: uppercase; letter-spacing: 1px;
-        }
-        .btn-submit:hover { background: var(--accent-orange); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(244, 162, 54, 0.3); }
-
-        /* --- Informações Visuais --- */
-        .contact-info { display: flex; flex-direction: column; gap: 35px; justify-content: center; }
-
-        .info-card {
-            background: var(--white); padding: 35px; border-radius: 18px; display: flex; align-items: flex-start; gap: 25px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.03); transition: var(--transition); text-decoration: none; color: var(--text-dark); border: 1px solid #f1f5f9;
-        }
-
-        .info-card:hover { transform: translateX(-10px); box-shadow: 0 15px 30px rgba(9, 75, 124, 0.08); border-left: 5px solid var(--accent-cyan); }
-
-        .info-icon {
-            width: 60px; height: 60px; background: rgba(9, 75, 124, 0.08); color: var(--primary-blue);
-            border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; flex-shrink: 0; transition: var(--transition);
-        }
-
-        .info-card:hover .info-icon { background: var(--accent-orange); color: var(--white); }
-
-        .info-text h3 { font-size: 1.3rem; margin-bottom: 8px; color: var(--primary-blue); }
-        .info-text p { color: #64748b; font-size: 1rem; line-height: 1.5; }
-        .highlight-text { font-size: 0.85rem; font-weight: bold; margin-top: 8px; display: inline-block; color: var(--accent-cyan); }
-
-        /* --- Footer --- */
-        footer { background: #041829; color: white; padding: 30px 5%; text-align: center; margin-top: auto; border-top: 3px solid var(--primary-blue); }
+        /* Footer */
+        footer { background: #02111d; color: #94a3b8; padding: 30px 5%; text-align: center; font-size: 0.95rem; margin-top: auto; }
 
         /* --- Mobile --- */
-        @media (max-width: 992px) {
-            .contact-container { grid-template-columns: 1fr; }
-            .form-row { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
-            .info-card:hover { transform: translateY(-5px); translateX: 0; }
+        @media (max-width: 1024px) {
+            .contact-wrapper { grid-template-columns: 1fr; }
+            .info-sidebar { flex-direction: row; flex-wrap: wrap; }
+            .info-box { flex: 1; min-width: 300px; }
+        }
+
+        @media (max-width: 768px) {
+            .upperbar { flex-direction: column; text-align: center; gap: 8px; }
+            .menu-toggle { display: block; }
+            .nav-links { display: none; width: 100%; position: absolute; top: 100%; left: 0; background: var(--white); flex-direction: column; padding: 20px 0; box-shadow: var(--shadow-card); gap: 0; }
+            .nav-links.show { display: flex; }
+            .nav-links a { padding: 15px 5%; display: block; border-bottom: 1px solid #f1f5f9; }
+            
+            .hero-contact h1 { font-size: 2.5rem; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-group.full { grid-column: span 1; }
+            .form-card { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -112,119 +100,117 @@
 
     <header>
         <div class="upperbar">
-            <span><i class="fas fa-headset"></i> Atendimento Especializado em Gestão & Software</span>
-            <span><i class="fas fa-map-marker-alt"></i> São Luís, MA</span>
+            <span><i class="fas fa-chart-bar"></i> Consultoria Estatística & Desenvolvimento SaaS</span>
+            <span><i class="fas fa-map-marker-alt"></i> Atendimento Remoto Nacional | Sede MA</span>
         </div>
         <nav>
             <div class="logo-container">
-                <img src="logo_metodo.png" alt="Método Soluções">
+                <span>MÉTODO<span>.</span></span>
             </div>
-            <ul class="nav-links">
+            <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links" id="nav-links">
                 <li><a href="index.html">Início</a></li>
-                <li><a href="solucoes.html">Sistemas SaaS</a></li>
-                <li><a href="servicos.html">Consultoria & Gestão</a></li>
-                <li><a href="contato.html" style="color: var(--accent-orange);">Contato</a></li>
+                <li><a href="solucoes.html">Estratégia & SaaS</a></li>
+                <li><a href="servicos.html">Gestão Financeira</a></li>
+                <li><a href="contato.html" class="active">Agendar Diagnóstico</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="page-header">
-        <h1>Fale com um Especialista</h1>
-        <p>Preencha o formulário ou utilize nossos canais diretos para agendar uma reunião de diagnóstico. Seja para organizar o seu planejamento orçamentário ou construir um sistema customizado.</p>
-    </div>
+    <section class="hero-contact">
+        <h1>Vamos diagnosticar o seu gargalo?</h1>
+        <p>Seja para reestruturar orçamentos públicos/privados, mapear fluxos de trabalho ou desenvolver um sistema proprietário em Python. Nossos especialistas estão prontos para a reunião.</p>
+    </section>
 
-    <main class="contact-container">
+    <main class="contact-wrapper">
         
-        <!-- Bloco do Formulário -->
-        <div class="contact-form">
-            <h2>Solicitar Análise de Viabilidade</h2>
-            <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Mensagem enviada com sucesso! Em breve um de nossos consultores/desenvolvedores entrará em contato.');">
-                
-                <div class="form-row">
+        <!-- Formulário Técnico -->
+        <div class="form-card">
+            <h2>Solicitação de Viabilidade</h2>
+            <p>Preencha os dados da sua instituição para que nosso time técnico analise o contexto antes da nossa primeira reunião.</p>
+            
+            <form action="#" onsubmit="event.preventDefault(); alert('Solicitação registrada! Nossa equipe técnica entrará em contato em breve.');">
+                <div class="form-grid">
                     <div class="form-group">
-                        <label for="nome">Nome Completo</label>
-                        <input type="text" id="nome" class="form-control" placeholder="Seu nome ou cargo" required>
+                        <label for="nome">Nome do Responsável</label>
+                        <input type="text" id="nome" class="form-control" placeholder="Seu nome completo" required>
                     </div>
                     <div class="form-group">
-                        <label for="instituicao">Empresa / Instituição</label>
-                        <input type="text" id="instituicao" class="form-control" placeholder="Nome da organização" required>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="email">E-mail Corporativo</label>
-                        <input type="email" id="email" class="form-control" placeholder="email@instituicao.com" required>
+                        <label for="empresa">Organização / Instituição</label>
+                        <input type="text" id="empresa" class="form-control" placeholder="Nome da empresa" required>
                     </div>
                     <div class="form-group">
-                        <label for="telefone">WhatsApp / Telefone</label>
+                        <label for="email">E-mail Profissional</label>
+                        <input type="email" id="email" class="form-control" placeholder="contato@empresa.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">WhatsApp Comercial</label>
                         <input type="tel" id="telefone" class="form-control" placeholder="(00) 00000-0000" required>
                     </div>
+                    <div class="form-group full">
+                        <label for="demanda">Pilar Estratégico Principal</label>
+                        <select id="demanda" class="form-control" required>
+                            <option value="" disabled selected>Selecione a área de maior urgência...</option>
+                            <option value="saas">Desenvolvimento de Software SaaS (Python/MVC)</option>
+                            <option value="processos">Mapeamento e Otimização de Processos (BPM)</option>
+                            <option value="financas">Gestão Estratégica e Orçamentária</option>
+                            <option value="dados">Consultoria Estatística e Limpeza de Dados</option>
+                            <option value="completa">Consultoria Integrada (Gestão + Tecnologia)</option>
+                        </select>
+                    </div>
+                    <div class="form-group full">
+                        <label for="detalhes">Detalhamento do Cenário Atual</label>
+                        <textarea id="detalhes" class="form-control" placeholder="Descreva os problemas atuais. Ex: 'Nossa gestão de helpdesk está lenta', 'Precisamos de um sistema próprio para a clínica', 'O orçamento público exige revisão'..." required></textarea>
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="servico">Escopo de Interesse Principal</label>
-                    <select id="servico" class="form-control" required>
-                        <option value="" disabled selected>Selecione a área do projeto...</option>
-                        <option value="saas">Sistemas Customizados / Arquitetura Python MVC</option>
-                        <option value="dados">Análise Estatística & Limpeza de Base de Dados</option>
-                        <option value="gestao">Gestão Estratégica, Processos e Orçamento Público/Privado</option>
-                        <option value="outro">Consultoria Integrada (Gestão + Software)</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="mensagem">Detalhes do Projeto ou Desafio</label>
-                    <textarea id="mensagem" class="form-control" placeholder="Descreva os gargalos gerenciais ou as especificações do sistema que você precisa construir/refatorar..." required></textarea>
-                </div>
-
-                <button type="submit" class="btn-submit">Enviar Solicitação <i class="fas fa-paper-plane" style="margin-left: 10px;"></i></button>
+                <button type="submit" class="btn-submit">
+                    Processar Solicitação <i class="fas fa-paper-plane"></i>
+                </button>
             </form>
         </div>
 
-        <!-- Bloco de Informações Diretas -->
-        <div class="contact-info">
+        <!-- Coluna de Informações e Contato Direto -->
+        <aside class="info-sidebar">
             
-            <a href="https://wa.me/5598982506920" target="_blank" class="info-card">
-                <div class="info-icon" style="background: rgba(37, 211, 102, 0.1); color: #25D366;">
+            <a href="https://wa.me/5598982506920" target="_blank" class="info-box">
+                <div class="icon-circle" style="color: #16a34a; background: rgba(22, 163, 74, 0.1);">
                     <i class="fab fa-whatsapp"></i>
                 </div>
-                <div class="info-text">
-                    <h3>Atendimento via WhatsApp</h3>
-                    <p>(98) 98250-6920</p>
-                    <span class="highlight-text">Disponível para contato direto e suporte de sistemas.</span>
-                </div>
+                <h3>Plantão Técnico</h3>
+                <p>(98) 98250-6920</p>
+                <span class="info-tag">Atendimento Imediato</span>
             </a>
 
-            <a href="mailto:contato@metodosolucoes.com" class="info-card">
-                <div class="info-icon">
+            <a href="mailto:contato@metodosolucoes.com" class="info-box">
+                <div class="icon-circle">
                     <i class="fas fa-envelope-open-text"></i>
                 </div>
-                <div class="info-text">
-                    <h3>E-mail Institucional</h3>
-                    <p>contato@metodosolucoes.com</p>
-                    <span class="highlight-text">Envie termos de referência ou requisitos de software.</span>
-                </div>
+                <h3>E-mail Corporativo</h3>
+                <p>contato@metodosolucoes.com</p>
+                <span class="info-tag">Envio de Termos de Referência</span>
             </a>
 
-            <div class="info-card" style="cursor: default;">
-                <div class="info-icon">
-                    <i class="fas fa-map-marked-alt"></i>
+            <div class="info-box" style="cursor: default;">
+                <div class="icon-circle" style="color: var(--accent-orange); background: rgba(244, 162, 54, 0.1);">
+                    <i class="fas fa-laptop-code"></i>
                 </div>
-                <div class="info-text">
-                    <h3>Localização & Atendimento</h3>
-                    <p>Sede base em <strong>São Luís, Maranhão</strong>.</p>
-                    <span class="highlight-text">Atendemos empresas, universidades e clínicas em todo o Brasil via consultoria remota e implantação de infraestrutura em nuvem.</span>
-                </div>
+                <h3>Infraestrutura Remota</h3>
+                <p>Baseados no Maranhão, atendemos projetos de engenharia de software e análise estatística para todo o território nacional.</p>
+                <span class="info-tag">Hospedagem em Nuvem Linux</span>
             </div>
 
-        </div>
+        </aside>
 
     </main>
 
     <footer>
-        <p>&copy; 2026 Método Soluções. Inteligência em Gestão e Engenharia de Software.</p>
+        <p>&copy; 2026 <strong>Método Soluções</strong>. Onde a Administração encontra a Ciência da Computação.</p>
     </footer>
 
+    <script>
+        document.getElementById('mobile-menu').addEventListener('click', function() {
+            document.getElementById('nav-links').classList.toggle('show');
+        });
+    </script>
 </body>
 </html>

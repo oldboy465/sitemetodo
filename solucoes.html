@@ -3,207 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistemas SaaS & Software | Método Soluções</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Sistemas SaaS & Estratégia | Método Soluções</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            /* Paleta da Logo Método */
             --primary-blue: #094b7c; 
+            --primary-dark: #04243d;
             --accent-cyan: #1a88a8;  
             --accent-orange: #f4a236; 
+            --accent-orange-hover: #e08e20;
             --bg-light: #f8fafc;
-            --text-dark: #1e293b;
-            --text-muted: #64748b;
+            --bg-glass: rgba(255, 255, 255, 0.85);
+            --text-dark: #0f172a;
+            --text-muted: #475569;
             --white: #ffffff;
             --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(9, 75, 124, 0.1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Segoe UI', sans-serif; }
         body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.7; overflow-x: hidden; }
 
-        /* --- Header / Navegação --- */
-        header { background: var(--white); box-shadow: 0 4px 20px rgba(9, 75, 124, 0.08); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 3px solid var(--accent-orange); }
-
-        .upperbar { background: linear-gradient(90deg, var(--primary-blue), #063152); color: var(--white); padding: 8px 5%; font-size: 0.85rem; display: flex; justify-content: space-between; align-items: center; }
-        .upperbar span i { color: var(--accent-cyan); margin-right: 5px; }
-
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; max-width: 1400px; margin: 0 auto; }
-        .logo-container img { height: 60px; }
-
-        .nav-links { display: flex; list-style: none; gap: 35px; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--primary-blue); font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; transition: var(--transition); }
-        .nav-links a:hover { color: var(--accent-orange); }
-
-        /* --- Page Header --- */
-        .page-header {
-            padding: 200px 5% 100px;
-            background: linear-gradient(135deg, rgba(9, 75, 124, 0.98), rgba(6, 49, 82, 0.95)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=2000') center/cover;
-            color: var(--white);
-            text-align: center;
-            border-bottom: 10px solid var(--accent-cyan);
-        }
-
-        .page-header h1 { font-size: 3.5rem; margin-bottom: 20px; font-weight: 800; color: var(--accent-orange); }
-        .page-header p { font-size: 1.3rem; max-width: 800px; margin: 0 auto; font-weight: 300; opacity: 0.9; }
-
-        /* --- Metodologia de Engenharia --- */
-        .architecture-banner { background: var(--white); padding: 60px 5%; border-bottom: 1px solid #e2e8f0; text-align: center; }
-        .architecture-banner h2 { color: var(--primary-blue); margin-bottom: 20px; font-size: 2.2rem; }
-        .architecture-banner p { color: var(--text-muted); max-width: 1000px; margin: 0 auto; font-size: 1.15rem; }
-        .badges-container { display: flex; justify-content: center; gap: 20px; margin-top: 30px; flex-wrap: wrap; }
-        .tech-badge { background: rgba(26, 136, 168, 0.1); color: var(--primary-blue); padding: 10px 25px; border-radius: 50px; font-weight: bold; font-size: 0.9rem; border: 1px solid var(--accent-cyan); }
-
-        /* --- SaaS Grid --- */
-        .saas-container { padding: 100px 5%; max-width: 1300px; margin: 0 auto; }
-
-        .saas-item {
-            background: var(--white); border-radius: 20px; overflow: hidden; display: flex; margin-bottom: 80px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.04); transition: var(--transition); border: 1px solid rgba(9, 75, 124, 0.05);
-        }
-        .saas-item:hover { transform: translateY(-12px); box-shadow: 0 25px 60px rgba(9, 75, 124, 0.12); border-color: var(--accent-orange); }
-
-        .saas-info { padding: 60px 50px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
-
-        .saas-tag {
-            align-self: flex-start; background: rgba(244, 162, 54, 0.15); color: #d97706; padding: 6px 18px;
-            border-radius: 50px; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;
-        }
-
-        .saas-info h2 { color: var(--primary-blue); font-size: 2.2rem; margin-bottom: 20px; line-height: 1.2; }
-        .saas-info p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 30px; }
-
-        .saas-features { list-style: none; margin-bottom: 30px; }
-        .saas-features li { margin-bottom: 15px; display: flex; align-items: flex-start; gap: 15px; font-size: 1.05rem; color: var(--text-dark); font-weight: 500; }
-        .saas-features li i { color: var(--accent-cyan); font-size: 1.2rem; margin-top: 3px; }
-
-        .saas-image { flex: 1; min-height: 400px; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
-        .saas-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
-        .saas-item:hover .saas-image img { transform: scale(1.05); }
-
-        /* --- CTA Section --- */
-        .cta-saas {
-            background: linear-gradient(135deg, var(--primary-blue), #063152); padding: 100px 5%; text-align: center; color: var(--white); position: relative; overflow: hidden;
-        }
-        .cta-saas::before { content: ''; position: absolute; top: -50%; left: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(26, 136, 168, 0.3) 0%, transparent 70%); border-radius: 50%; }
+        /* --- Header & Navegação Responsiva --- */
+        header { background: var(--bg-glass); backdrop-filter: blur(10px); box-shadow: var(--shadow-sm); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 2px solid var(--accent-orange); transition: var(--transition); }
+        .upperbar { background: linear-gradient(90deg, var(--primary-dark), var(--primary-blue)); color: var(--white); padding: 8px 5%; font-size: 0.85rem; display: flex; justify-content: space-between; align-items: center; }
+        .upperbar span i { color: var(--accent-orange); margin-right: 8px; }
         
-        .cta-saas h2 { font-size: 2.8rem; margin-bottom: 25px; color: var(--accent-orange); position: relative; z-index: 2; }
-        .cta-saas p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 40px; font-weight: 300; position: relative; z-index: 2; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; max-width: 1400px; margin: 0 auto; }
+        .logo-container img { height: 50px; font-weight: 800; font-size: 1.5rem; color: var(--primary-blue); }
+        
+        .nav-links { display: flex; list-style: none; gap: 35px; align-items: center; transition: var(--transition); }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 600; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; transition: var(--transition); position: relative; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background-color: var(--accent-orange); transition: var(--transition); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary-blue); }
+        
+        /* Menu Hamburger */
+        .menu-toggle { display: none; font-size: 1.8rem; color: var(--primary-blue); cursor: pointer; }
 
-        .btn-saas {
-            display: inline-block; background: var(--accent-orange); color: var(--white); padding: 18px 45px;
-            border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1.1rem; transition: var(--transition); position: relative; z-index: 2; box-shadow: 0 10px 20px rgba(244, 162, 54, 0.3);
-        }
-        .btn-saas:hover { background: var(--white); color: var(--primary-blue); transform: translateY(-3px); }
+        /* --- Hero Section --- */
+        .hero { padding: 180px 5% 120px; background: linear-gradient(135deg, rgba(4, 36, 61, 0.95), rgba(9, 75, 124, 0.85)), url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000') center/cover fixed; color: var(--white); text-align: center; clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); }
+        .hero h1 { font-size: 4rem; font-weight: 900; line-height: 1.1; margin-bottom: 25px; letter-spacing: -1px; }
+        .hero h1 span { color: var(--accent-orange); }
+        .hero p { font-size: 1.25rem; max-width: 800px; margin: 0 auto 40px; font-weight: 300; opacity: 0.9; }
 
-        footer { background: #041829; color: white; padding: 40px 5%; text-align: center; border-top: 2px solid rgba(255,255,255,0.1); }
+        /* --- 4 Pilares (Estratégia, Finanças, Processos, SaaS) --- */
+        .pillars-section { max-width: 1400px; margin: -60px auto 80px; padding: 0 5%; position: relative; z-index: 10; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .pillar-card { background: var(--white); border-radius: 16px; padding: 40px 30px; box-shadow: var(--shadow-lg); transition: var(--transition); border-top: 4px solid transparent; text-align: left; display: flex; flex-direction: column; }
+        .pillar-card:hover { transform: translateY(-10px); border-top-color: var(--accent-cyan); }
+        .pillar-icon { font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 20px; background: rgba(26, 136, 168, 0.1); width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; border-radius: 12px; }
+        .pillar-card h3 { font-size: 1.4rem; color: var(--text-dark); margin-bottom: 15px; font-weight: 800; }
+        .pillar-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; flex-grow: 1; }
 
-        /* --- Mobile --- */
+        /* --- SaaS Core Features --- */
+        .saas-showcase { padding: 80px 5%; max-width: 1400px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 70px; }
+        .section-header h2 { font-size: 2.8rem; color: var(--primary-dark); font-weight: 800; }
+        .section-header h2 span { color: var(--accent-cyan); }
+        .section-header p { font-size: 1.15rem; color: var(--text-muted); max-width: 700px; margin: 15px auto 0; }
+
+        .saas-row { display: flex; align-items: center; gap: 60px; margin-bottom: 100px; }
+        .saas-row.reverse { flex-direction: row-reverse; }
+        .saas-content { flex: 1; }
+        .saas-tag { display: inline-block; background: rgba(244, 162, 54, 0.15); color: #c27803; padding: 6px 16px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; border: 1px solid rgba(244, 162, 54, 0.3); }
+        .saas-content h3 { font-size: 2.2rem; color: var(--primary-blue); margin-bottom: 20px; line-height: 1.2; font-weight: 800; }
+        .saas-content p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 30px; }
+        
+        .feature-list { list-style: none; margin-bottom: 30px; }
+        .feature-list li { margin-bottom: 15px; display: flex; align-items: flex-start; gap: 15px; font-size: 1.05rem; font-weight: 500; color: var(--text-dark); }
+        .feature-list li i { color: var(--accent-cyan); font-size: 1.2rem; margin-top: 4px; }
+        
+        .saas-image { flex: 1; position: relative; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-lg); }
+        .saas-image img { width: 100%; height: auto; display: block; transition: transform 0.7s ease; }
+        .saas-image:hover img { transform: scale(1.03); }
+        .saas-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(9,75,124,0.4), transparent); pointer-events: none; }
+
+        /* --- Tech Stack --- */
+        .tech-stack { background: var(--white); padding: 80px 5%; text-align: center; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; }
+        .tech-stack h3 { font-size: 2rem; color: var(--primary-dark); margin-bottom: 40px; }
+        .badges-wrapper { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; max-width: 1000px; margin: 0 auto; }
+        .tech-badge { background: var(--bg-light); color: var(--primary-blue); padding: 12px 25px; border-radius: 8px; font-weight: 700; font-size: 1rem; border: 1px solid var(--accent-cyan); display: flex; align-items: center; gap: 10px; transition: var(--transition); box-shadow: var(--shadow-sm); }
+        .tech-badge:hover { background: var(--primary-blue); color: var(--white); transform: translateY(-3px); }
+
+        /* --- CTA --- */
+        .cta-section { background: linear-gradient(135deg, var(--primary-blue), var(--primary-dark)); padding: 100px 5%; text-align: center; color: var(--white); }
+        .cta-section h2 { font-size: 2.8rem; margin-bottom: 25px; font-weight: 800; }
+        .cta-section p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 40px; opacity: 0.9; }
+        .btn-main { display: inline-flex; align-items: center; gap: 10px; background: var(--accent-orange); color: var(--white); padding: 18px 40px; border-radius: 8px; text-decoration: none; font-weight: 800; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.5px; transition: var(--transition); box-shadow: 0 10px 20px rgba(244, 162, 54, 0.3); border: 2px solid var(--accent-orange); }
+        .btn-main:hover { background: transparent; color: var(--accent-orange); transform: translateY(-3px); }
+
+        /* --- Footer --- */
+        footer { background: #02111d; color: #94a3b8; padding: 40px 5%; text-align: center; font-size: 0.95rem; }
+        footer strong { color: var(--white); }
+
+        /* --- Responsividade Mobile --- */
         @media (max-width: 992px) {
-            .saas-item { flex-direction: column !important; }
-            .saas-image { min-height: 300px; }
-            .nav-links { display: none; }
-            .upperbar { flex-direction: column; text-align: center; gap: 5px; }
+            .hero h1 { font-size: 3rem; }
+            .saas-row, .saas-row.reverse { flex-direction: column; gap: 40px; margin-bottom: 70px; }
+            .saas-image { width: 100%; }
+        }
+
+        @media (max-width: 768px) {
+            .upperbar { flex-direction: column; gap: 5px; text-align: center; padding: 10px 5%; }
+            .menu-toggle { display: block; }
+            .nav-links { position: absolute; top: 100%; left: 0; width: 100%; background: var(--white); flex-direction: column; gap: 0; padding: 0; height: 0; overflow: hidden; border-bottom: 0 solid var(--accent-orange); }
+            .nav-links.show { height: auto; padding: 10px 0; border-bottom-width: 3px; box-shadow: var(--shadow-lg); }
+            .nav-links li { width: 100%; text-align: center; border-bottom: 1px solid #f1f5f9; }
+            .nav-links li:last-child { border-bottom: none; }
+            .nav-links a { display: block; padding: 15px; }
+            .nav-links a::after { display: none; }
+            
+            .hero { padding: 160px 5% 80px; clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%); }
+            .hero h1 { font-size: 2.2rem; }
+            .pillars-section { margin-top: -30px; grid-template-columns: 1fr; }
+            .section-header h2 { font-size: 2rem; }
+            .saas-content h3 { font-size: 1.8rem; }
+            .cta-section h2 { font-size: 2rem; }
+            .btn-main { width: 100%; justify-content: center; padding: 15px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
+    <header id="header">
         <div class="upperbar">
-            <span><i class="fas fa-code-branch"></i> Gestão & Tecnologia</span>
-            <span><i class="fab fa-whatsapp"></i> (98) 98250-6920 | <i class="fab fa-github"></i> Front-end Seguro</span>
+            <span><i class="fas fa-microchip"></i> Arquitetura MVC & Engenharia de Dados</span>
+            <span><i class="fab fa-whatsapp"></i> (98) 98250-6920 | Atendimento Nacional</span>
         </div>
         <nav>
             <div class="logo-container">
-                <img src="logo_metodo.png" alt="Método Soluções">
+                <span style="font-weight: 900; font-size: 1.8rem; color: var(--primary-blue);">MÉTODO<span style="color: var(--accent-orange);">.</span></span>
             </div>
-            <ul class="nav-links">
+            <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links" id="nav-links">
                 <li><a href="index.html">Início</a></li>
-                <li><a href="solucoes.html" style="color: var(--accent-orange);">Sistemas SaaS</a></li>
-                <li><a href="servicos.html">Consultoria & Gestão</a></li>
-                <li><a href="contato.html">Contato</a></li>
+                <li><a href="solucoes.html" class="active">Estratégia & SaaS</a></li>
+                <li><a href="servicos.html">Gestão Financeira</a></li>
+                <li><a href="contato.html">Agendar Diagnóstico</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="page-header">
-        <h1>Nossas Soluções Digitais</h1>
-        <p>Sistemas proprietários desenvolvidos para resolver desafios complexos de gestão e análise. Não apenas escrevemos código, nós codificamos o planejamento estratégico da sua empresa.</p>
-    </div>
+    <section class="hero">
+        <h1>Ecossistema de <span>Gestão & Tecnologia</span></h1>
+        <p>Não vendemos apenas código. Mapeamos processos complexos, reestruturamos a sua estratégia orçamentária e entregamos o controle absoluto em plataformas SaaS proprietárias de alta performance.</p>
+    </section>
 
-    <section class="architecture-banner">
-        <h2>A Base do Nosso Desenvolvimento</h2>
-        <p>Desenvolvemos aplicações web utilizando o que há de mais sólido na engenharia de software contemporânea. Nossos sistemas operam sob o padrão de <strong>Arquitetura MVC (Model-View-Controller)</strong>, o que garante a separação total entre os dados estatísticos processados, a lógica de negócio da sua empresa e a interface visual de alta performance.</p>
-        <div class="badges-container">
-            <span class="tech-badge"><i class="fab fa-python"></i> Back-end em Python</span>
-            <span class="tech-badge"><i class="fas fa-server"></i> Framework Flask</span>
-            <span class="tech-badge"><i class="fas fa-paint-brush"></i> UI/UX HTML & CSS</span>
-            <span class="tech-badge"><i class="fas fa-file-pdf"></i> Geração Dinâmica de Relatórios</span>
+    <section class="pillars-section">
+        <div class="pillar-card">
+            <div class="pillar-icon"><i class="fas fa-project-diagram"></i></div>
+            <h3>Mapeamento de Processos</h3>
+            <p>Modelagem AS-IS e TO-BE. Identificamos gargalos operacionais e redesenhamos os fluxos de trabalho da sua instituição para garantir máxima eficiência antes de qualquer automação sistêmica.</p>
+        </div>
+        <div class="pillar-card">
+            <div class="pillar-icon"><i class="fas fa-chess-knight"></i></div>
+            <h3>Gestão Estratégica</h3>
+            <p>Implementação de metodologias ágeis e OKRs. Alinhamos as metas corporativas e acadêmicas com indicadores de performance em tempo real, baseando decisões em evidências puras.</p>
+        </div>
+        <div class="pillar-card">
+            <div class="pillar-icon"><i class="fas fa-chart-line"></i></div>
+            <h3>Gestão Financeira</h3>
+            <p>Controle rigoroso de execução orçamentária. Desenvolvemos análises estatísticas para projeção de cenários, controle de superávits e otimização de custos para instituições de grande porte.</p>
+        </div>
+        <div class="pillar-card">
+            <div class="pillar-icon"><i class="fas fa-cloud"></i></div>
+            <h3>Desenvolvimento SaaS</h3>
+            <p>Sistemas em nuvem construídos do zero para refletir a sua nova estratégia. Código limpo, seguro e escalável, projetado para resolver os problemas mapeados na consultoria.</p>
         </div>
     </section>
 
-    <main class="saas-container">
-        
-        <article class="saas-item">
-            <div class="saas-info">
-                <span class="saas-tag">Monitoramento Institucional</span>
-                <h2>Sistemas de Gestão à Vista & Helpdesk</h2>
-                <p>Mapeamos o fluxo de atendimento da sua instituição e o transformamos em uma plataforma visual de monitoramento tático. Plataforma completa para acompanhamento de KPIs e execução de planos de ação em tempo real.</p>
-                <ul class="saas-features">
-                    <li><i class="fas fa-chart-pie"></i> Dashboards dinâmicos com indicadores "Farol" para SLA</li>
-                    <li><i class="fas fa-users-cog"></i> Gestão de chamados (Helpdesk) com mapeamento de satisfação</li>
-                    <li><i class="fas fa-file-export"></i> Relatórios analíticos automatizados para diretoria</li>
+    <main class="saas-showcase">
+        <div class="section-header">
+            <h2>Nossos Produtos <span>SaaS</span></h2>
+            <p>Soluções tecnológicas robustas validadas por empresas, clínicas e universidades em todo o território nacional.</p>
+        </div>
+
+        <article class="saas-row">
+            <div class="saas-content">
+                <span class="saas-tag">Governança & Controle</span>
+                <h3>Plataforma de Gestão à Vista & Helpdesk</h3>
+                <p>O coração operacional da sua empresa mapeado em Dashboards de alto impacto visual. Acompanhe SLAs, chamados e a satisfação do usuário com precisão cirúrgica.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Indicadores "Farol" para priorização de atendimento tático.</li>
+                    <li><i class="fas fa-check-circle"></i> Módulo integrado de aprovações e controle de prazos.</li>
+                    <li><i class="fas fa-check-circle"></i> Exportação analítica de produtividade por setor.</li>
                 </ul>
             </div>
             <div class="saas-image">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000" alt="Dashboard de Gestão à Vista">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200" alt="Dashboard de Gestão e Helpdesk">
             </div>
         </article>
 
-        <article class="saas-item" style="flex-direction: row-reverse;">
-            <div class="saas-info">
-                <span class="saas-tag">Saúde & Performance Clínica</span>
-                <h2>Gestão de Desempenho Escolar</h2>
-                <p>Sistema especializado para clínicas, espaços terapêuticos e educacionais que buscam controle rigoroso da evolução de pacientes, controle de intercorrências e produtividade da equipe.</p>
-                <ul class="saas-features">
-                    <li><i class="fas fa-notes-medical"></i> Controle exato do Nível da Intercorrência em prontuários</li>
-                    <li><i class="fas fa-chart-line"></i> Gráficos de evolução clínica automática baseada em dados reais</li>
-                    <li><i class="fas fa-file-pdf"></i> Exportação perfeita de relatórios e tabelas em PDF para convênios e planos de saúde</li>
+        <article class="saas-row reverse">
+            <div class="saas-content">
+                <span class="saas-tag">Performance Clínica</span>
+                <h3>Prontuários e Saúde Baseada em Dados</h3>
+                <p>SaaS desenvolvido para clínicas e espaços terapêuticos. Mapeie a evolução clínica real dos pacientes com gráficos automáticos e controle rigoroso de intercorrências.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Geração dinâmica de PDFs formatados para operadoras de saúde.</li>
+                    <li><i class="fas fa-check-circle"></i> Escala de intercorrências customizável pela coordenação médica.</li>
+                    <li><i class="fas fa-check-circle"></i> Segurança de dados e controle de níveis de acesso (Admin/Operador).</li>
                 </ul>
             </div>
             <div class="saas-image">
-                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1000" alt="Sistema Health e Clínica">
+                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1200" alt="Sistema Clínico e Prontuários">
             </div>
         </article>
 
-        <article class="saas-item">
-            <div class="saas-info">
-                <span class="saas-tag">Tratamento de Dados Base</span>
-                <h2>Limpeza Estatística e Mineração em Python</h2>
-                <p>O dado bruto muitas vezes é sujo e inviável para tomada de decisão. Criamos scripts dedicados para limpeza de banco de dados e remoção de "falsos positivos", cruzando informações institucionais complexas de forma veloz e científica.</p>
-                <ul class="saas-features">
-                    <li><i class="fas fa-filter"></i> Rotinas de processamento em lote via Sistemas personalizados</li>
-                    <li><i class="fas fa-database"></i> Tratamento e integração de legados governamentais/acadêmicos</li>
-                    <li><i class="fas fa-cogs"></i> Estruturação sistêmica para análises socioeconômicas e demográficas</li>
+        <article class="saas-row">
+            <div class="saas-content">
+                <span class="saas-tag">Engenharia de Dados</span>
+                <h3>Mineração e Tratamento de Bases Legadas</h3>
+                <p>Sua organização possui dados, mas falta informação? Criamos algoritmos sob medida para limpar "falsos positivos", cruzar bases financeiras governamentais e entregar relatórios íntegros.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Scripts de automação para tratamento estatístico de dados.</li>
+                    <li><i class="fas fa-check-circle"></i> Preparação de bases para submissão de artigos científicos.</li>
+                    <li><i class="fas fa-check-circle"></i> Integração com bases estruturadas e não-estruturadas.</li>
                 </ul>
             </div>
             <div class="saas-image">
-                <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&q=80&w=1000" alt="Data Map e Processamento">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200" alt="Código Python e Tratamento de Dados">
             </div>
         </article>
-
     </main>
 
-    <section class="cta-saas">
-        <h2>O seu gargalo gerencial exige uma solução tecnológica exclusiva?</h2>
-        <p>Desenvolvemos soluções sob medida. Integramos o conhecimento de profissionais para garantir estabilidade, segurança do código e interface amigável.</p>
-        <a href="contato.html" class="btn-saas">Agendar Reunião Técnica <i class="fas fa-arrow-right" style="margin-left: 10px;"></i></a>
+    <section class="tech-stack">
+        <h3>Arquitetura de Alta Performance</h3>
+        <div class="badges-wrapper">
+            <div class="tech-badge"><i class="fab fa-python" style="font-size: 1.5rem; color: #3776AB;"></i> Backend em Python</div>
+            <div class="tech-badge"><i class="fas fa-layer-group" style="font-size: 1.5rem;"></i> Padrão MVC</div>
+            <div class="tech-badge"><i class="fas fa-pepper-hot" style="font-size: 1.5rem; color: #cc0000;"></i> Framework Flask</div>
+            <div class="tech-badge"><i class="fab fa-html5" style="font-size: 1.5rem; color: #e34f26;"></i> HTML5 & CSS3 UX/UI</div>
+            <div class="tech-badge"><i class="fas fa-database" style="font-size: 1.5rem; color: #336791;"></i> SQL Data Modeling</div>
+            <div class="tech-badge"><i class="fas fa-server" style="font-size: 1.5rem; color: #4CAF50;"></i> Deploy em Servidores Linux</div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Pronto para escalar sua governança?</h2>
+        <p>Pare de perder tempo com planilhas desconexas e gargalos processuais. Agende uma consultoria com especialistas em Administração e Engenharia de Computação e descubra a solução ideal.</p>
+        <a href="contato.html" class="btn-main">Agendar Diagnóstico Técnico <i class="fas fa-arrow-right"></i></a>
     </section>
 
     <footer>
-        <p>&copy; 2026 Método Soluções - Onde a Administração encontra a Ciência da Computação.</p>
+        <p><strong>Método Soluções</strong> &copy; 2026. Liderança e Inteligência baseada em evidências.</p>
     </footer>
 
+    <script>
+        // Script para menu Mobile
+        document.getElementById('mobile-menu').addEventListener('click', function() {
+            document.getElementById('nav-links').classList.toggle('show');
+        });
+        
+        // Efeito de sombra no header ao rolar a página
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 10px 30px rgba(9, 75, 124, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.85)';
+                header.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.05)';
+            }
+        });
+    </script>
 </body>
 </html>
