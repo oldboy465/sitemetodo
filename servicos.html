@@ -1,152 +1,566 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consultoria & Serviços | Método Soluções</title>
+    <title>Serviços | Método Soluções</title>
+    <meta name="description" content="Consultoria Especializada. Soluções em Administração e Estatística com alto rigor metodológico.">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
+        /* ==========================================================================
+           PALETA DE CORES & VARIÁVEIS GERAIS
+           ========================================================================== */
         :root {
-            --primary: #094b7c; 
-            --accent-cyan: #1a88a8;  
-            --accent-orange: #f4a236; 
-            --bg-deep: #04243d;
-            --bg-light: #f4f7f9;
-            --text-dark: #1e293b;
-            --white: #ffffff;
-            --shadow: 0 15px 35px rgba(9, 75, 124, 0.1);
+            --color-primary: #0A3D73;    
+            --color-secondary: #1F8AA6;  
+            --color-accent: #F2A03D;     
+            --color-accent-hover: #D9882B;
+            --color-dark: #1C2331;
+            --color-light: #F8F9FA;
+            --color-white: #FFFFFF;
+            --color-gray: #6B7280;
+            --color-border: #E5E7EB;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background: var(--bg-light); color: var(--text-dark); line-height: 1.7; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
 
-        /* --- Header Reutilizável --- */
-        nav { background: var(--white); padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--accent-cyan); position: sticky; top: 0; z-index: 1000; }
-        .logo { font-size: 1.6rem; font-weight: 900; color: var(--primary); text-decoration: none; }
-        .logo span { color: var(--accent-orange); }
-        .nav-links { display: flex; gap: 25px; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; }
+        body {
+            background-color: var(--color-light);
+            color: var(--color-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-        /* --- Page Header --- */
-        .page-header { background: linear-gradient(135deg, var(--bg-deep), var(--primary)); color: var(--white); padding: 100px 5% 60px; text-align: center; }
-        .page-header h1 { font-size: 3rem; font-weight: 900; margin-bottom: 10px; }
-        .page-header p { font-size: 1.2rem; opacity: 0.8; max-width: 700px; margin: 0 auto; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
 
-        /* --- Service Detail Blocks --- */
-        .services-detail { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
-        
-        .service-row { display: flex; align-items: center; gap: 60px; margin-bottom: 100px; background: var(--white); padding: 40px; border-radius: 30px; box-shadow: var(--shadow); }
-        .service-row:nth-child(even) { flex-direction: row-reverse; }
-        
-        .s-icon { flex: 0 0 100px; height: 100px; background: rgba(26, 136, 168, 0.1); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--primary); }
-        .s-text h2 { font-size: 2rem; color: var(--primary); margin-bottom: 20px; border-left: 5px solid var(--accent-orange); padding-left: 15px; }
-        .s-text p { font-size: 1.05rem; color: #475569; margin-bottom: 20px; }
-        
-        .s-list { list-style: none; }
-        .s-list li { margin-bottom: 10px; display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--text-dark); }
-        .s-list li i { color: var(--accent-orange); font-size: 0.8rem; }
+        /* ==========================================================================
+           TOPBAR E NAVBAR
+           ========================================================================== */
+        .topbar {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            font-size: 0.85rem;
+            padding: 8px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .topbar i { color: var(--color-accent); margin-right: 5px; }
 
-        /* --- Methodology Section --- */
-        .methodology { background: var(--bg-deep); color: var(--white); padding: 80px 5%; border-radius: 50px 50px 0 0; }
-        .m-content { max-width: 900px; margin: 0 auto; text-align: center; }
-        .m-content h2 { font-size: 2.5rem; margin-bottom: 30px; }
-        .m-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
-        .m-item { padding: 30px; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; }
-        .m-item h4 { color: var(--accent-orange); margin-bottom: 10px; font-size: 1.2rem; }
+        .navbar {
+            background-color: var(--color-white);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
 
-        /* --- Mobile --- */
+        .brand-logo img {
+            height: 45px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            font-weight: 500;
+            color: var(--color-primary);
+            transition: var(--transition);
+        }
+
+        .nav-links li a:hover, .nav-links li a.active {
+            color: var(--color-secondary);
+        }
+
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: var(--color-white);
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            cursor: pointer;
+        }
+
+        /* ==========================================================================
+           HEADER DA PÁGINA (HERO INTERNO)
+           ========================================================================== */
+        .page-header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #062b54 100%);
+            color: var(--color-white);
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .page-header p {
+            font-size: 1.15rem;
+            color: #A0AEC0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ==========================================================================
+           SEÇÃO DE SERVIÇOS DETALHADOS
+           ========================================================================== */
+        .services-detail {
+            padding: 80px 5%;
+            background-color: var(--color-white);
+        }
+
+        .service-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .service-row:nth-child(even) {
+            direction: rtl;
+        }
+
+        .service-row:nth-child(even) .service-content {
+            direction: ltr;
+        }
+
+        .service-content h2 {
+            font-size: 2.2rem;
+            color: var(--color-primary);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .service-content p {
+            color: var(--color-gray);
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+
+        .service-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .service-list li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 15px;
+            font-weight: 500;
+            color: var(--color-dark);
+            font-size: 1.05rem;
+        }
+
+        .service-list li::before {
+            content: "\f00c"; /* check icon FontAwesome */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--color-secondary);
+            font-size: 1.1rem;
+        }
+
+        .service-image {
+            position: relative;
+        }
+
+        .service-image img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ==========================================================================
+           CICLO DE ENTREGA (STEPS)
+           ========================================================================== */
+        .delivery-cycle {
+            padding: 80px 5%;
+            background-color: var(--color-light);
+            text-align: center;
+        }
+
+        .delivery-cycle > h2 {
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            margin-bottom: 15px;
+        }
+
+        .delivery-cycle > p {
+            color: var(--color-gray);
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            position: relative;
+        }
+
+        /* Linha conectora entre os passos no Desktop */
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 15%;
+            width: 70%;
+            height: 2px;
+            background-color: var(--color-border);
+            z-index: 0;
+        }
+
+        .step-box {
+            background-color: var(--color-white);
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            z-index: 1;
+            border: 1px solid var(--color-border);
+            transition: var(--transition);
+        }
+
+        .step-box:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+            border-color: var(--color-secondary);
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
+            border: 5px solid var(--color-light);
+        }
+
+        .step-box h4 {
+            font-size: 1.4rem;
+            color: var(--color-primary);
+            margin-bottom: 10px;
+        }
+
+        .step-box p {
+            color: var(--color-gray);
+            font-size: 0.95rem;
+        }
+
+        /* ==========================================================================
+           FOOTER
+           ========================================================================== */
+        footer {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            padding: 60px 5% 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand img {
+            height: 50px;
+            background: white;
+            padding: 5px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand p {
+            color: #A0AEC0;
+            font-size: 0.9rem;
+            max-width: 80%;
+        }
+
+        .footer-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--color-white);
+        }
+
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links li a { color: #A0AEC0; transition: var(--transition); }
+        .footer-links li a:hover { color: var(--color-accent); }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #A0AEC0;
+        }
+
+        /* ==========================================================================
+           RESPONSIVIDADE (MEDIA QUERIES)
+           ========================================================================== */
+        @media (max-width: 1024px) {
+            .service-row {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .service-row:nth-child(even) {
+                direction: ltr;
+            }
+            .steps-container::before {
+                display: none;
+            }
+            .steps-container {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
-            .service-row { flex-direction: column !important; text-align: center; padding: 30px 20px; }
-            .m-grid { grid-template-columns: 1fr; }
+            .topbar {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            .mobile-toggle { display: block; }
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--color-white);
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: var(--shadow-lg);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: clip-path 0.3s ease-in-out;
+            }
+            .nav-links.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
             .page-header h1 { font-size: 2.2rem; }
-            .nav-links { display: none; }
+            .service-content h2 { font-size: 1.8rem; }
+            .footer-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="index.html" class="logo">MÉTODO<span>.</span></a>
-        <ul class="nav-links">
+    <!-- Topbar -->
+    <div class="topbar">
+        <div>Profissionais da Gestão e Tecnologia</div>
+        <div>
+            <i class="fab fa-whatsapp"></i> (98) 98250-6920
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="brand-logo">
+            <img src="assets/logo_metodo.png" alt="Método Soluções">
+        </a>
+        
+        <div class="mobile-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
-            <li><a href="servicos.html">Serviços</a></li>
-            <li><a href="solucoes.html">Sistemas</a></li>
+            <li><a href="servicos.html" class="active">Serviços</a></li>
+            <li><a href="solucoes.html">Sistemas SaaS</a></li>
             <li><a href="contato.html">Contato</a></li>
+            <li><a href="contato.html" class="btn-primary" style="color:white; padding: 10px 20px; border-radius: 6px;">Agendar Diagnóstico</a></li>
         </ul>
     </nav>
 
+    <!-- Page Header -->
     <header class="page-header">
         <h1>Consultoria Especializada</h1>
-        <p>Soluções em Administração e Estatística com alto rigor metodológico.</p>
+        <p>Soluções em Administração e Estatística com alto rigor metodológico para impulsionar a sua instituição.</p>
     </header>
 
-    <main class="services-detail">
+    <!-- Serviços Detalhados -->
+    <section class="services-detail">
         
+        <!-- Serviço 1 -->
         <div class="service-row">
-            <div class="s-icon"><i class="fas fa-project-diagram"></i></div>
-            <div class="s-text">
+            <div class="service-content">
                 <h2>Mapeamento de Processos (BPM)</h2>
-                <p>Nossa metodologia foca na eliminação de redundâncias e na digitalização inteligente. Analisamos cada tarefa para garantir que a sua equipe foque no que é estratégico.</p>
-                <ul class="s-list">
-                    <li><i class="fas fa-circle"></i> Desenho de Fluxogramas AS-IS e TO-BE</li>
-                    <li><i class="fas fa-circle"></i> Identificação de Gargalos Críticos</li>
-                    <li><i class="fas fa-circle"></i> Manual de Procedimentos Operacionais (POPs)</li>
+                <p>Nossa metodologia foca na eliminação de redundâncias e na digitalização inteligente. Analisamos cada tarefa para garantir que a sua equipe foque no que é puramente estratégico.</p>
+                <ul class="service-list">
+                    <li>Desenho de Fluxogramas AS-IS e TO-BE</li>
+                    <li>Identificação de Gargalos Críticos</li>
+                    <li>Manual de Procedimentos Operacionais (POPs)</li>
                 </ul>
+            </div>
+            <div class="service-image">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800" alt="Mapeamento de Processos">
             </div>
         </div>
 
+        <!-- Serviço 2 -->
         <div class="service-row">
-            <div class="s-icon"><i class="fas fa-money-check-alt"></i></div>
-            <div class="s-text">
-                <h2>Gestão Financeira & Orçamentária</h2>
-                <p>Controle absoluto do capital. Do fluxo de caixa à execução orçamentária complexa em instituições públicas e privadas.</p>
-                <ul class="s-list">
-                    <li><i class="fas fa-circle"></i> Planejamento Orçamentário Anual</li>
-                    <li><i class="fas fa-circle"></i> Análise de Viabilidade Econômica</li>
-                    <li><i class="fas fa-circle"></i> Auditoria e Controle de Custos</li>
+            <div class="service-content">
+                <h2>Gestão Financeira</h2>
+                <p>Controle absoluto do capital. Do fluxo de caixa do dia a dia à execução financeira complexa em instituições públicas e empresas privadas de grande porte.</p>
+                <ul class="service-list">
+                    <li>Planejamento Financeiro Anual</li>
+                    <li>Análise de Viabilidade Econômica</li>
+                    <li>Auditoria e Controle de Custos</li>
                 </ul>
+            </div>
+            <div class="service-image">
+                <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=800" alt="Gestão Financeira">
             </div>
         </div>
 
+        <!-- Serviço 3 -->
         <div class="service-row">
-            <div class="s-icon"><i class="fas fa-calculator"></i></div>
-            <div class="s-text">
+            <div class="service-content">
                 <h2>Análise Estatística Avançada</h2>
-                <p>Não entregamos apenas dados, entregamos inteligência. Modelamos cenários para que sua empresa se antecipe às tendências de mercado.</p>
-                <ul class="s-list">
-                    <li><i class="fas fa-circle"></i> Pesquisa de Mercado e Amostragem</li>
-                    <li><i class="fas fa-circle"></i> Análise de Séries Temporais (Previsões)</li>
-                    <li><i class="fas fa-circle"></i> Estatística para Instituições Acadêmicas</li>
+                <p>Não entregamos apenas dados, entregamos inteligência. Modelamos cenários para que sua empresa se antecipe às tendências de mercado, baseando o futuro em fatos reais.</p>
+                <ul class="service-list">
+                    <li>Pesquisa de Mercado e Amostragem</li>
+                    <li>Análise de Séries Temporais (Previsões)</li>
+                    <li>Estatística para Instituições Acadêmicas</li>
                 </ul>
+            </div>
+            <div class="service-image">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800" alt="Análise Estatística">
             </div>
         </div>
 
-    </main>
+    </section>
 
-    <section class="methodology">
-        <div class="m-content">
-            <h2>Nosso Ciclo de Entrega</h2>
-            <p>Unimos a administração clássica com a agilidade do SaaS para garantir resultados perenes.</p>
-            <div class="m-grid">
-                <div class="m-item">
-                    <h4>01. Diagnóstico</h4>
-                    <p>Coleta de dados e análise situacional profunda.</p>
-                </div>
-                <div class="m-item">
-                    <h4>02. Modelagem</h4>
-                    <p>Desenho da solução (Processos ou Software).</p>
-                </div>
-                <div class="m-item">
-                    <h4>03. Execução</h4>
-                    <p>Implantação, treinamento e monitoramento de KPIs.</p>
-                </div>
+    <!-- Ciclo de Entrega (Timeline) -->
+    <section class="delivery-cycle">
+        <h2>Nosso Ciclo de Entrega</h2>
+        <p>Unimos a administração clássica com a agilidade do SaaS para garantir resultados perenes.</p>
+
+        <div class="steps-container">
+            <div class="step-box">
+                <div class="step-number">01</div>
+                <h4>Diagnóstico</h4>
+                <p>Mergulhamos na realidade da sua organização. Realizamos a coleta de dados e uma análise situacional profunda para entender a raiz do problema.</p>
+            </div>
+
+            <div class="step-box">
+                <div class="step-number" style="background-color: var(--color-secondary);">02</div>
+                <h4>Modelagem</h4>
+                <p>Com os dados em mãos, desenhamos a arquitetura da solução ideal, seja a reestruturação de processos (BPM) ou a prototipação de um Software (SaaS).</p>
+            </div>
+
+            <div class="step-box">
+                <div class="step-number" style="background-color: var(--color-accent);">03</div>
+                <h4>Execução</h4>
+                <p>Partimos para a ação técnica. Implantação de metodologias, treinamento de equipes e monitoramento contínuo através de KPIs bem definidos.</p>
             </div>
         </div>
     </section>
 
-    <footer style="text-align: center; padding: 40px; background: #01080f; color: white;">
-        <p>Método Soluções &copy; 2026 | Consultoria Técnica e SaaS</p>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="assets/logo_metodo.png" alt="Método Soluções Logo">
+                <p>Onde a Administração encontra a Ciência da Computação. Sediados no Maranhão, impulsionando a governança em nível nacional.</p>
+            </div>
+            
+            <div>
+                <h4 class="footer-title">Links Rápidos</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="servicos.html">Nossos Serviços</a></li>
+                    <li><a href="solucoes.html">Sistemas SaaS</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Soluções</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Mapeamento BPM</a></li>
+                    <li><a href="#">Consultoria Estatística</a></li>
+                    <li><a href="#">Gestão Financeira</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Contato</h4>
+                <ul class="footer-links">
+                    <li><i class="fab fa-whatsapp"></i> (98) 98250-6920</li>
+                    <li><i class="far fa-envelope"></i> contato@metodosolucoes.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> São Luís - MA (Sede)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Método Soluções. Todos os direitos reservados.</p>
+        </div>
     </footer>
 
+    <!-- Script Menu Mobile -->
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>

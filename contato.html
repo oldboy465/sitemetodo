@@ -1,216 +1,585 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diagnóstico & Contato | Método Soluções</title>
+    <title>Agendar Diagnóstico | Método Soluções</title>
+    <meta name="description" content="Solicite uma análise de viabilidade para reestruturação de orçamentos, mapeamento de fluxos ou desenvolvimento SaaS em Python.">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
+        /* ==========================================================================
+           PALETA DE CORES & VARIÁVEIS GERAIS
+           ========================================================================== */
         :root {
-            --primary-blue: #094b7c; 
-            --primary-dark: #04243d;
-            --accent-cyan: #1a88a8;  
-            --accent-orange: #f4a236; 
-            --bg-light: #f1f5f9;
-            --text-dark: #0f172a;
-            --text-muted: #64748b;
-            --white: #ffffff;
+            --color-primary: #0A3D73;    
+            --color-secondary: #1F8AA6;  
+            --color-accent: #F2A03D;     
+            --color-accent-hover: #D9882B;
+            --color-dark: #1C2331;
+            --color-light: #F8F9FA;
+            --color-white: #FFFFFF;
+            --color-gray: #6B7280;
+            --color-border: #E5E7EB;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
-            --shadow-card: 0 10px 40px -10px rgba(9, 75, 124, 0.15);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Segoe UI', sans-serif; }
-        body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
 
-        /* --- Header --- */
-        header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 2px solid var(--accent-cyan); }
-        .upperbar { background: var(--primary-dark); color: var(--white); padding: 8px 5%; font-size: 0.85rem; display: flex; justify-content: space-between; font-weight: 500; letter-spacing: 0.5px; }
-        .upperbar i { color: var(--accent-orange); margin-right: 8px; }
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; max-width: 1400px; margin: 0 auto; }
-        .logo-container span { font-weight: 900; font-size: 1.8rem; color: var(--primary-blue); }
-        .logo-container span span { color: var(--accent-orange); }
-        
-        .nav-links { display: flex; list-style: none; gap: 30px; }
-        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 600; font-size: 0.95rem; text-transform: uppercase; transition: var(--transition); }
-        .nav-links a:hover, .nav-links a.active { color: var(--accent-orange); }
-        .menu-toggle { display: none; font-size: 1.8rem; color: var(--primary-blue); cursor: pointer; }
+        body {
+            background-color: var(--color-light);
+            color: var(--color-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-        /* --- Hero Contact --- */
-        .hero-contact { padding: 160px 5% 80px; background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-blue) 100%); color: var(--white); text-align: center; }
-        .hero-contact h1 { font-size: 3.2rem; font-weight: 900; color: var(--accent-orange); margin-bottom: 20px; letter-spacing: -1px; }
-        .hero-contact p { font-size: 1.2rem; max-width: 750px; margin: 0 auto; font-weight: 300; opacity: 0.9; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
 
-        /* --- Main Layout --- */
-        .contact-wrapper { padding: 80px 5%; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 400px; gap: 50px; flex-grow: 1; align-items: flex-start; }
+        /* ==========================================================================
+           TOPBAR E NAVBAR
+           ========================================================================== */
+        .topbar {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            font-size: 0.85rem;
+            padding: 8px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .topbar i { color: var(--color-accent); margin-right: 5px; }
 
-        /* --- Formulario Premium --- */
-        .form-card { background: var(--white); border-radius: 24px; padding: 50px; box-shadow: var(--shadow-card); border-top: 6px solid var(--primary-blue); }
-        .form-card h2 { font-size: 2rem; color: var(--primary-dark); margin-bottom: 10px; font-weight: 800; }
-        .form-card > p { color: var(--text-muted); margin-bottom: 35px; font-size: 1.05rem; }
+        .navbar {
+            background-color: var(--color-white);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
 
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px; }
-        .form-group { display: flex; flex-direction: column; gap: 8px; }
-        .form-group.full { grid-column: span 2; }
-        
-        .form-group label { font-size: 0.95rem; font-weight: 700; color: var(--primary-blue); }
-        .form-control { width: 100%; padding: 16px; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 1rem; color: var(--text-dark); transition: var(--transition); font-weight: 500; }
-        .form-control:focus { outline: none; border-color: var(--accent-cyan); background: var(--white); box-shadow: 0 0 0 4px rgba(26, 136, 168, 0.15); }
-        textarea.form-control { resize: vertical; min-height: 150px; }
+        .brand-logo img {
+            height: 45px;
+            width: auto;
+        }
 
-        .btn-submit { background: var(--primary-blue); color: var(--white); font-weight: 800; font-size: 1.15rem; padding: 20px; border: none; border-radius: 12px; cursor: pointer; width: 100%; transition: var(--transition); text-transform: uppercase; letter-spacing: 1px; display: flex; justify-content: center; align-items: center; gap: 10px; box-shadow: 0 10px 20px rgba(9, 75, 124, 0.2); }
-        .btn-submit:hover { background: var(--accent-orange); box-shadow: 0 10px 25px rgba(244, 162, 54, 0.3); transform: translateY(-3px); }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
 
-        /* --- Info Cards --- */
-        .info-sidebar { display: flex; flex-direction: column; gap: 25px; }
-        .info-box { background: var(--white); padding: 30px; border-radius: 20px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 15px; text-decoration: none; border: 2px solid transparent; transition: var(--transition); position: relative; overflow: hidden; }
-        .info-box:hover { border-color: var(--accent-cyan); transform: translateY(-5px); }
-        
-        .icon-circle { width: 60px; height: 60px; border-radius: 16px; background: rgba(9, 75, 124, 0.05); color: var(--primary-blue); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; transition: var(--transition); }
-        .info-box:hover .icon-circle { background: var(--accent-orange); color: var(--white); }
-        
-        .info-box h3 { color: var(--primary-dark); font-size: 1.3rem; font-weight: 800; }
-        .info-box p { color: var(--text-muted); font-size: 1rem; font-weight: 500; }
-        .info-tag { font-size: 0.8rem; background: var(--bg-light); color: var(--accent-cyan); padding: 6px 12px; border-radius: 8px; font-weight: 700; align-self: flex-start; text-transform: uppercase; }
+        .nav-links li a {
+            font-weight: 500;
+            color: var(--color-primary);
+            transition: var(--transition);
+        }
 
-        /* Footer */
-        footer { background: #02111d; color: #94a3b8; padding: 30px 5%; text-align: center; font-size: 0.95rem; margin-top: auto; }
+        .nav-links li a:hover, .nav-links li a.active {
+            color: var(--color-secondary);
+        }
 
-        /* --- Mobile --- */
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: var(--color-white);
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            cursor: pointer;
+        }
+
+        /* ==========================================================================
+           HEADER DA PÁGINA DE CONTATO
+           ========================================================================== */
+        .page-header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #062b54 100%);
+            color: var(--color-white);
+            padding: 80px 5% 120px 5%;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .page-header p {
+            font-size: 1.15rem;
+            color: #A0AEC0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* ==========================================================================
+           SESSÃO DE CONTATO (FORM + INFO)
+           ========================================================================== */
+        .contact-section {
+            padding: 0 5% 80px 5%;
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Informações de Contato Lateral */
+        .contact-info-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-card {
+            background: var(--color-white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-border);
+        }
+
+        .info-card h3 {
+            color: var(--color-primary);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card h3 i {
+            color: var(--color-secondary);
+            font-size: 1.4rem;
+        }
+
+        .info-card p {
+            color: var(--color-gray);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .info-card .highlight {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-dark);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #1EBE57;
+            transform: translateY(-2px);
+        }
+
+        /* Formulário B2B */
+        .contact-form-wrapper {
+            background: var(--color-white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--color-border);
+        }
+
+        .contact-form-wrapper h2 {
+            font-size: 1.8rem;
+            color: var(--color-primary);
+            margin-bottom: 10px;
+        }
+
+        .contact-form-wrapper > p {
+            color: var(--color-gray);
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-dark);
+            margin-bottom: 8px;
+        }
+
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            padding: 12px 15px;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            font-size: 0.95rem;
+            color: var(--color-dark);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-light);
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, 
+        .form-group select:focus, 
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-secondary);
+            background-color: var(--color-white);
+            box-shadow: 0 0 0 3px rgba(31, 138, 166, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: var(--transition);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: #062b54;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ==========================================================================
+           FOOTER
+           ========================================================================== */
+        footer {
+            background-color: var(--color-dark);
+            color: var(--color-white);
+            padding: 60px 5% 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand img {
+            height: 50px;
+            background: white;
+            padding: 5px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand p {
+            color: #A0AEC0;
+            font-size: 0.9rem;
+            max-width: 80%;
+        }
+
+        .footer-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--color-white);
+        }
+
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links li a { color: #A0AEC0; transition: var(--transition); }
+        .footer-links li a:hover { color: var(--color-accent); }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #A0AEC0;
+        }
+
+        /* ==========================================================================
+           RESPONSIVIDADE
+           ========================================================================== */
         @media (max-width: 1024px) {
-            .contact-wrapper { grid-template-columns: 1fr; }
-            .info-sidebar { flex-direction: row; flex-wrap: wrap; }
-            .info-box { flex: 1; min-width: 300px; }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-info-wrapper {
+                flex-direction: row;
+            }
+            .info-card {
+                flex: 1;
+            }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 768px) {
-            .upperbar { flex-direction: column; text-align: center; gap: 8px; }
-            .menu-toggle { display: block; }
-            .nav-links { display: none; width: 100%; position: absolute; top: 100%; left: 0; background: var(--white); flex-direction: column; padding: 20px 0; box-shadow: var(--shadow-card); gap: 0; }
-            .nav-links.show { display: flex; }
-            .nav-links a { padding: 15px 5%; display: block; border-bottom: 1px solid #f1f5f9; }
+            .topbar {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            .mobile-toggle { display: block; }
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--color-white);
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: var(--shadow-lg);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: clip-path 0.3s ease-in-out;
+            }
+            .nav-links.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
             
-            .hero-contact h1 { font-size: 2.5rem; }
+            .page-header h1 { font-size: 2.2rem; }
+            .contact-info-wrapper { flex-direction: column; }
             .form-grid { grid-template-columns: 1fr; }
-            .form-group.full { grid-column: span 1; }
-            .form-card { padding: 30px 20px; }
+            .contact-form-wrapper { padding: 25px; }
+            .footer-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="upperbar">
-            <span><i class="fas fa-chart-bar"></i> Consultoria Estatística & Desenvolvimento SaaS</span>
-            <span><i class="fas fa-map-marker-alt"></i> Atendimento Remoto Nacional | Sede MA</span>
+    <!-- Topbar -->
+    <div class="topbar">
+        <div>Consultoria Estatística & Desenvolvimento SaaS</div>
+        <div>
+            <i class="fab fa-whatsapp"></i> Atendimento Remoto Nacional | Sede MA
         </div>
-        <nav>
-            <div class="logo-container">
-                <span>MÉTODO<span>.</span></span>
-            </div>
-            <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="index.html">Início</a></li>
-                <li><a href="solucoes.html">Estratégia & SaaS</a></li>
-                <li><a href="servicos.html">Gestão Financeira</a></li>
-                <li><a href="contato.html" class="active">Agendar Diagnóstico</a></li>
-            </ul>
-        </nav>
-    </header>
+    </div>
 
-    <section class="hero-contact">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="brand-logo">
+            <img src="assets/logo_metodo.png" alt="Método Soluções">
+        </a>
+        
+        <div class="mobile-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="servicos.html">Serviços</a></li>
+            <li><a href="solucoes.html">Sistemas SaaS</a></li>
+            <li><a href="contato.html" class="active">Contato</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
         <h1>Vamos diagnosticar o seu gargalo?</h1>
         <p>Seja para reestruturar orçamentos públicos/privados, mapear fluxos de trabalho ou desenvolver um sistema proprietário em Python. Nossos especialistas estão prontos para a reunião.</p>
-    </section>
+    </header>
 
-    <main class="contact-wrapper">
-        
-        <!-- Formulário Técnico -->
-        <div class="form-card">
-            <h2>Solicitação de Viabilidade</h2>
-            <p>Preencha os dados da sua instituição para que nosso time técnico analise o contexto antes da nossa primeira reunião.</p>
+    <!-- Sessão de Contato -->
+    <section class="contact-section">
+        <div class="contact-grid">
             
-            <form action="#" onsubmit="event.preventDefault(); alert('Solicitação registrada! Nossa equipe técnica entrará em contato em breve.');">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="nome">Nome do Responsável</label>
-                        <input type="text" id="nome" class="form-control" placeholder="Seu nome completo" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="empresa">Organização / Instituição</label>
-                        <input type="text" id="empresa" class="form-control" placeholder="Nome da empresa" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">E-mail Profissional</label>
-                        <input type="email" id="email" class="form-control" placeholder="contato@empresa.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="telefone">WhatsApp Comercial</label>
-                        <input type="tel" id="telefone" class="form-control" placeholder="(00) 00000-0000" required>
-                    </div>
-                    <div class="form-group full">
-                        <label for="demanda">Pilar Estratégico Principal</label>
-                        <select id="demanda" class="form-control" required>
-                            <option value="" disabled selected>Selecione a área de maior urgência...</option>
-                            <option value="saas">Desenvolvimento de Software SaaS (Python/MVC)</option>
-                            <option value="processos">Mapeamento e Otimização de Processos (BPM)</option>
-                            <option value="financas">Gestão Estratégica e Orçamentária</option>
-                            <option value="dados">Consultoria Estatística e Limpeza de Dados</option>
-                            <option value="completa">Consultoria Integrada (Gestão + Tecnologia)</option>
-                        </select>
-                    </div>
-                    <div class="form-group full">
-                        <label for="detalhes">Detalhamento do Cenário Atual</label>
-                        <textarea id="detalhes" class="form-control" placeholder="Descreva os problemas atuais. Ex: 'Nossa gestão de helpdesk está lenta', 'Precisamos de um sistema próprio para a clínica', 'O orçamento público exige revisão'..." required></textarea>
-                    </div>
+            <!-- Cards de Informação Lateral -->
+            <div class="contact-info-wrapper">
+                <div class="info-card">
+                    <h3><i class="fas fa-headset"></i> Plantão Técnico</h3>
+                    <p>Fale diretamente com nossa equipe de engenharia e gestão de forma imediata.</p>
+                    <span class="highlight">(98) 98128-2658</span>
+                    <a href="https://wa.me/5598981282658" target="_blank" class="btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> Atendimento Imediato
+                    </a>
                 </div>
-                <button type="submit" class="btn-submit">
-                    Processar Solicitação <i class="fas fa-paper-plane"></i>
-                </button>
-            </form>
-        </div>
 
-        <!-- Coluna de Informações e Contato Direto -->
-        <aside class="info-sidebar">
-            
-            <a href="https://wa.me/5598982506920" target="_blank" class="info-box">
-                <div class="icon-circle" style="color: #16a34a; background: rgba(22, 163, 74, 0.1);">
-                    <i class="fab fa-whatsapp"></i>
+                <div class="info-card">
+                    <h3><i class="fas fa-envelope-open-text"></i> E-mail Corporativo</h3>
+                    <p>Envio de Termos de Referência, Editais ou Documentação Técnica.</p>
+                    <span class="highlight" style="font-size: 1.1rem;">tente.metodo@gmail.com</span>
                 </div>
-                <h3>Plantão Técnico</h3>
-                <p>(98) 98250-6920</p>
-                <span class="info-tag">Atendimento Imediato</span>
-            </a>
 
-            <a href="mailto:contato@metodosolucoes.com" class="info-box">
-                <div class="icon-circle">
-                    <i class="fas fa-envelope-open-text"></i>
+                <div class="info-card">
+                    <h3><i class="fas fa-server"></i> Infraestrutura Remota</h3>
+                    <p>Baseados no Maranhão, atendemos projetos de engenharia de software e análise estatística para todo o território nacional.</p>
+                    <p style="margin-top: 10px; font-weight: 600; color: var(--color-primary);">
+                        <i class="fab fa-linux"></i> Hospedagem em Nuvem Linux
+                    </p>
                 </div>
-                <h3>E-mail Corporativo</h3>
-                <p>contato@metodosolucoes.com</p>
-                <span class="info-tag">Envio de Termos de Referência</span>
-            </a>
-
-            <div class="info-box" style="cursor: default;">
-                <div class="icon-circle" style="color: var(--accent-orange); background: rgba(244, 162, 54, 0.1);">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <h3>Infraestrutura Remota</h3>
-                <p>Baseados no Maranhão, atendemos projetos de engenharia de software e análise estatística para todo o território nacional.</p>
-                <span class="info-tag">Hospedagem em Nuvem Linux</span>
             </div>
 
-        </aside>
+            <!-- Formulário de Viabilidade -->
+            <div class="contact-form-wrapper">
+                <h2>Solicitação de Viabilidade</h2>
+                <p>Preencha os dados da sua instituição para que nosso time técnico analise o contexto antes da nossa primeira reunião.</p>
 
-    </main>
+                <form action="#" method="POST" id="diagnosticoForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="nome">Nome do Responsável</label>
+                            <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="organizacao">Organização / Instituição</label>
+                            <input type="text" id="organizacao" name="organizacao" placeholder="Nome da empresa ou órgão" required>
+                        </div>
 
+                        <div class="form-group">
+                            <label for="email">E-mail Profissional</label>
+                            <input type="email" id="email" name="email" placeholder="seu.nome@empresa.com.br" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="whatsapp">WhatsApp Comercial</label>
+                            <input type="tel" id="whatsapp" name="whatsapp" placeholder="(DDD) 00000-0000" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="pilar">Pilar Estratégico Principal</label>
+                        <select id="pilar" name="pilar" required>
+                            <option value="" disabled selected>Selecione a área de maior urgência...</option>
+                            <option value="saas">Desenvolvimento de Software SaaS (Python/MVC)</option>
+                            <option value="bpm">Mapeamento e Otimização de Processos (BPM)</option>
+                            <option value="orcamento">Gestão Estratégica</option>
+                            <option value="dados">Consultoria Estatística e Limpeza de Dados</option>
+                            <option value="integrada">Consultoria Integrada (Gestão + Tecnologia)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="detalhamento">Detalhamento do Cenário Atual</label>
+                        <textarea id="detalhamento" name="detalhamento" placeholder="Descreva brevemente o problema atual, sistema utilizado ou objetivo da consultoria..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        Processar Solicitação <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 <strong>Método Soluções</strong>. Onde a Administração encontra a Ciência da Computação.</p>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="assets/logo_metodo.png" alt="Método Soluções Logo">
+                <p>Onde a Administração encontra a Ciência da Computação. Sediados no Maranhão, impulsionando a governança em nível nacional.</p>
+            </div>
+            
+            <div>
+                <h4 class="footer-title">Links Rápidos</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="servicos.html">Nossos Serviços</a></li>
+                    <li><a href="solucoes.html">Sistemas SaaS</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Soluções</h4>
+                <ul class="footer-links">
+                    <li><a href="solucoes.html">Mapeamento BPM</a></li>
+                    <li><a href="servicos.html">Consultoria Estatística</a></li>
+                    <li><a href="servicos.html">Gestão Financeira</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Contato</h4>
+                <ul class="footer-links">
+                    <li><i class="fab fa-whatsapp"></i> (98) 98128-2658</li>
+                    <li><i class="far fa-envelope"></i> tente.metodo@gmail.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> São Luís - MA (Sede)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Método Soluções. Liderança e Inteligência baseada em evidências.</p>
+        </div>
     </footer>
 
+    <!-- Script Menu Mobile -->
     <script>
-        document.getElementById('mobile-menu').addEventListener('click', function() {
-            document.getElementById('nav-links').classList.toggle('show');
-        });
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
     </script>
 </body>
 </html>
