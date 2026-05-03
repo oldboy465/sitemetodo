@@ -6,7 +6,7 @@
     <title>Serviços | Método Soluções</title>
     <meta name="description" content="Consultoria Especializada. Soluções em Administração e Estatística com alto rigor metodológico.">
     
-    <!-- Google Fonts: Inter -->
+    <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -15,9 +15,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* ==========================================================================
-           PALETA DE CORES & VARIÁVEIS GERAIS
-           ========================================================================== */
         :root {
             --color-primary: #0A3D73;    
             --color-secondary: #1F8AA6;  
@@ -29,418 +26,158 @@
             --color-gray: #6B7280;
             --color-border: #E5E7EB;
             --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 25px 30px -5px rgba(0, 0, 0, 0.15);
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background-color: var(--color-light);
-            color: var(--color-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--color-light); color: var(--color-dark); line-height: 1.6; overflow-x: hidden; width: 100%; }
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
 
-        /* ==========================================================================
-           TOPBAR E NAVBAR
-           ========================================================================== */
-        .topbar {
-            background-color: var(--color-primary);
-            color: var(--color-white);
-            font-size: 0.85rem;
-            padding: 8px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        /* Animações */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal.delay-1 { transition-delay: 0.1s; }
+        .reveal.delay-2 { transition-delay: 0.2s; }
+        
+        .reveal-left { opacity: 0; transform: translateX(-50px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal-left.active { opacity: 1; transform: translateX(0); }
+
+        .reveal-right { opacity: 0; transform: translateX(50px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal-right.active { opacity: 1; transform: translateX(0); }
+
+        /* Topbar & Navbar */
+        .topbar { background-color: var(--color-primary); color: var(--color-white); font-size: 0.85rem; padding: 8px 5%; display: flex; justify-content: space-between; align-items: center; }
         .topbar i { color: var(--color-accent); margin-right: 5px; }
+        .navbar { background-color: var(--color-white); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow-sm); transition: var(--transition); }
+        .brand-logo img { height: 45px; transition: var(--transition); }
+        .brand-logo:hover img { transform: scale(1.05); }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links li a { font-weight: 500; color: var(--color-primary); position: relative; transition: var(--transition); }
+        .nav-links li a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background-color: var(--color-secondary); transition: width 0.3s ease; }
+        .nav-links li a:hover::after, .nav-links li a.active::after { width: 100%; }
+        .nav-links li a:hover, .nav-links li a.active { color: var(--color-secondary); }
 
-        .navbar {
-            background-color: var(--color-white);
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: var(--shadow-sm);
-        }
+        .btn-primary { background-color: var(--color-accent); color: var(--color-white); padding: 12px 24px; border-radius: 6px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: var(--transition); border: none; cursor: pointer; box-shadow: 0 4px 10px rgba(242, 160, 61, 0.3); }
+        .btn-primary:hover { background-color: var(--color-accent-hover); transform: translateY(-3px); box-shadow: 0 6px 15px rgba(242, 160, 61, 0.4); color: var(--color-white); }
+        .btn-primary::after { display: none; }
+        .mobile-toggle { display: none; font-size: 1.5rem; color: var(--color-primary); cursor: pointer; transition: var(--transition); }
+        .mobile-toggle:hover { color: var(--color-accent); transform: scale(1.1); }
 
-        .brand-logo img {
-            height: 45px;
-            width: auto;
-        }
+        /* Page Header */
+        .page-header { background: linear-gradient(135deg, var(--color-primary) 0%, #062b54 100%); color: var(--color-white); padding: 80px 5%; text-align: center; }
+        .page-header h1 { font-size: 3rem; margin-bottom: 15px; line-height: 1.2; letter-spacing: -1px; }
+        .page-header p { font-size: 1.15rem; color: #A0AEC0; max-width: 600px; margin: 0 auto; }
 
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
+        /* Serviços Detalhados */
+        .services-detail { padding: 80px 5%; background-color: var(--color-white); overflow: hidden; }
+        .service-row { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 100px; }
+        .service-row:nth-child(even) { direction: rtl; }
+        .service-row:nth-child(even) .service-content { direction: ltr; }
 
-        .nav-links li a {
-            font-weight: 500;
-            color: var(--color-primary);
-            transition: var(--transition);
-        }
+        .service-content h2 { font-size: 2.2rem; color: var(--color-primary); margin-bottom: 20px; line-height: 1.2; }
+        .service-content p { color: var(--color-gray); font-size: 1.1rem; margin-bottom: 25px; }
+        .service-list li { position: relative; padding-left: 35px; margin-bottom: 15px; font-weight: 500; color: var(--color-dark); font-size: 1.05rem; transition: var(--transition); }
+        .service-list li:hover { transform: translateX(5px); color: var(--color-secondary); }
+        .service-list li::before { content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; top: 2px; color: var(--color-secondary); font-size: 1.1rem; }
+        
+        .service-image { position: relative; overflow: hidden; border-radius: 12px; box-shadow: var(--shadow-lg); transition: var(--transition); }
+        .service-image:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
+        .service-image img { width: 100%; transition: transform 0.6s ease; }
+        .service-image:hover img { transform: scale(1.05); }
 
-        .nav-links li a:hover, .nav-links li a.active {
-            color: var(--color-secondary);
-        }
+        /* Ciclo de Entrega */
+        .delivery-cycle { padding: 80px 5%; background-color: var(--color-light); text-align: center; }
+        .delivery-cycle > h2 { font-size: 2.5rem; color: var(--color-primary); margin-bottom: 15px; }
+        .delivery-cycle > p { color: var(--color-gray); margin-bottom: 50px; font-size: 1.1rem; }
 
-        .btn-primary {
-            background-color: var(--color-accent);
-            color: var(--color-white);
-            padding: 12px 24px;
-            border-radius: 6px;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-        }
+        .steps-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; position: relative; }
+        .steps-container::before { content: ''; position: absolute; top: 40px; left: 15%; width: 70%; height: 2px; background-color: var(--color-border); z-index: 0; }
+        
+        .step-box { background-color: var(--color-white); padding: 40px 30px; border-radius: 12px; box-shadow: var(--shadow-sm); position: relative; z-index: 1; border: 1px solid var(--color-border); transition: var(--transition); }
+        .step-box:hover { box-shadow: var(--shadow-hover); transform: translateY(-10px); border-color: var(--color-secondary); }
+        .step-number { width: 80px; height: 80px; background-color: var(--color-primary); color: var(--color-white); font-size: 1.8rem; font-weight: 700; display: flex; align-items: center; justify-content: center; border-radius: 50%; margin: 0 auto 20px auto; border: 5px solid var(--color-light); transition: var(--transition); }
+        .step-box:hover .step-number { transform: scale(1.1) rotate(5deg); }
+        .step-box h4 { font-size: 1.4rem; color: var(--color-primary); margin-bottom: 10px; }
+        .step-box p { color: var(--color-gray); font-size: 0.95rem; }
 
-        .btn-primary:hover {
-            background-color: var(--color-accent-hover);
-            transform: translateY(-2px);
-        }
-
-        .mobile-toggle {
-            display: none;
-            font-size: 1.5rem;
-            color: var(--color-primary);
-            cursor: pointer;
-        }
-
-        /* ==========================================================================
-           HEADER DA PÁGINA (HERO INTERNO)
-           ========================================================================== */
-        .page-header {
-            background: linear-gradient(135deg, var(--color-primary) 0%, #062b54 100%);
-            color: var(--color-white);
-            padding: 80px 5%;
-            text-align: center;
-        }
-
-        .page-header h1 {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            letter-spacing: -1px;
-        }
-
-        .page-header p {
-            font-size: 1.15rem;
-            color: #A0AEC0;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* ==========================================================================
-           SEÇÃO DE SERVIÇOS DETALHADOS
-           ========================================================================== */
-        .services-detail {
-            padding: 80px 5%;
-            background-color: var(--color-white);
-        }
-
-        .service-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            margin-bottom: 80px;
-        }
-
-        .service-row:nth-child(even) {
-            direction: rtl;
-        }
-
-        .service-row:nth-child(even) .service-content {
-            direction: ltr;
-        }
-
-        .service-content h2 {
-            font-size: 2.2rem;
-            color: var(--color-primary);
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .service-content p {
-            color: var(--color-gray);
-            font-size: 1.1rem;
-            margin-bottom: 25px;
-        }
-
-        .service-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .service-list li {
-            position: relative;
-            padding-left: 35px;
-            margin-bottom: 15px;
-            font-weight: 500;
-            color: var(--color-dark);
-            font-size: 1.05rem;
-        }
-
-        .service-list li::before {
-            content: "\f00c"; /* check icon FontAwesome */
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            position: absolute;
-            left: 0;
-            top: 2px;
-            color: var(--color-secondary);
-            font-size: 1.1rem;
-        }
-
-        .service-image {
-            position: relative;
-        }
-
-        .service-image img {
-            width: 100%;
-            border-radius: 12px;
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* ==========================================================================
-           CICLO DE ENTREGA (STEPS)
-           ========================================================================== */
-        .delivery-cycle {
-            padding: 80px 5%;
-            background-color: var(--color-light);
-            text-align: center;
-        }
-
-        .delivery-cycle > h2 {
-            font-size: 2.5rem;
-            color: var(--color-primary);
-            margin-bottom: 15px;
-        }
-
-        .delivery-cycle > p {
-            color: var(--color-gray);
-            margin-bottom: 50px;
-            font-size: 1.1rem;
-        }
-
-        .steps-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            position: relative;
-        }
-
-        /* Linha conectora entre os passos no Desktop */
-        .steps-container::before {
-            content: '';
-            position: absolute;
-            top: 40px;
-            left: 15%;
-            width: 70%;
-            height: 2px;
-            background-color: var(--color-border);
-            z-index: 0;
-        }
-
-        .step-box {
-            background-color: var(--color-white);
-            padding: 40px 30px;
-            border-radius: 12px;
-            box-shadow: var(--shadow-sm);
-            position: relative;
-            z-index: 1;
-            border: 1px solid var(--color-border);
-            transition: var(--transition);
-        }
-
-        .step-box:hover {
-            box-shadow: var(--shadow-lg);
-            transform: translateY(-5px);
-            border-color: var(--color-secondary);
-        }
-
-        .step-number {
-            width: 80px;
-            height: 80px;
-            background-color: var(--color-primary);
-            color: var(--color-white);
-            font-size: 1.8rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            margin: 0 auto 20px auto;
-            border: 5px solid var(--color-light);
-        }
-
-        .step-box h4 {
-            font-size: 1.4rem;
-            color: var(--color-primary);
-            margin-bottom: 10px;
-        }
-
-        .step-box p {
-            color: var(--color-gray);
-            font-size: 0.95rem;
-        }
-
-        /* ==========================================================================
-           FOOTER
-           ========================================================================== */
-        footer {
-            background-color: var(--color-primary);
-            color: var(--color-white);
-            padding: 60px 5% 20px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-brand img {
-            height: 50px;
-            background: white;
-            padding: 5px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-        }
-
-        .footer-brand p {
-            color: #A0AEC0;
-            font-size: 0.9rem;
-            max-width: 80%;
-        }
-
-        .footer-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--color-white);
-        }
-
+        /* Footer */
+        footer { background-color: var(--color-primary); color: var(--color-white); padding: 60px 5% 20px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+        .footer-brand img { height: 50px; background: white; padding: 5px; border-radius: 4px; margin-bottom: 20px; transition: var(--transition); }
+        .footer-brand img:hover { transform: scale(1.05); }
+        .footer-brand p { color: #A0AEC0; font-size: 0.9rem; max-width: 80%; }
+        .footer-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 20px; color: var(--color-white); }
         .footer-links li { margin-bottom: 10px; }
-        .footer-links li a { color: #A0AEC0; transition: var(--transition); }
-        .footer-links li a:hover { color: var(--color-accent); }
+        .footer-links li a { color: #A0AEC0; transition: var(--transition); position: relative; }
+        .footer-links li a::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -2px; left: 0; background-color: var(--color-accent); transition: width 0.3s ease; }
+        .footer-links li a:hover::after { width: 100%; }
+        .footer-links li a:hover { color: var(--color-accent); padding-left: 5px; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center; font-size: 0.85rem; color: #A0AEC0; }
 
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 20px;
-            text-align: center;
-            font-size: 0.85rem;
-            color: #A0AEC0;
-        }
-
-        /* ==========================================================================
-           RESPONSIVIDADE (MEDIA QUERIES)
-           ========================================================================== */
+        /* Media Queries (Mobile First approach ajustment) */
         @media (max-width: 1024px) {
-            .service-row {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .service-row:nth-child(even) {
-                direction: ltr;
-            }
-            .steps-container::before {
-                display: none;
-            }
-            .steps-container {
-                grid-template-columns: 1fr;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+            .service-row { grid-template-columns: 1fr; gap: 40px; margin-bottom: 60px; text-align: center; }
+            .service-row:nth-child(even) { direction: ltr; }
+            .service-list li { text-align: left; }
+            .steps-container::before { display: none; }
+            .steps-container { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 768px) {
-            .topbar {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
-            }
+            .topbar { flex-direction: column; gap: 10px; text-align: center; padding: 12px 5%; }
             .mobile-toggle { display: block; }
-            .nav-links {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--color-white);
-                flex-direction: column;
-                padding: 20px 0;
-                box-shadow: var(--shadow-lg);
-                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-                transition: clip-path 0.3s ease-in-out;
-            }
-            .nav-links.active {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            }
+            .nav-links { position: absolute; top: 100%; left: 0; width: 100%; background-color: var(--color-white); flex-direction: column; gap: 15px; padding: 0; max-height: 0; overflow: hidden; box-shadow: var(--shadow-lg); transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out; }
+            .nav-links.active { max-height: 400px; padding: 20px 0; }
+            .nav-links li { width: 100%; text-align: center; }
+            .nav-links li a::after { display: none; }
+            .btn-primary { width: 90%; justify-content: center; }
+            
+            .page-header { padding: 50px 5%; }
             .page-header h1 { font-size: 2.2rem; }
             .service-content h2 { font-size: 1.8rem; }
-            .footer-grid { grid-template-columns: 1fr; }
+            .delivery-cycle > h2 { font-size: 2rem; }
+            
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+            .footer-brand p { max-width: 100%; margin: 0 auto; }
+            .footer-links li a:hover { padding-left: 0; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Topbar -->
     <div class="topbar">
         <div>Profissionais da Gestão e Tecnologia</div>
-        <div>
-            <i class="fab fa-whatsapp"></i> (98) 98128-2658
-        </div>
+        <div><i class="fab fa-whatsapp"></i> (98) 98128-2658</div>
     </div>
 
-    <!-- Navbar -->
     <nav class="navbar">
         <a href="index.html" class="brand-logo">
             <img src="assets/logo_metodo.png" alt="Método Soluções">
         </a>
-        
-        <div class="mobile-toggle" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
-        </div>
-
+        <div class="mobile-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
             <li><a href="servicos.html" class="active">Serviços</a></li>
             <li><a href="solucoes.html">Sistemas SaaS</a></li>
             <li><a href="contato.html">Contato</a></li>
-            <li><a href="contato.html" class="btn-primary" style="color:white; padding: 10px 20px; border-radius: 6px;">Agendar Diagnóstico</a></li>
+            <li><a href="contato.html" class="btn-primary" style="color:white; border-radius: 6px;">Agendar Diagnóstico</a></li>
         </ul>
     </nav>
 
-    <!-- Page Header -->
-    <header class="page-header">
+    <header class="page-header reveal">
         <h1>Consultoria Especializada</h1>
         <p>Soluções em Administração e Estatística com alto rigor metodológico para impulsionar a sua instituição.</p>
     </header>
 
-    <!-- Serviços Detalhados -->
     <section class="services-detail">
-        
-        <!-- Serviço 1 -->
         <div class="service-row">
-            <div class="service-content">
+            <div class="service-content reveal-left">
                 <h2>Mapeamento de Processos (BPM)</h2>
                 <p>Nossa metodologia foca na eliminação de redundâncias e na digitalização inteligente. Analisamos cada tarefa para garantir que a sua equipe foque no que é puramente estratégico.</p>
                 <ul class="service-list">
@@ -449,14 +186,13 @@
                     <li>Manual de Procedimentos Operacionais (POPs)</li>
                 </ul>
             </div>
-            <div class="service-image">
+            <div class="service-image reveal-right">
                 <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800" alt="Mapeamento de Processos">
             </div>
         </div>
 
-        <!-- Serviço 2 -->
         <div class="service-row">
-            <div class="service-content">
+            <div class="service-content reveal-right">
                 <h2>Gestão Financeira</h2>
                 <p>Controle absoluto do capital. Do fluxo de caixa do dia a dia à execução financeira complexa em instituições públicas e empresas privadas de grande porte.</p>
                 <ul class="service-list">
@@ -465,14 +201,13 @@
                     <li>Auditoria e Controle de Custos</li>
                 </ul>
             </div>
-            <div class="service-image">
+            <div class="service-image reveal-left">
                 <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=800" alt="Gestão Financeira">
             </div>
         </div>
 
-        <!-- Serviço 3 -->
         <div class="service-row">
-            <div class="service-content">
+            <div class="service-content reveal-left">
                 <h2>Análise Estatística Avançada</h2>
                 <p>Não entregamos apenas dados, entregamos inteligência. Modelamos cenários para que sua empresa se antecipe às tendências de mercado, baseando o futuro em fatos reais.</p>
                 <ul class="service-list">
@@ -481,32 +216,28 @@
                     <li>Estatística para Instituições Acadêmicas</li>
                 </ul>
             </div>
-            <div class="service-image">
+            <div class="service-image reveal-right">
                 <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800" alt="Análise Estatística">
             </div>
         </div>
-
     </section>
 
-    <!-- Ciclo de Entrega (Timeline) -->
     <section class="delivery-cycle">
-        <h2>Nosso Ciclo de Entrega</h2>
-        <p>Unimos a administração clássica com a agilidade do SaaS para garantir resultados perenes.</p>
+        <h2 class="reveal">Nosso Ciclo de Entrega</h2>
+        <p class="reveal delay-1">Unimos a administração clássica com a agilidade do SaaS para garantir resultados perenes.</p>
 
         <div class="steps-container">
-            <div class="step-box">
+            <div class="step-box reveal delay-1">
                 <div class="step-number">01</div>
                 <h4>Diagnóstico</h4>
                 <p>Mergulhamos na realidade da sua organização. Realizamos a coleta de dados e uma análise situacional profunda para entender a raiz do problema.</p>
             </div>
-
-            <div class="step-box">
+            <div class="step-box reveal delay-2">
                 <div class="step-number" style="background-color: var(--color-secondary);">02</div>
                 <h4>Modelagem</h4>
                 <p>Com os dados em mãos, desenhamos a arquitetura da solução ideal, seja a reestruturação de processos (BPM) ou a prototipação de um Software (SaaS).</p>
             </div>
-
-            <div class="step-box">
+            <div class="step-box reveal delay-3">
                 <div class="step-number" style="background-color: var(--color-accent);">03</div>
                 <h4>Execução</h4>
                 <p>Partimos para a ação técnica. Implantação de metodologias, treinamento de equipes e monitoramento contínuo através de KPIs bem definidos.</p>
@@ -514,14 +245,12 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
-        <div class="footer-grid">
+        <div class="footer-grid reveal">
             <div class="footer-brand">
                 <img src="assets/logo_metodo.png" alt="Método Soluções Logo">
                 <p>Onde a Administração encontra a Ciência da Computação. Sediados no Maranhão, impulsionando a governança em nível nacional.</p>
             </div>
-            
             <div>
                 <h4 class="footer-title">Links Rápidos</h4>
                 <ul class="footer-links">
@@ -530,16 +259,14 @@
                     <li><a href="solucoes.html">Sistemas SaaS</a></li>
                 </ul>
             </div>
-
             <div>
                 <h4 class="footer-title">Soluções</h4>
                 <ul class="footer-links">
-                    <li><a href="#">Mapeamento BPM</a></li>
-                    <li><a href="#">Consultoria Estatística</a></li>
-                    <li><a href="#">Gestão Financeira</a></li>
+                    <li><a href="solucoes.html">Mapeamento BPM</a></li>
+                    <li><a href="servicos.html">Consultoria Estatística</a></li>
+                    <li><a href="servicos.html">Gestão Financeira</a></li>
                 </ul>
             </div>
-
             <div>
                 <h4 class="footer-title">Contato</h4>
                 <ul class="footer-links">
@@ -549,18 +276,27 @@
                 </ul>
             </div>
         </div>
-        
         <div class="footer-bottom">
             <p>&copy; 2026 Método Soluções. Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <!-- Script Menu Mobile -->
     <script>
         function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
+            document.getElementById('navLinks').classList.toggle('active');
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+        });
     </script>
 </body>
 </html>

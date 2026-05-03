@@ -6,7 +6,7 @@
     <title>Método Soluções | Expertise em Gestão & Dados</title>
     <meta name="description" content="Mapeamento de processos, inteligência estatística e desenvolvimento SaaS de alta performance.">
     
-    <!-- Google Fonts: Inter para um visual moderno de SaaS -->
+    <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -16,12 +16,12 @@
 
     <style>
         /* ==========================================================================
-           PALETA DE CORES (Baseada na Logo) & VARIÁVEIS GERAIS
+           PALETA DE CORES & VARIÁVEIS GERAIS
            ========================================================================== */
         :root {
-            --color-primary: #0A3D73;    /* Azul escuro da logo */
-            --color-secondary: #1F8AA6;  /* Azul claro/Teal da logo */
-            --color-accent: #F2A03D;     /* Laranja/Amarelo da logo */
+            --color-primary: #0A3D73;    
+            --color-secondary: #1F8AA6;  
+            --color-accent: #F2A03D;     
             --color-accent-hover: #D9882B;
             --color-dark: #1C2331;
             --color-light: #F8F9FA;
@@ -29,8 +29,10 @@
             --color-gray: #6B7280;
             --color-border: #E5E7EB;
             --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 25px 30px -5px rgba(0, 0, 0, 0.15);
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         * {
@@ -45,16 +47,43 @@
             color: var(--color-dark);
             line-height: 1.6;
             overflow-x: hidden;
+            width: 100%;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
 
-        ul {
-            list-style: none;
+        /* ==========================================================================
+           ANIMAÇÕES DE ROLAGEM (SCROLL REVEAL)
+           ========================================================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal.delay-1 { transition-delay: 0.1s; }
+        .reveal.delay-2 { transition-delay: 0.2s; }
+        .reveal.delay-3 { transition-delay: 0.3s; }
+        .reveal.delay-4 { transition-delay: 0.4s; }
+        
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal-left.active { opacity: 1; transform: translateX(0); }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal-right.active { opacity: 1; transform: translateX(0); }
 
         /* ==========================================================================
            TOPBAR E NAVBAR
@@ -80,12 +109,14 @@
             top: 0;
             z-index: 1000;
             box-shadow: var(--shadow-sm);
+            transition: var(--transition);
         }
 
         .brand-logo img {
             height: 45px;
-            width: auto;
+            transition: var(--transition);
         }
+        .brand-logo:hover img { transform: scale(1.05); }
 
         .nav-links {
             display: flex;
@@ -96,13 +127,25 @@
         .nav-links li a {
             font-weight: 500;
             color: var(--color-primary);
+            position: relative;
             transition: var(--transition);
         }
 
-        .nav-links li a:hover, .nav-links li a.active {
-            color: var(--color-secondary);
+        /* Efeito de sublinhado animado no menu */
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--color-secondary);
+            transition: width 0.3s ease;
         }
+        .nav-links li a:hover::after, .nav-links li a.active::after { width: 100%; }
+        .nav-links li a:hover, .nav-links li a.active { color: var(--color-secondary); }
 
+        /* Botões Animados */
         .btn-primary {
             background-color: var(--color-accent);
             color: var(--color-white);
@@ -111,16 +154,21 @@
             font-weight: 600;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
             transition: var(--transition);
             border: none;
             cursor: pointer;
+            box-shadow: 0 4px 10px rgba(242, 160, 61, 0.3);
+            text-align: center;
         }
-
         .btn-primary:hover {
             background-color: var(--color-accent-hover);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(242, 160, 61, 0.4);
+            color: var(--color-white);
         }
+        .btn-primary::after { display: none; } /* Remove linha do menu no botão */
 
         .btn-outline {
             border: 2px solid var(--color-primary);
@@ -129,20 +177,23 @@
             border-radius: 6px;
             font-weight: 600;
             transition: var(--transition);
+            text-align: center;
         }
-
         .btn-outline:hover {
             background-color: var(--color-primary);
             color: var(--color-white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
         }
 
-        /* Menu Mobile Toggle */
         .mobile-toggle {
             display: none;
             font-size: 1.5rem;
             color: var(--color-primary);
             cursor: pointer;
+            transition: var(--transition);
         }
+        .mobile-toggle:hover { color: var(--color-accent); transform: scale(1.1); }
 
         /* ==========================================================================
            HERO SECTION
@@ -154,19 +205,17 @@
             padding: 80px 5%;
             background: linear-gradient(135deg, var(--color-light) 0%, var(--color-white) 100%);
             gap: 50px;
+            overflow: hidden;
         }
 
         .hero-content h1 {
             font-size: 3.5rem;
-            line-height: 1.1;
+            line-height: 1.2;
             color: var(--color-primary);
             margin-bottom: 20px;
             letter-spacing: -1px;
         }
-
-        .hero-content h1 span {
-            color: var(--color-secondary);
-        }
+        .hero-content h1 span { color: var(--color-secondary); }
 
         .hero-content p {
             font-size: 1.1rem;
@@ -175,22 +224,25 @@
             max-width: 90%;
         }
 
-        .hero-actions {
-            display: flex;
-            gap: 15px;
-        }
+        .hero-actions { display: flex; gap: 15px; }
 
-        .hero-image {
-            position: relative;
-        }
-
-        .hero-image img {
-            width: 100%;
+        .hero-image { position: relative; perspective: 1000px; }
+        .hero-image-inner {
+            overflow: hidden;
             border-radius: 12px;
             box-shadow: var(--shadow-lg);
+            transition: var(--transition);
         }
+        .hero-image-inner:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        .hero-image img {
+            width: 100%;
+            transition: transform 0.6s ease;
+        }
+        .hero-image-inner:hover img { transform: scale(1.05); }
 
-        /* Floating Badge mimicking SaaS design */
         .floating-badge {
             position: absolute;
             bottom: -20px;
@@ -203,30 +255,25 @@
             align-items: center;
             gap: 15px;
             border-left: 4px solid var(--color-accent);
+            transition: var(--transition);
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
         }
 
         /* ==========================================================================
            PILARES (FEATURES) SECTION
            ========================================================================== */
-        .pilares {
-            padding: 80px 5%;
-            background-color: var(--color-white);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            color: var(--color-primary);
-            margin-bottom: 15px;
-        }
+        .pilares { padding: 80px 5%; background-color: var(--color-white); }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 2.5rem; color: var(--color-primary); margin-bottom: 15px; }
 
         .grid-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
 
@@ -238,8 +285,21 @@
             transition: var(--transition);
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
-
+        /* Efeito de preenchimento no Hover do Card */
+        .card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(31, 138, 166, 0.05) 0%, transparent 100%);
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition);
+        }
         .card::before {
             content: "";
             position: absolute;
@@ -250,22 +310,20 @@
             background: var(--color-secondary);
             transform: scaleX(0);
             transform-origin: left;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
         }
-
         .card:hover {
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
             border-color: transparent;
         }
-
-        .card:hover::before {
-            transform: scaleX(1);
-        }
+        .card:hover::before { transform: scaleX(1); }
+        .card:hover::after { opacity: 1; }
 
         .card-icon {
             width: 60px;
             height: 60px;
-            background-color: rgba(31, 138, 166, 0.1); /* Secondary light */
+            background-color: rgba(31, 138, 166, 0.1);
             color: var(--color-secondary);
             display: flex;
             align-items: center;
@@ -273,18 +331,16 @@
             border-radius: 12px;
             font-size: 1.5rem;
             margin-bottom: 25px;
+            transition: var(--transition);
+        }
+        .card:hover .card-icon {
+            background-color: var(--color-secondary);
+            color: var(--color-white);
+            transform: rotateY(180deg);
         }
 
-        .card h3 {
-            font-size: 1.3rem;
-            color: var(--color-primary);
-            margin-bottom: 15px;
-        }
-
-        .card p {
-            color: var(--color-gray);
-            font-size: 0.95rem;
-        }
+        .card h3 { font-size: 1.3rem; color: var(--color-primary); margin-bottom: 15px; }
+        .card p { color: var(--color-gray); font-size: 0.95rem; }
 
         /* ==========================================================================
            LIDERANÇA TÉCNICA SECTION
@@ -296,33 +352,23 @@
             grid-template-columns: 1fr 1.2fr;
             gap: 50px;
             align-items: center;
+            overflow: hidden;
         }
 
+        .leadership-img { position: relative; overflow: hidden; border-radius: 12px; }
         .leadership-img img {
             width: 100%;
             border-radius: 12px;
             box-shadow: var(--shadow-lg);
             object-fit: cover;
+            transition: var(--transition);
         }
+        .leadership-img:hover img { transform: scale(1.03); }
 
-        .leadership-content h2 {
-            font-size: 2.5rem;
-            color: var(--color-primary);
-            margin-bottom: 20px;
-        }
+        .leadership-content h2 { font-size: 2.5rem; color: var(--color-primary); margin-bottom: 20px; }
+        .leadership-content p { font-size: 1.1rem; color: var(--color-gray); margin-bottom: 30px; }
 
-        .leadership-content p {
-            font-size: 1.1rem;
-            color: var(--color-gray);
-            margin-bottom: 30px;
-        }
-
-        .tags-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
+        .tags-container { display: flex; flex-wrap: wrap; gap: 10px; }
         .tag {
             background-color: var(--color-white);
             border: 1px solid var(--color-border);
@@ -332,6 +378,13 @@
             font-size: 0.85rem;
             font-weight: 600;
             box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            cursor: default;
+        }
+        .tag:hover {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            transform: translateY(-3px);
         }
 
         /* ==========================================================================
@@ -352,37 +405,31 @@
 
         .footer-brand img {
             height: 50px;
-            background: white; /* Adicionado fundo branco para destacar a logo escura no footer escuro, se necessário adapte */
+            background: white;
             padding: 5px;
             border-radius: 4px;
             margin-bottom: 20px;
-        }
-
-        .footer-brand p {
-            color: #A0AEC0;
-            font-size: 0.9rem;
-            max-width: 80%;
-        }
-
-        .footer-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--color-white);
-        }
-
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links li a {
-            color: #A0AEC0;
             transition: var(--transition);
         }
+        .footer-brand img:hover { transform: scale(1.05); }
+        .footer-brand p { color: #A0AEC0; font-size: 0.9rem; max-width: 80%; }
 
-        .footer-links li a:hover {
-            color: var(--color-accent);
+        .footer-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 20px; color: var(--color-white); }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links li a { color: #A0AEC0; transition: var(--transition); position: relative; }
+        
+        .footer-links li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--color-accent);
+            transition: width 0.3s ease;
         }
+        .footer-links li a:hover::after { width: 100%; }
+        .footer-links li a:hover { color: var(--color-accent); padding-left: 5px; }
 
         .footer-bottom {
             border-top: 1px solid rgba(255,255,255,0.1);
@@ -393,49 +440,31 @@
         }
 
         /* ==========================================================================
-           RESPONSIVIDADE (MEDIA QUERIES)
+           RESPONSIVIDADE (CELULARES E TABLETS)
            ========================================================================== */
         @media (max-width: 1024px) {
-            .hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .hero-content p {
-                margin: 0 auto 30px auto;
-            }
-            .hero-actions {
-                justify-content: center;
-            }
+            .hero { grid-template-columns: 1fr; text-align: center; }
+            .hero-content p { margin: 0 auto 30px auto; }
+            .hero-actions { justify-content: center; }
             .floating-badge {
                 left: 50%;
                 transform: translateX(-50%);
                 bottom: -30px;
-                width: 80%;
-                justify-content: center;
+                width: max-content;
+                animation: none; /* Desliga flutuação no mobile se quebrar */
             }
-            .leadership {
-                grid-template-columns: 1fr;
-            }
-            .leadership-img {
-                order: 2;
-            }
-            .leadership-content {
-                order: 1;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+            .leadership { grid-template-columns: 1fr; }
+            .leadership-img { order: 2; }
+            .leadership-content { order: 1; text-align: center; }
+            .tags-container { justify-content: center; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 768px) {
-            .topbar {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
-            }
-            .mobile-toggle {
-                display: block;
-            }
+            .topbar { flex-direction: column; gap: 10px; text-align: center; padding: 12px 5%; }
+            .navbar { padding: 15px 5%; }
+            .mobile-toggle { display: block; }
+            
             .nav-links {
                 position: absolute;
                 top: 100%;
@@ -443,23 +472,46 @@
                 width: 100%;
                 background-color: var(--color-white);
                 flex-direction: column;
-                padding: 20px 0;
+                gap: 15px;
+                padding: 0;
+                max-height: 0;
+                overflow: hidden;
                 box-shadow: var(--shadow-lg);
-                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-                transition: clip-path 0.3s ease-in-out;
+                transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
             }
             .nav-links.active {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                max-height: 400px;
+                padding: 20px 0;
             }
-            .hero-content h1 {
-                font-size: 2.5rem;
+            .nav-links li { width: 100%; text-align: center; }
+            .nav-links li a::after { display: none; } /* Remove linha no mobile */
+
+            .btn-primary { width: 90%; justify-content: center; }
+            .hero { padding: 50px 5%; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .hero-actions { flex-direction: column; width: 100%; }
+            .hero-actions a { width: 100%; }
+            
+            .floating-badge { 
+                position: relative; 
+                left: 0; 
+                bottom: 0; 
+                transform: none; 
+                margin-top: 20px; 
+                width: 100%; 
+                justify-content: center;
             }
-            .hero-actions {
-                flex-direction: column;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
+            
+            .pilares { padding: 50px 5%; }
+            .section-header h2 { font-size: 2rem; }
+            .grid-cards { grid-template-columns: 1fr; }
+            
+            .leadership { padding: 50px 5%; }
+            .leadership-content h2 { font-size: 2rem; }
+            
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+            .footer-brand p { max-width: 100%; margin: 0 auto; }
+            .footer-links li a:hover { padding-left: 0; } /* Remove avanço lateral no mobile */
         }
     </style>
 </head>
@@ -476,7 +528,6 @@
     <!-- Navbar -->
     <nav class="navbar">
         <a href="index.html" class="brand-logo">
-            <!-- Insira a sua logo aqui (verifique o caminho local) -->
             <img src="assets/logo_metodo.png" alt="Método Soluções">
         </a>
         
@@ -489,13 +540,13 @@
             <li><a href="servicos.html">Serviços</a></li>
             <li><a href="solucoes.html">Sistemas SaaS</a></li>
             <li><a href="contato.html">Contato</a></li>
-            <li><a href="contato.html" class="btn-primary" style="color:white; padding: 10px 20px; border-radius: 6px;">Agendar Diagnóstico</a></li>
+            <li><a href="contato.html" class="btn-primary" style="color:white; border-radius: 6px;">Agendar Diagnóstico</a></li>
         </ul>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
+        <div class="hero-content reveal-left">
             <h1>Expertise em <br><span>Gestão & Dados</span></h1>
             <p>Mapeamento de processos, inteligência estatística e desenvolvimento SaaS de alta performance para transformar o seu modelo de negócio.</p>
             <div class="hero-actions">
@@ -503,9 +554,10 @@
                 <a href="servicos.html" class="btn-outline">Nossos Serviços</a>
             </div>
         </div>
-        <div class="hero-image">
-            <!-- Imagem de contexto corporativo/tecnológico -->
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800" alt="Dashboard e Gestão de Dados">
+        <div class="hero-image reveal-right">
+            <div class="hero-image-inner">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800" alt="Dashboard e Gestão de Dados">
+            </div>
             <div class="floating-badge">
                 <i class="fas fa-chart-line" style="font-size: 2rem; color: var(--color-secondary);"></i>
                 <div>
@@ -518,44 +570,38 @@
 
     <!-- Pilares de Atuação -->
     <section class="pilares">
-        <div class="section-header">
+        <div class="section-header reveal">
             <h2>Pilares de Atuação</h2>
             <p style="color: var(--color-gray);">Nossas verticais estratégicas para escalar a sua operação.</p>
         </div>
 
         <div class="grid-cards">
-            <!-- Card 1 -->
-            <div class="card">
+            <div class="card reveal delay-1">
                 <div class="card-icon"><i class="fas fa-project-diagram"></i></div>
                 <h3>Mapeamento de Processos</h3>
                 <p>Identificamos gargalos e desenhamos fluxos operacionais (AS-IS/TO-BE) que aumentam a produtividade em até 40%.</p>
             </div>
-            <!-- Card 2 -->
-            <div class="card">
+            <div class="card reveal delay-2">
                 <div class="card-icon"><i class="fas fa-file-invoice-dollar"></i></div>
                 <h3>Gestão Financeira</h3>
                 <p>Análise de fluxo de caixa, orçamento empresarial e dashboards financeiros para decisões baseadas em números, não em intuição.</p>
             </div>
-            <!-- Card 3 -->
-            <div class="card">
+            <div class="card reveal delay-3">
                 <div class="card-icon"><i class="fas fa-cloud"></i></div>
                 <h3>SaaS Sob Medida</h3>
                 <p>Sistemas proprietários hospedados em nuvem, construídos com arquitetura MVC para garantir escalabilidade total da sua operação.</p>
             </div>
-            <!-- Card 4 -->
-            <div class="card">
+            <div class="card reveal delay-1">
                 <div class="card-icon"><i class="fas fa-bullseye"></i></div>
                 <h3>Gestão Estratégica</h3>
                 <p>Implementação de OKRs e Planejamento Estratégico com foco em controle de metas e resultados de curto e longo prazo.</p>
             </div>
-            <!-- Card 5 -->
-            <div class="card">
+            <div class="card reveal delay-2">
                 <div class="card-icon"><i class="fas fa-chart-pie"></i></div>
                 <h3>Estatística Aplicada</h3>
                 <p>Modelagem estatística de alta precisão para empresas e instituições públicas, focada em previsão e análise preditiva de cenários.</p>
             </div>
-            <!-- Card 6 -->
-            <div class="card">
+            <div class="card reveal delay-3">
                 <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
                 <h3>Consultoria Acadêmica</h3>
                 <p>Suporte metodológico e análise de dados científica rigorosa para pesquisadores, projetos e instituições de ensino superior.</p>
@@ -563,12 +609,12 @@
         </div>
     </section>
 
-    <!-- Liderança Técnica (Sem dados pessoais explícitos) -->
+    <!-- Liderança Técnica -->
     <section class="leadership">
-        <div class="leadership-img">
+        <div class="leadership-img reveal-left">
             <img src="assets/lideranca.png" alt="Liderança Técnica">
         </div>
-        <div class="leadership-content">
+        <div class="leadership-content reveal-right">
             <h2>Liderança Técnica</h2>
             <p>Atuamos na intersecção entre a Administração Clássica e a Ciência da Computação. Unimos o rigor científico da academia com a agilidade do mercado SaaS para desenhar soluções que não apenas organizam, mas revolucionam operações estruturais.</p>
             
@@ -584,7 +630,7 @@
 
     <!-- Footer -->
     <footer>
-        <div class="footer-grid">
+        <div class="footer-grid reveal">
             <div class="footer-brand">
                 <img src="assets/logo_metodo.png" alt="Método Soluções Logo">
                 <p>Onde a Administração encontra a Ciência da Computação. Sediados no Maranhão, impulsionando a governança em nível nacional.</p>
@@ -602,9 +648,9 @@
             <div>
                 <h4 class="footer-title">Soluções</h4>
                 <ul class="footer-links">
-                    <li><a href="#">Mapeamento BPM</a></li>
-                    <li><a href="#">Consultoria Estatística</a></li>
-                    <li><a href="#">Gestão Financeira</a></li>
+                    <li><a href="solucoes.html">Mapeamento BPM</a></li>
+                    <li><a href="servicos.html">Consultoria Estatística</a></li>
+                    <li><a href="servicos.html">Gestão Financeira</a></li>
                 </ul>
             </div>
 
@@ -623,12 +669,35 @@
         </div>
     </footer>
 
-    <!-- Script para o Menu Mobile -->
+    <!-- Scripts -->
     <script>
+        // Toggle do Menu Mobile
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
         }
+
+        // Sistema de Animação ao Rolar a Tela (Scroll Reveal)
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Opcional: remover a observação depois que animar a primeira vez
+                        // observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+            revealElements.forEach(el => observer.observe(el));
+        });
     </script>
 </body>
 </html>

@@ -6,7 +6,7 @@
     <title>Sistemas SaaS & Soluções | Método Soluções</title>
     <meta name="description" content="Ecossistema de Gestão & Tecnologia. Desenvolvimento SaaS, Arquitetura MVC e Engenharia de Dados.">
     
-    <!-- Google Fonts: Inter -->
+    <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -29,8 +29,10 @@
             --color-gray: #6B7280;
             --color-border: #E5E7EB;
             --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 25px 30px -5px rgba(0, 0, 0, 0.15);
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         * {
@@ -45,10 +47,40 @@
             color: var(--color-dark);
             line-height: 1.6;
             overflow-x: hidden;
+            width: 100%;
         }
 
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* ==========================================================================
+           ANIMAÇÕES (SCROLL REVEAL)
+           ========================================================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal.delay-1 { transition-delay: 0.1s; }
+        .reveal.delay-2 { transition-delay: 0.2s; }
+        .reveal.delay-3 { transition-delay: 0.3s; }
+        .reveal.delay-4 { transition-delay: 0.4s; }
+        
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal-left.active { opacity: 1; transform: translateX(0); }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal-right.active { opacity: 1; transform: translateX(0); }
 
         /* ==========================================================================
            TOPBAR E NAVBAR
@@ -61,6 +93,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width: 100%;
         }
         .topbar i { color: var(--color-accent); margin-right: 5px; }
 
@@ -74,12 +107,15 @@
             top: 0;
             z-index: 1000;
             box-shadow: var(--shadow-sm);
+            width: 100%;
+            transition: var(--transition);
         }
 
         .brand-logo img {
             height: 45px;
-            width: auto;
+            transition: var(--transition);
         }
+        .brand-logo:hover img { transform: scale(1.05); }
 
         .nav-links {
             display: flex;
@@ -90,12 +126,22 @@
         .nav-links li a {
             font-weight: 500;
             color: var(--color-primary);
+            position: relative;
             transition: var(--transition);
         }
 
-        .nav-links li a:hover, .nav-links li a.active {
-            color: var(--color-secondary);
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--color-secondary);
+            transition: width 0.3s ease;
         }
+        .nav-links li a:hover::after, .nav-links li a.active::after { width: 100%; }
+        .nav-links li a:hover, .nav-links li a.active { color: var(--color-secondary); }
 
         .btn-primary {
             background-color: var(--color-accent);
@@ -105,23 +151,30 @@
             font-weight: 600;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
             transition: var(--transition);
             border: none;
             cursor: pointer;
+            box-shadow: 0 4px 10px rgba(242, 160, 61, 0.3);
+            text-align: center;
         }
-
         .btn-primary:hover {
             background-color: var(--color-accent-hover);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(242, 160, 61, 0.4);
+            color: var(--color-white);
         }
+        .btn-primary::after { display: none; }
 
         .mobile-toggle {
             display: none;
             font-size: 1.5rem;
             color: var(--color-primary);
             cursor: pointer;
+            transition: var(--transition);
         }
+        .mobile-toggle:hover { color: var(--color-accent); transform: scale(1.1); }
 
         /* ==========================================================================
            HEADER DA PÁGINA
@@ -129,13 +182,15 @@
         .page-header {
             background: linear-gradient(135deg, var(--color-primary) 0%, #062b54 100%);
             color: var(--color-white);
-            padding: 80px 5%;
+            padding: 100px 5%;
             text-align: center;
+            width: 100%;
         }
 
         .page-header h1 {
             font-size: 3rem;
             margin-bottom: 20px;
+            line-height: 1.2;
             letter-spacing: -1px;
         }
 
@@ -147,7 +202,7 @@
         }
 
         /* ==========================================================================
-           FOUR PILLARS GRID
+           FOUR PILLARS ECOSYSTEM GRID
            ========================================================================== */
         .ecosystem-grid {
             padding: 60px 5%;
@@ -155,14 +210,27 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
             background: var(--color-white);
-            margin-top: -40px;
+            margin-top: -50px;
             border-radius: 12px;
-            box-shadow: var(--shadow-sm);
+            box-shadow: var(--shadow-lg);
             position: relative;
             z-index: 10;
             width: 90%;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        .ecosystem-item {
+            padding: 20px;
+            border-radius: 8px;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+        .ecosystem-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--color-border);
+            background-color: var(--color-light);
         }
 
         .ecosystem-item h3 {
@@ -173,11 +241,14 @@
             align-items: center;
             gap: 10px;
         }
-
         .ecosystem-item h3 i {
             color: var(--color-secondary);
+            font-size: 1.5rem;
+            transition: var(--transition);
         }
-
+        .ecosystem-item:hover h3 i {
+            transform: scale(1.2) rotate(10deg);
+        }
         .ecosystem-item p {
             color: var(--color-gray);
             font-size: 0.95rem;
@@ -187,7 +258,8 @@
            PRODUTOS SAAS (BLOCOS ALTERNADOS)
            ========================================================================== */
         .products-section {
-            padding: 80px 5%;
+            padding: 100px 5%;
+            width: 100%;
         }
 
         .products-section > h2 {
@@ -201,27 +273,30 @@
             text-align: center;
             color: var(--color-gray);
             font-size: 1.1rem;
-            margin-bottom: 60px;
+            margin-bottom: 80px;
         }
 
         .product-block {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            gap: 60px;
             align-items: center;
-            margin-bottom: 80px;
+            margin-bottom: 100px;
             background: var(--color-white);
-            padding: 40px;
+            padding: 50px;
             border-radius: 16px;
             box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--color-border);
+        }
+        .product-block:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-5px);
+            border-color: var(--color-secondary);
         }
 
-        .product-block:nth-child(odd) {
-            direction: rtl;
-        }
-        .product-block:nth-child(odd) .product-info {
-            direction: ltr;
-        }
+        .product-block:nth-child(odd) { direction: rtl; }
+        .product-block:nth-child(odd) .product-info { direction: ltr; }
 
         .product-info .category {
             text-transform: uppercase;
@@ -246,20 +321,20 @@
             font-size: 1.05rem;
         }
 
-        .product-features {
-            list-style: none;
-        }
-
         .product-features li {
             position: relative;
             padding-left: 30px;
             margin-bottom: 12px;
             color: var(--color-dark);
             font-weight: 500;
+            transition: var(--transition);
         }
-
+        .product-features li:hover {
+            transform: translateX(5px);
+            color: var(--color-secondary);
+        }
         .product-features li::before {
-            content: "\f058"; /* Check-circle FontAwesome */
+            content: "\f058";
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             position: absolute;
@@ -269,30 +344,32 @@
             font-size: 1.2rem;
         }
 
+        .product-image { overflow: hidden; border-radius: 12px; }
         .product-image img {
             width: 100%;
             border-radius: 12px;
             box-shadow: var(--shadow-lg);
-            transition: transform 0.3s ease;
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-
-        .product-image:hover img {
-            transform: scale(1.02);
+        .product-block:hover .product-image img {
+            transform: scale(1.03);
         }
 
         /* ==========================================================================
            TECH STACK SECTION
            ========================================================================== */
         .tech-stack {
-            padding: 80px 5%;
+            padding: 100px 5%;
             background-color: var(--color-white);
             text-align: center;
+            width: 100%;
+            border-top: 1px solid var(--color-border);
         }
 
         .tech-stack h2 {
             font-size: 2.2rem;
             color: var(--color-primary);
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .stack-grid {
@@ -300,43 +377,49 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
         .stack-item {
             background: var(--color-light);
             border: 1px solid var(--color-border);
-            padding: 15px 25px;
+            padding: 15px 30px;
             border-radius: 8px;
             font-weight: 600;
             color: var(--color-primary);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             transition: var(--transition);
+            cursor: default;
         }
-
         .stack-item i {
             font-size: 1.5rem;
             color: var(--color-secondary);
+            transition: var(--transition);
         }
-
         .stack-item:hover {
             border-color: var(--color-secondary);
-            background: var(--color-white);
-            box-shadow: var(--shadow-sm);
-            transform: translateY(-3px);
+            background: var(--color-primary);
+            color: var(--color-white);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-5px);
+        }
+        .stack-item:hover i {
+            color: var(--color-white);
+            transform: rotate(360deg);
         }
 
         /* ==========================================================================
            CTA SECTION
            ========================================================================== */
         .cta-section {
-            padding: 80px 5%;
-            background: var(--color-primary);
+            padding: 100px 5%;
+            background: linear-gradient(135deg, var(--color-primary) 0%, #062b54 100%);
             color: var(--color-white);
             text-align: center;
+            width: 100%;
         }
 
         .cta-section h2 {
@@ -347,10 +430,30 @@
         .cta-section p {
             font-size: 1.1rem;
             color: #A0AEC0;
-            margin-bottom: 30px;
-            max-width: 600px;
+            margin-bottom: 40px;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        .btn-cta {
+            background-color: var(--color-white);
+            color: var(--color-primary);
+            padding: 15px 35px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .btn-cta:hover {
+            background-color: var(--color-accent);
+            color: var(--color-white);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
 
         /* ==========================================================================
@@ -359,14 +462,15 @@
         footer {
             background-color: var(--color-dark);
             color: var(--color-white);
-            padding: 60px 5% 20px;
+            padding: 80px 5% 30px;
+            width: 100%;
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
             gap: 40px;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .footer-brand img {
@@ -375,52 +479,66 @@
             padding: 5px;
             border-radius: 4px;
             margin-bottom: 20px;
+            transition: var(--transition);
         }
+        .footer-brand img:hover { transform: scale(1.05); }
 
         .footer-brand p {
             color: #A0AEC0;
-            font-size: 0.9rem;
-            max-width: 80%;
+            font-size: 0.95rem;
+            max-width: 85%;
         }
 
         .footer-title {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 600;
             margin-bottom: 20px;
             color: var(--color-white);
         }
 
-        .footer-links li { margin-bottom: 10px; }
-        .footer-links li a { color: #A0AEC0; transition: var(--transition); }
-        .footer-links li a:hover { color: var(--color-accent); }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links li a { color: #A0AEC0; transition: var(--transition); position: relative; }
+        .footer-links li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--color-accent);
+            transition: width 0.3s ease;
+        }
+        .footer-links li a:hover::after { width: 100%; }
+        .footer-links li a:hover { color: var(--color-accent); padding-left: 5px; }
 
         .footer-bottom {
             border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 20px;
+            padding-top: 25px;
             text-align: center;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: #A0AEC0;
         }
 
         /* ==========================================================================
-           RESPONSIVIDADE
+           RESPONSIVIDADE (CELULARES E TABLETS)
            ========================================================================== */
         @media (max-width: 1024px) {
             .product-block {
                 grid-template-columns: 1fr;
-                padding: 30px;
+                padding: 40px;
+                gap: 40px;
             }
-            .product-block:nth-child(odd) { direction: ltr; }
+            .product-block:nth-child(odd) { direction: ltr; text-align: center; }
+            .product-block:nth-child(even) { text-align: center; }
+            .product-features li { text-align: left; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 768px) {
-            .topbar {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
-            }
+            .topbar { flex-direction: column; gap: 10px; text-align: center; padding: 12px 5%; }
+            .navbar { padding: 15px 5%; }
             .mobile-toggle { display: block; }
+            
             .nav-links {
                 position: absolute;
                 top: 100%;
@@ -428,83 +546,95 @@
                 width: 100%;
                 background-color: var(--color-white);
                 flex-direction: column;
-                padding: 20px 0;
+                gap: 15px;
+                padding: 0;
+                max-height: 0;
+                overflow: hidden;
                 box-shadow: var(--shadow-lg);
-                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-                transition: clip-path 0.3s ease-in-out;
+                transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
             }
             .nav-links.active {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                max-height: 400px;
+                padding: 20px 0;
             }
+            .nav-links li { width: 100%; text-align: center; }
+            .nav-links li a::after { display: none; }
+            .btn-primary { width: 90%; justify-content: center; margin: 0 auto; }
+
+            .page-header { padding: 60px 5%; }
             .page-header h1 { font-size: 2.2rem; }
-            .ecosystem-grid { margin-top: 20px; width: 100%; }
-            .footer-grid { grid-template-columns: 1fr; }
+            
+            .ecosystem-grid { margin-top: 20px; width: 100%; grid-template-columns: 1fr; }
+            
+            .products-section { padding: 60px 5%; }
+            .products-section > h2 { font-size: 2rem; }
+            .product-block { padding: 25px 20px; margin-bottom: 40px; }
+            .product-info h3 { font-size: 1.6rem; }
+            
+            .tech-stack { padding: 60px 5%; }
+            .tech-stack h2 { font-size: 2rem; }
+            
+            .cta-section { padding: 60px 5%; }
+            .cta-section h2 { font-size: 2rem; }
+            
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+            .footer-brand p { max-width: 100%; margin: 0 auto; }
+            .footer-links li a:hover { padding-left: 0; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Topbar -->
     <div class="topbar">
         <div>Arquitetura MVC & Engenharia de Dados</div>
-        <div>
-            <i class="fab fa-whatsapp"></i> (98) 98128-2658 | Atendimento Nacional
-        </div>
+        <div><i class="fab fa-whatsapp"></i> (98) 98128-2658 | Atendimento Nacional</div>
     </div>
 
-    <!-- Navbar -->
     <nav class="navbar">
         <a href="index.html" class="brand-logo">
             <img src="assets/logo_metodo.png" alt="Método Soluções">
         </a>
-        
-        <div class="mobile-toggle" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
-        </div>
-
+        <div class="mobile-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
             <li><a href="servicos.html">Serviços</a></li>
             <li><a href="solucoes.html" class="active">Sistemas SaaS</a></li>
             <li><a href="contato.html">Contato</a></li>
-            <li><a href="contato.html" class="btn-primary" style="color:white; padding: 10px 20px; border-radius: 6px;">Agendar Diagnóstico</a></li>
+            <li><a href="contato.html" class="btn-primary" style="color:white; border-radius: 6px;">Agendar Diagnóstico</a></li>
         </ul>
     </nav>
 
-    <!-- Page Header -->
-    <header class="page-header">
+    <header class="page-header reveal">
         <h1>Ecossistema de Gestão & Tecnologia</h1>
         <p>Não vendemos apenas código. Mapeamos processos complexos, reestruturamos a sua estratégia e entregamos o controle absoluto em plataformas SaaS proprietárias de alta performance.</p>
     </header>
 
-    <!-- 4 Pillars Ecosystem Grid -->
     <div class="ecosystem-grid">
-        <div class="ecosystem-item">
+        <div class="ecosystem-item reveal delay-1">
             <h3><i class="fas fa-project-diagram"></i> Mapeamento de Processos</h3>
             <p>Modelagem AS-IS e TO-BE. Identificamos gargalos e redesenhamos os fluxos da sua instituição para garantir máxima eficiência antes de qualquer automação sistêmica.</p>
         </div>
-        <div class="ecosystem-item">
+        <div class="ecosystem-item reveal delay-2">
             <h3><i class="fas fa-bullseye"></i> Gestão Estratégica</h3>
             <p>Implementação de metodologias ágeis e OKRs. Alinhamos as metas com indicadores de performance em tempo real, baseando decisões em evidências puras.</p>
         </div>
-        <div class="ecosystem-item">
+        <div class="ecosystem-item reveal delay-3">
             <h3><i class="fas fa-coins"></i> Gestão Financeira</h3>
             <p>Controle de execução financeira. Desenvolvemos análises estatísticas para projeção de cenários e controle de superávits institucionais.</p>
         </div>
-        <div class="ecosystem-item">
+        <div class="ecosystem-item reveal delay-4">
             <h3><i class="fas fa-laptop-code"></i> Desenvolvimento SaaS</h3>
             <p>Sistemas em nuvem construídos do zero para refletir sua nova estratégia. Código limpo, seguro e escalável em Python/Flask.</p>
         </div>
     </div>
 
-    <!-- Nossos Produtos SaaS -->
     <section class="products-section">
-        <h2>Nossos Produtos SaaS</h2>
-        <p class="section-subtitle">Soluções tecnológicas robustas validadas por empresas, clínicas e universidades em todo o território nacional.</p>
+        <h2 class="reveal">Nossos Produtos SaaS</h2>
+        <p class="section-subtitle reveal delay-1">Soluções tecnológicas robustas validadas por empresas, clínicas e universidades em todo o território nacional.</p>
 
         <!-- Produto 1 -->
         <div class="product-block">
-            <div class="product-info">
+            <div class="product-info reveal-left">
                 <span class="category">Governança & Controle</span>
                 <h3>Plataforma de Gestão à Vista & Helpdesk</h3>
                 <p>O coração operacional da sua empresa mapeado em Dashboards de alto impacto visual. Acompanhe SLAs, chamados e a satisfação do usuário com precisão cirúrgica.</p>
@@ -514,14 +644,14 @@
                     <li>Exportação analítica de produtividade por setor.</li>
                 </ul>
             </div>
-            <div class="product-image">
+            <div class="product-image reveal-right">
                 <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200" alt="Dashboard de Gestão e Helpdesk">
             </div>
         </div>
 
         <!-- Produto 2 -->
         <div class="product-block">
-            <div class="product-info">
+            <div class="product-info reveal-right">
                 <span class="category">Performance Clínica</span>
                 <h3>Prontuários e Saúde Baseada em Dados</h3>
                 <p>SaaS desenvolvido para clínicas e espaços terapêuticos. Mapeie a evolução clínica real dos pacientes com gráficos automáticos e controle rigoroso de históricos.</p>
@@ -531,14 +661,14 @@
                     <li>Segurança de dados e controle de níveis de acesso (Admin/Operador).</li>
                 </ul>
             </div>
-            <div class="product-image">
+            <div class="product-image reveal-left">
                 <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1200" alt="Sistema Clínico e Prontuários">
             </div>
         </div>
 
         <!-- Produto 3 -->
         <div class="product-block">
-            <div class="product-info">
+            <div class="product-info reveal-left">
                 <span class="category">Engenharia de Dados</span>
                 <h3>Mineração e Tratamento de Bases Legadas</h3>
                 <p>Sua organização possui dados, mas falta informação? Criamos algoritmos sob medida para limpar "falsos positivos", cruzar bases financeiras governamentais e entregar relatórios íntegros.</p>
@@ -548,41 +678,38 @@
                     <li>Integração com bases estruturadas e não-estruturadas.</li>
                 </ul>
             </div>
-            <div class="product-image">
+            <div class="product-image reveal-right">
                 <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200" alt="Código Python e Tratamento de Dados">
             </div>
         </div>
-
     </section>
 
-    <!-- Tech Stack -->
     <section class="tech-stack">
-        <h2>Arquitetura de Alta Performance</h2>
+        <h2 class="reveal">Arquitetura de Alta Performance</h2>
         <div class="stack-grid">
-            <div class="stack-item"><i class="fab fa-python"></i> Backend em Python</div>
-            <div class="stack-item"><i class="fas fa-sitemap"></i> Padrão MVC</div>
-            <div class="stack-item"><i class="fas fa-pepper-hot"></i> Framework Flask</div>
-            <div class="stack-item"><i class="fab fa-html5"></i> HTML5 & CSS3 UX/UI</div>
-            <div class="stack-item"><i class="fas fa-database"></i> SQL Data Modeling</div>
-            <div class="stack-item"><i class="fab fa-linux"></i> Deploy em Servidores Linux</div>
+            <div class="stack-item reveal delay-1"><i class="fab fa-python"></i> Backend em Python</div>
+            <div class="stack-item reveal delay-2"><i class="fas fa-sitemap"></i> Padrão MVC</div>
+            <div class="stack-item reveal delay-3"><i class="fas fa-pepper-hot"></i> Framework Flask</div>
+            <div class="stack-item reveal delay-1"><i class="fab fa-html5"></i> HTML5 & CSS3 UX/UI</div>
+            <div class="stack-item reveal delay-2"><i class="fas fa-database"></i> SQL Data Modeling</div>
+            <div class="stack-item reveal delay-3"><i class="fab fa-linux"></i> Deploy em Servidores Linux</div>
         </div>
     </section>
 
-    <!-- CTA Final -->
     <section class="cta-section">
-        <h2>Pronto para escalar sua governança?</h2>
-        <p>Pare de perder tempo com planilhas desconexas e gargalos processuais. Agende uma consultoria com especialistas em Administração e Engenharia de Computação e descubra a solução ideal.</p>
-        <a href="contato.html" class="btn-primary" style="background: var(--color-white); color: var(--color-primary);">Agendar Diagnóstico Técnico</a>
+        <h2 class="reveal">Pronto para escalar sua governança?</h2>
+        <p class="reveal delay-1">Pare de perder tempo com planilhas desconexas e gargalos processuais. Agende uma consultoria com especialistas em Administração e Engenharia de Computação e descubra a solução ideal.</p>
+        <div class="reveal delay-2">
+            <a href="contato.html" class="btn-cta">Agendar Diagnóstico Técnico <i class="fas fa-calendar-check"></i></a>
+        </div>
     </section>
 
-    <!-- Footer -->
     <footer>
-        <div class="footer-grid">
+        <div class="footer-grid reveal">
             <div class="footer-brand">
                 <img src="assets/logo_metodo.png" alt="Método Soluções Logo">
                 <p>Onde a Administração encontra a Ciência da Computação. Sediados no Maranhão, impulsionando a governança em nível nacional.</p>
             </div>
-            
             <div>
                 <h4 class="footer-title">Links Rápidos</h4>
                 <ul class="footer-links">
@@ -591,16 +718,14 @@
                     <li><a href="solucoes.html">Sistemas SaaS</a></li>
                 </ul>
             </div>
-
             <div>
                 <h4 class="footer-title">Soluções</h4>
                 <ul class="footer-links">
-                    <li><a href="#">Mapeamento BPM</a></li>
-                    <li><a href="#">Consultoria Estatística</a></li>
-                    <li><a href="#">Gestão Financeira</a></li>
+                    <li><a href="solucoes.html">Mapeamento BPM</a></li>
+                    <li><a href="servicos.html">Consultoria Estatística</a></li>
+                    <li><a href="servicos.html">Gestão Financeira</a></li>
                 </ul>
             </div>
-
             <div>
                 <h4 class="footer-title">Contato</h4>
                 <ul class="footer-links">
@@ -610,18 +735,27 @@
                 </ul>
             </div>
         </div>
-        
         <div class="footer-bottom">
             <p>&copy; 2026 Método Soluções. Liderança e Inteligência baseada em evidências.</p>
         </div>
     </footer>
 
-    <!-- Script Menu Mobile -->
     <script>
         function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
+            document.getElementById('navLinks').classList.toggle('active');
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+        });
     </script>
 </body>
 </html>
