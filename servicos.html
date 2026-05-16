@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Serviços | Método Soluções</title>
-    <meta name="description" content="Consultoria Especializada. Soluções em Administração e Estatística com alto rigor metodológico.">
+    <title>Serviços de Consultoria | Método Soluções</title>
+    <meta name="description" content="Consultoria Especializada. Soluções em Administração, Finanças e Inteligência de Mercado com alto rigor metodológico.">
     
     <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,6 +50,46 @@
         .reveal-right { opacity: 0; transform: translateX(50px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
         .reveal-right.active { opacity: 1; transform: translateX(0); }
 
+        /* Componentes de Preço/Prazo */
+        .price-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(31, 138, 166, 0.1);
+            color: var(--color-secondary);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-top: 20px;
+            border: 1px solid var(--color-secondary);
+            gap: 10px;
+            transition: var(--transition);
+        }
+        .price-badge:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-white);
+        }
+        
+        .time-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(242, 160, 61, 0.1);
+            color: var(--color-accent);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-top: 20px;
+            margin-left: 10px;
+            border: 1px solid var(--color-accent);
+            gap: 10px;
+            transition: var(--transition);
+        }
+        .time-badge:hover {
+            background-color: var(--color-accent);
+            color: var(--color-white);
+        }
+
         /* Topbar & Navbar */
         .topbar { background-color: var(--color-primary); color: var(--color-white); font-size: 0.85rem; padding: 8px 5%; display: flex; justify-content: space-between; align-items: center; }
         .topbar i { color: var(--color-accent); margin-right: 5px; }
@@ -75,13 +115,16 @@
 
         /* Serviços Detalhados */
         .services-detail { padding: 80px 5%; background-color: var(--color-white); overflow: hidden; }
-        .service-row { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 100px; }
+        .service-row { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 120px; }
         .service-row:nth-child(even) { direction: rtl; }
         .service-row:nth-child(even) .service-content { direction: ltr; }
 
-        .service-content h2 { font-size: 2.2rem; color: var(--color-primary); margin-bottom: 20px; line-height: 1.2; }
-        .service-content p { color: var(--color-gray); font-size: 1.1rem; margin-bottom: 25px; }
-        .service-list li { position: relative; padding-left: 35px; margin-bottom: 15px; font-weight: 500; color: var(--color-dark); font-size: 1.05rem; transition: var(--transition); }
+        .service-content h2 { font-size: 2.2rem; color: var(--color-primary); margin-bottom: 15px; line-height: 1.2; }
+        .service-content h4 { color: var(--color-secondary); font-size: 1.2rem; margin-bottom: 20px; font-weight: 600; }
+        .service-content p { color: var(--color-gray); font-size: 1.05rem; margin-bottom: 25px; text-align: justify; }
+        
+        .service-list { margin-bottom: 25px; }
+        .service-list li { position: relative; padding-left: 35px; margin-bottom: 12px; font-weight: 500; color: var(--color-dark); font-size: 1rem; transition: var(--transition); }
         .service-list li:hover { transform: translateX(5px); color: var(--color-secondary); }
         .service-list li::before { content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; top: 2px; color: var(--color-secondary); font-size: 1.1rem; }
         
@@ -121,8 +164,9 @@
 
         /* Media Queries (Mobile First approach ajustment) */
         @media (max-width: 1024px) {
-            .service-row { grid-template-columns: 1fr; gap: 40px; margin-bottom: 60px; text-align: center; }
+            .service-row { grid-template-columns: 1fr; gap: 40px; margin-bottom: 80px; text-align: center; }
             .service-row:nth-child(even) { direction: ltr; }
+            .service-content p { text-align: center; }
             .service-list li { text-align: left; }
             .steps-container::before { display: none; }
             .steps-container { grid-template-columns: 1fr; }
@@ -142,6 +186,9 @@
             .page-header h1 { font-size: 2.2rem; }
             .service-content h2 { font-size: 1.8rem; }
             .delivery-cycle > h2 { font-size: 2rem; }
+            
+            .time-badge { margin-left: 0; margin-top: 10px; width: 100%; justify-content: center; }
+            .price-badge { width: 100%; justify-content: center; }
             
             .footer-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
             .footer-brand p { max-width: 100%; margin: 0 auto; }
@@ -172,59 +219,95 @@
 
     <header class="page-header reveal">
         <h1>Consultoria Especializada</h1>
-        <p>Soluções em Administração e Estatística com alto rigor metodológico para impulsionar a sua instituição.</p>
+        <p>Soluções consultivas estruturadas em Estratégia, Finanças e Organização com alto rigor analítico para fortalecer a base e a escala da sua operação.</p>
     </header>
 
     <section class="services-detail">
+        
+        <!-- Serviço 1: Planejamento Estratégico -->
         <div class="service-row">
             <div class="service-content reveal-left">
-                <h2>Mapeamento de Processos (BPM)</h2>
-                <p>Nossa metodologia foca na eliminação de redundâncias e na digitalização inteligente. Analisamos cada tarefa para garantir que a sua equipe foque no que é puramente estratégico.</p>
+                <h2>Planejamento Estratégico Institucional</h2>
+                <h4>Foco e Governança Orientada a Resultados</h4>
+                <p>Prestação de serviços de consultoria em planejamento estratégico institucional com base na metodologia do Balanced Scorecard (BSC). O projeto é conduzido por meio de oficinas e diagnósticos aprofundados para a definição de objetivos, metas, indicadores e planos de ação. Envolve diretamente a alta gestão e equipes técnicas, garantindo alinhamento organizacional e eficiência orientada por dados.</p>
                 <ul class="service-list">
-                    <li>Desenho de Fluxogramas AS-IS e TO-BE</li>
-                    <li>Identificação de Gargalos Críticos</li>
-                    <li>Manual de Procedimentos Operacionais (POPs)</li>
+                    <li>Relatório de diagnóstico estratégico institucional.</li>
+                    <li>Mapa estratégico organizacional (Balanced Scorecard).</li>
+                    <li>Painel de indicadores, metas e modelo de governança.</li>
+                    <li>Planos de ação estruturados e validados por área/setor.</li>
                 </ul>
+                <div class="price-badge"><i class="fas fa-money-bill-wave"></i> Valor Estimado: R$ 75.000,00</div>
+                <div class="time-badge"><i class="fas fa-clock"></i> Prazo Estimado: 4 Meses</div>
             </div>
             <div class="service-image reveal-right">
-                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800" alt="Mapeamento de Processos">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800" alt="Consultoria em Planejamento Estratégico">
             </div>
         </div>
 
+        <!-- Serviço 2: Consultoria Financeira -->
         <div class="service-row">
             <div class="service-content reveal-right">
-                <h2>Gestão Financeira</h2>
-                <p>Controle absoluto do capital. Do fluxo de caixa do dia a dia à execução financeira complexa em instituições públicas e empresas privadas de grande porte.</p>
+                <h2>Consultoria Financeira Estratégica</h2>
+                <h4>Diagnóstico e Controle Absoluto de Caixa</h4>
+                <p>Diagnóstico completo, estruturação e melhoria da gestão econômico-financeira. Atuamos com análise aprofundada de receitas, custos, margens, fluxo de caixa e capital de giro. A consultoria também organiza rotinas gerenciais, painéis de controle e entrega orientações precisas para formação de reserva financeira e estruturação de política de investimentos corporativos.</p>
                 <ul class="service-list">
-                    <li>Planejamento Financeiro Anual</li>
-                    <li>Análise de Viabilidade Econômica</li>
-                    <li>Auditoria e Controle de Custos</li>
+                    <li>Quadro de indicadores financeiros e Modelo DRE gerencial simplificado.</li>
+                    <li>Análise rigorosa de viabilidade e previsão de caixa mensal.</li>
+                    <li>Política clara de reserva financeira e diretrizes de liquidez institucional.</li>
+                    <li>Plano de ação focado na correção de gargalos e redução de desperdícios.</li>
                 </ul>
+                <div class="price-badge"><i class="fas fa-money-bill-wave"></i> Investimento: R$ 60.000,00 a R$ 90.000,00</div>
             </div>
             <div class="service-image reveal-left">
-                <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=800" alt="Gestão Financeira">
+                <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=800" alt="Consultoria Financeira e Análise de Caixa">
             </div>
         </div>
 
+        <!-- Serviço 3: Inteligência de Mercado -->
         <div class="service-row">
             <div class="service-content reveal-left">
-                <h2>Análise Estatística Avançada</h2>
-                <p>Não entregamos apenas dados, entregamos inteligência. Modelamos cenários para que sua empresa se antecipe às tendências de mercado, baseando o futuro em fatos reais.</p>
+                <h2>Posicionamento e Inteligência de Mercado</h2>
+                <h4>Diferenciação e Blindagem Competitiva</h4>
+                <p>Consultoria especializada desenvolvida para organizações que demandam embasamento analítico para decisões de expansão. Combinamos análise ambiental e pesquisas rigorosas para decodificar o comportamento de compra. Identificamos lacunas mercadológicas negligenciadas pela concorrência, redefinindo o posicionamento estratégico, a Proposta de Valor e entregando um direcionamento Go-To-Market livre de "achismos".</p>
                 <ul class="service-list">
-                    <li>Pesquisa de Mercado e Amostragem</li>
-                    <li>Análise de Séries Temporais (Previsões)</li>
-                    <li>Estatística para Instituições Acadêmicas</li>
+                    <li>Relatório de Inteligência Competitiva e Benchmarking aprofundado.</li>
+                    <li>Manual de Posicionamento Estratégico e Proposta de Valor Exclusiva.</li>
+                    <li>Matriz de Oportunidades, Ameaças e Direcionamento de canais.</li>
+                    <li>Segurança baseada em pesquisas reais para a criação de novos produtos.</li>
                 </ul>
+                <div class="price-badge"><i class="fas fa-money-bill-wave"></i> Valor: R$ 20.000,00 a R$ 40.000,00</div>
+                <div class="time-badge"><i class="fas fa-clock"></i> Prazo: 3 a 4 Meses</div>
             </div>
             <div class="service-image reveal-right">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800" alt="Análise Estatística">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800" alt="Inteligência de Mercado e Análise Estratégica">
             </div>
         </div>
+
+        <!-- Serviço 4: Estrutura Organizacional -->
+        <div class="service-row">
+            <div class="service-content reveal-right">
+                <h2>Estrutura Organizacional e Fluxos de Gestão</h2>
+                <h4>Redesenho Operacional para Crescimento</h4>
+                <p>Análise e estruturação do funcionamento interno da sua empresa. Mapeamos sobreposições de tarefas, falhas de fluxo, ausência de padronização e gargalos operacionais críticos. A consultoria entrega um redesenho organizacional robusto, clarificando papéis, responsabilidades e níveis de decisão. Padronizamos rotinas para que o seu negócio possa crescer em escala sem perder o controle de qualidade.</p>
+                <ul class="service-list">
+                    <li>Mapa da estrutura atual e proposta técnica de Redesenho Organizacional.</li>
+                    <li>Fluxogramas mapeados e Manuais de Procedimentos Operacionais Padrão (POPs).</li>
+                    <li>Matriz de responsabilidades, reduzindo retrabalho e dependência excessiva.</li>
+                    <li>Base organizacional sólida preparada para a futura implantação de Sistemas e KPIs.</li>
+                </ul>
+                <div class="price-badge"><i class="fas fa-money-bill-wave"></i> Investimento: R$ 50.000,00 a R$ 85.000,00</div>
+            </div>
+            <div class="service-image reveal-left">
+                <img src="https://images.unsplash.com/photo-1531538512162-2824ce8e4242?auto=format&fit=crop&q=80&w=800" alt="Estrutura Organizacional e Fluxos">
+            </div>
+        </div>
+
     </section>
 
+    <!-- Ciclo de Entrega (Mantido da estrutura base para complementar a consultoria) -->
     <section class="delivery-cycle">
         <h2 class="reveal">Nosso Ciclo de Entrega</h2>
-        <p class="reveal delay-1">Unimos a administração clássica com a agilidade do SaaS para garantir resultados perenes.</p>
+        <p class="reveal delay-1">Unimos a administração clássica com a agilidade do mercado para garantir resultados perenes.</p>
 
         <div class="steps-container">
             <div class="step-box reveal delay-1">
@@ -235,12 +318,12 @@
             <div class="step-box reveal delay-2">
                 <div class="step-number" style="background-color: var(--color-secondary);">02</div>
                 <h4>Modelagem</h4>
-                <p>Com os dados em mãos, desenhamos a arquitetura da solução ideal, seja a reestruturação de processos (BPM) ou a prototipação de um Software (SaaS).</p>
+                <p>Com os dados em mãos, desenhamos a arquitetura da solução ideal, elaborando o planejamento, fluxos ou estratégias financeiras.</p>
             </div>
             <div class="step-box reveal delay-3">
                 <div class="step-number" style="background-color: var(--color-accent);">03</div>
                 <h4>Execução</h4>
-                <p>Partimos para a ação técnica. Implantação de metodologias, treinamento de equipes e monitoramento contínuo através de KPIs bem definidos.</p>
+                <p>Partimos para a ação técnica. Entrega dos planos, treinamento de equipes e definição clara do modelo de monitoramento institucional.</p>
             </div>
         </div>
     </section>
@@ -283,19 +366,27 @@
 
     <script>
         function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
         }
 
         document.addEventListener("DOMContentLoaded", function() {
-            const observer = new IntersectionObserver((entries) => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
                     }
                 });
-            }, { threshold: 0.15 });
+            }, observerOptions);
 
-            document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+            const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+            revealElements.forEach(el => observer.observe(el));
         });
     </script>
 </body>

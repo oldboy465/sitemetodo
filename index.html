@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Método Soluções | Expertise em Gestão & Dados</title>
-    <meta name="description" content="Mapeamento de processos, inteligência estatística e desenvolvimento SaaS de alta performance.">
+    <meta name="description" content="Mapeamento de processos, inteligência estatística, consultoria financeira e desenvolvimento SaaS de alta performance.">
     
     <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,9 +50,47 @@
             width: 100%;
         }
 
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-        img { max-width: 100%; height: auto; display: block; }
+        a { 
+            text-decoration: none; 
+            color: inherit; 
+        }
+        
+        ul { 
+            list-style: none; 
+        }
+        
+        img { 
+            max-width: 100%; 
+            height: auto; 
+            display: block; 
+        }
+
+        /* ==========================================================================
+           BADGES DE PREÇO
+           ========================================================================== */
+        .price-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(242, 160, 61, 0.1);
+            color: var(--color-accent);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-top: 15px;
+            border: 1px solid var(--color-accent);
+            gap: 8px;
+            transition: var(--transition);
+        }
+        
+        .price-badge:hover {
+            background-color: var(--color-accent);
+            color: var(--color-white);
+        }
+
+        .price-badge i { 
+            font-size: 1rem; 
+        }
 
         /* ==========================================================================
            ANIMAÇÕES DE ROLAGEM (SCROLL REVEAL)
@@ -62,10 +100,12 @@
             transform: translateY(40px);
             transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
+        
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
+        
         .reveal.delay-1 { transition-delay: 0.1s; }
         .reveal.delay-2 { transition-delay: 0.2s; }
         .reveal.delay-3 { transition-delay: 0.3s; }
@@ -76,14 +116,22 @@
             transform: translateX(-50px);
             transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
-        .reveal-left.active { opacity: 1; transform: translateX(0); }
+        
+        .reveal-left.active { 
+            opacity: 1; 
+            transform: translateX(0); 
+        }
 
         .reveal-right {
             opacity: 0;
             transform: translateX(50px);
             transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
-        .reveal-right.active { opacity: 1; transform: translateX(0); }
+        
+        .reveal-right.active { 
+            opacity: 1; 
+            transform: translateX(0); 
+        }
 
         /* ==========================================================================
            TOPBAR E NAVBAR
@@ -97,7 +145,11 @@
             justify-content: space-between;
             align-items: center;
         }
-        .topbar i { color: var(--color-accent); margin-right: 5px; }
+        
+        .topbar i { 
+            color: var(--color-accent); 
+            margin-right: 5px; 
+        }
 
         .navbar {
             background-color: var(--color-white);
@@ -116,7 +168,10 @@
             height: 45px;
             transition: var(--transition);
         }
-        .brand-logo:hover img { transform: scale(1.05); }
+        
+        .brand-logo:hover img { 
+            transform: scale(1.05); 
+        }
 
         .nav-links {
             display: flex;
@@ -142,8 +197,16 @@
             background-color: var(--color-secondary);
             transition: width 0.3s ease;
         }
-        .nav-links li a:hover::after, .nav-links li a.active::after { width: 100%; }
-        .nav-links li a:hover, .nav-links li a.active { color: var(--color-secondary); }
+        
+        .nav-links li a:hover::after, 
+        .nav-links li a.active::after { 
+            width: 100%; 
+        }
+        
+        .nav-links li a:hover, 
+        .nav-links li a.active { 
+            color: var(--color-secondary); 
+        }
 
         /* Botões Animados */
         .btn-primary {
@@ -162,13 +225,17 @@
             box-shadow: 0 4px 10px rgba(242, 160, 61, 0.3);
             text-align: center;
         }
+        
         .btn-primary:hover {
             background-color: var(--color-accent-hover);
             transform: translateY(-3px);
             box-shadow: 0 6px 15px rgba(242, 160, 61, 0.4);
             color: var(--color-white);
         }
-        .btn-primary::after { display: none; } /* Remove linha do menu no botão */
+        
+        .btn-primary::after { 
+            display: none; 
+        }
 
         .btn-outline {
             border: 2px solid var(--color-primary);
@@ -179,6 +246,7 @@
             transition: var(--transition);
             text-align: center;
         }
+        
         .btn-outline:hover {
             background-color: var(--color-primary);
             color: var(--color-white);
@@ -193,7 +261,11 @@
             cursor: pointer;
             transition: var(--transition);
         }
-        .mobile-toggle:hover { color: var(--color-accent); transform: scale(1.1); }
+        
+        .mobile-toggle:hover { 
+            color: var(--color-accent); 
+            transform: scale(1.1); 
+        }
 
         /* ==========================================================================
            HERO SECTION
@@ -215,7 +287,10 @@
             margin-bottom: 20px;
             letter-spacing: -1px;
         }
-        .hero-content h1 span { color: var(--color-secondary); }
+        
+        .hero-content h1 span { 
+            color: var(--color-secondary); 
+        }
 
         .hero-content p {
             font-size: 1.1rem;
@@ -224,24 +299,36 @@
             max-width: 90%;
         }
 
-        .hero-actions { display: flex; gap: 15px; }
+        .hero-actions { 
+            display: flex; 
+            gap: 15px; 
+        }
 
-        .hero-image { position: relative; perspective: 1000px; }
+        .hero-image { 
+            position: relative; 
+            perspective: 1000px; 
+        }
+        
         .hero-image-inner {
             overflow: hidden;
             border-radius: 12px;
             box-shadow: var(--shadow-lg);
             transition: var(--transition);
         }
+        
         .hero-image-inner:hover {
             transform: translateY(-10px);
             box-shadow: var(--shadow-hover);
         }
+        
         .hero-image img {
             width: 100%;
             transition: transform 0.6s ease;
         }
-        .hero-image-inner:hover img { transform: scale(1.05); }
+        
+        .hero-image-inner:hover img { 
+            transform: scale(1.05); 
+        }
 
         .floating-badge {
             position: absolute;
@@ -258,6 +345,7 @@
             transition: var(--transition);
             animation: float 4s ease-in-out infinite;
         }
+        
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
@@ -267,9 +355,21 @@
         /* ==========================================================================
            PILARES (FEATURES) SECTION
            ========================================================================== */
-        .pilares { padding: 80px 5%; background-color: var(--color-white); }
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-header h2 { font-size: 2.5rem; color: var(--color-primary); margin-bottom: 15px; }
+        .pilares { 
+            padding: 80px 5%; 
+            background-color: var(--color-white); 
+        }
+        
+        .section-header { 
+            text-align: center; 
+            margin-bottom: 60px; 
+        }
+        
+        .section-header h2 { 
+            font-size: 2.5rem; 
+            color: var(--color-primary); 
+            margin-bottom: 15px; 
+        }
 
         .grid-cards {
             display: grid;
@@ -286,7 +386,12 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
         }
+        
         /* Efeito de preenchimento no Hover do Card */
         .card::after {
             content: "";
@@ -300,6 +405,7 @@
             opacity: 0;
             transition: var(--transition);
         }
+        
         .card::before {
             content: "";
             position: absolute;
@@ -312,13 +418,20 @@
             transform-origin: left;
             transition: transform 0.4s ease;
         }
+        
         .card:hover {
             transform: translateY(-10px);
             box-shadow: var(--shadow-hover);
             border-color: transparent;
         }
-        .card:hover::before { transform: scaleX(1); }
-        .card:hover::after { opacity: 1; }
+        
+        .card:hover::before { 
+            transform: scaleX(1); 
+        }
+        
+        .card:hover::after { 
+            opacity: 1; 
+        }
 
         .card-icon {
             width: 60px;
@@ -333,14 +446,25 @@
             margin-bottom: 25px;
             transition: var(--transition);
         }
+        
         .card:hover .card-icon {
             background-color: var(--color-secondary);
             color: var(--color-white);
             transform: rotateY(180deg);
         }
 
-        .card h3 { font-size: 1.3rem; color: var(--color-primary); margin-bottom: 15px; }
-        .card p { color: var(--color-gray); font-size: 0.95rem; }
+        .card h3 { 
+            font-size: 1.3rem; 
+            color: var(--color-primary); 
+            margin-bottom: 15px; 
+            line-height: 1.3;
+        }
+        
+        .card p { 
+            color: var(--color-gray); 
+            font-size: 0.95rem; 
+            flex-grow: 1;
+        }
 
         /* ==========================================================================
            LIDERANÇA TÉCNICA SECTION
@@ -355,7 +479,12 @@
             overflow: hidden;
         }
 
-        .leadership-img { position: relative; overflow: hidden; border-radius: 12px; }
+        .leadership-img { 
+            position: relative; 
+            overflow: hidden; 
+            border-radius: 12px; 
+        }
+        
         .leadership-img img {
             width: 100%;
             border-radius: 12px;
@@ -363,12 +492,29 @@
             object-fit: cover;
             transition: var(--transition);
         }
-        .leadership-img:hover img { transform: scale(1.03); }
+        
+        .leadership-img:hover img { 
+            transform: scale(1.03); 
+        }
 
-        .leadership-content h2 { font-size: 2.5rem; color: var(--color-primary); margin-bottom: 20px; }
-        .leadership-content p { font-size: 1.1rem; color: var(--color-gray); margin-bottom: 30px; }
+        .leadership-content h2 { 
+            font-size: 2.5rem; 
+            color: var(--color-primary); 
+            margin-bottom: 20px; 
+        }
+        
+        .leadership-content p { 
+            font-size: 1.1rem; 
+            color: var(--color-gray); 
+            margin-bottom: 30px; 
+        }
 
-        .tags-container { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tags-container { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 10px; 
+        }
+        
         .tag {
             background-color: var(--color-white);
             border: 1px solid var(--color-border);
@@ -381,6 +527,7 @@
             transition: var(--transition);
             cursor: default;
         }
+        
         .tag:hover {
             background-color: var(--color-primary);
             color: var(--color-white);
@@ -411,12 +558,33 @@
             margin-bottom: 20px;
             transition: var(--transition);
         }
-        .footer-brand img:hover { transform: scale(1.05); }
-        .footer-brand p { color: #A0AEC0; font-size: 0.9rem; max-width: 80%; }
+        
+        .footer-brand img:hover { 
+            transform: scale(1.05); 
+        }
+        
+        .footer-brand p { 
+            color: #A0AEC0; 
+            font-size: 0.9rem; 
+            max-width: 80%; 
+        }
 
-        .footer-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 20px; color: var(--color-white); }
-        .footer-links li { margin-bottom: 10px; }
-        .footer-links li a { color: #A0AEC0; transition: var(--transition); position: relative; }
+        .footer-title { 
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            margin-bottom: 20px; 
+            color: var(--color-white); 
+        }
+        
+        .footer-links li { 
+            margin-bottom: 10px; 
+        }
+        
+        .footer-links li a { 
+            color: #A0AEC0; 
+            transition: var(--transition); 
+            position: relative; 
+        }
         
         .footer-links li a::after {
             content: '';
@@ -428,8 +596,15 @@
             background-color: var(--color-accent);
             transition: width 0.3s ease;
         }
-        .footer-links li a:hover::after { width: 100%; }
-        .footer-links li a:hover { color: var(--color-accent); padding-left: 5px; }
+        
+        .footer-links li a:hover::after { 
+            width: 100%; 
+        }
+        
+        .footer-links li a:hover { 
+            color: var(--color-accent); 
+            padding-left: 5px; 
+        }
 
         .footer-bottom {
             border-top: 1px solid rgba(255,255,255,0.1);
@@ -451,7 +626,7 @@
                 transform: translateX(-50%);
                 bottom: -30px;
                 width: max-content;
-                animation: none; /* Desliga flutuação no mobile se quebrar */
+                animation: none;
             }
             .leadership { grid-template-columns: 1fr; }
             .leadership-img { order: 2; }
@@ -484,7 +659,7 @@
                 padding: 20px 0;
             }
             .nav-links li { width: 100%; text-align: center; }
-            .nav-links li a::after { display: none; } /* Remove linha no mobile */
+            .nav-links li a::after { display: none; }
 
             .btn-primary { width: 90%; justify-content: center; }
             .hero { padding: 50px 5%; }
@@ -511,7 +686,7 @@
             
             .footer-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
             .footer-brand p { max-width: 100%; margin: 0 auto; }
-            .footer-links li a:hover { padding-left: 0; } /* Remove avanço lateral no mobile */
+            .footer-links li a:hover { padding-left: 0; }
         }
     </style>
 </head>
@@ -519,7 +694,7 @@
 
     <!-- Topbar -->
     <div class="topbar">
-        <div>Profissionais da Gestão e Tecnologia</div>
+        <div>Profissionais da Gestão, Estatística e Tecnologia</div>
         <div>
             <i class="fab fa-whatsapp"></i> (98) 98128-2658
         </div>
@@ -548,7 +723,7 @@
     <section class="hero">
         <div class="hero-content reveal-left">
             <h1>Expertise em <br><span>Gestão & Dados</span></h1>
-            <p>Mapeamento de processos, inteligência estatística e desenvolvimento SaaS de alta performance para transformar o seu modelo de negócio.</p>
+            <p>Mapeamento de processos, inteligência estatística, consultoria financeira e desenvolvimento SaaS de alta performance para transformar o seu modelo de negócio com rigor metodológico.</p>
             <div class="hero-actions">
                 <a href="solucoes.html" class="btn-primary">Ver Portfólio SaaS <i class="fas fa-arrow-right"></i></a>
                 <a href="servicos.html" class="btn-outline">Nossos Serviços</a>
@@ -562,49 +737,74 @@
                 <i class="fas fa-chart-line" style="font-size: 2rem; color: var(--color-secondary);"></i>
                 <div>
                     <h4 style="color: var(--color-primary); font-size: 1rem;">Decisões Exatas</h4>
-                    <p style="color: var(--color-gray); font-size: 0.8rem; margin:0;">Baseadas em Evidências</p>
+                    <p style="color: var(--color-gray); font-size: 0.8rem; margin:0;">Baseadas em Evidências e Estatística</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pilares de Atuação -->
+    <!-- Pilares de Atuação (Serviços e Soluções Refeitos) -->
     <section class="pilares">
         <div class="section-header reveal">
-            <h2>Pilares de Atuação</h2>
-            <p style="color: var(--color-gray);">Nossas verticais estratégicas para escalar a sua operação.</p>
+            <h2>Nossos Produtos e Consultorias</h2>
+            <p style="color: var(--color-gray);">As verticais estratégicas desenvolvidas exclusivamente para escalar e blindar a sua operação.</p>
         </div>
 
         <div class="grid-cards">
+            <!-- Serviço 1 -->
             <div class="card reveal delay-1">
-                <div class="card-icon"><i class="fas fa-project-diagram"></i></div>
-                <h3>Mapeamento de Processos</h3>
-                <p>Identificamos gargalos e desenhamos fluxos operacionais (AS-IS/TO-BE) que aumentam a produtividade em até 40%.</p>
+                <div class="card-icon"><i class="fas fa-chess-knight"></i></div>
+                <h3>Planejamento Estratégico Institucional</h3>
+                <p>Consultoria técnica baseada no Balanced Scorecard (BSC), integrando diagnóstico organizacional e mecanismos de monitoramento governamental ou corporativo.</p>
+                <div class="price-badge"><i class="fas fa-tag"></i> Valor Estimado: R$ 75.000,00</div>
             </div>
+            
+            <!-- Serviço 2 -->
             <div class="card reveal delay-2">
-                <div class="card-icon"><i class="fas fa-file-invoice-dollar"></i></div>
-                <h3>Gestão Financeira</h3>
-                <p>Análise de fluxo de caixa, orçamento empresarial e dashboards financeiros para decisões baseadas em números, não em intuição.</p>
+                <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Consultoria Financeira Estratégica</h3>
+                <p>Diagnóstico, estruturação e melhoria da gestão financeira. Foco em indicadores, fluxo de caixa, custos, rentabilidade e apoio à tomada de decisão executiva.</p>
+                <div class="price-badge"><i class="fas fa-tag"></i> R$ 60.000,00 a R$ 90.000,00</div>
             </div>
+            
+            <!-- Serviço 3 -->
             <div class="card reveal delay-3">
-                <div class="card-icon"><i class="fas fa-cloud"></i></div>
-                <h3>SaaS Sob Medida</h3>
-                <p>Sistemas proprietários hospedados em nuvem, construídos com arquitetura MVC para garantir escalabilidade total da sua operação.</p>
-            </div>
-            <div class="card reveal delay-1">
-                <div class="card-icon"><i class="fas fa-bullseye"></i></div>
-                <h3>Gestão Estratégica</h3>
-                <p>Implementação de OKRs e Planejamento Estratégico com foco em controle de metas e resultados de curto e longo prazo.</p>
-            </div>
-            <div class="card reveal delay-2">
                 <div class="card-icon"><i class="fas fa-chart-pie"></i></div>
-                <h3>Estatística Aplicada</h3>
-                <p>Modelagem estatística de alta precisão para empresas e instituições públicas, focada em previsão e análise preditiva de cenários.</p>
+                <h3>Gestão à Vista (Dashboard BI)</h3>
+                <p>Monitoramento de indicadores em tempo real. Solução digital web que consolida dados estratégicos, financeiros e operacionais em painéis dinâmicos.</p>
+                <div class="price-badge"><i class="fas fa-tag"></i> A partir de R$ 5.000,00</div>
             </div>
+            
+            <!-- Serviço 4 -->
+            <div class="card reveal delay-1">
+                <div class="card-icon"><i class="fas fa-file-signature"></i></div>
+                <h3>Sistemas de Gerenciamento de Contratos</h3>
+                <p>Controle inteligente e seguro do ciclo de vida de contratos administrativos. Alertas automáticos de vencimentos, reajustes e controle rigoroso de compliance.</p>
+                <div class="price-badge"><i class="fas fa-tag"></i> A partir de R$ 10.000,00</div>
+            </div>
+            
+            <!-- Serviço 5 -->
+            <div class="card reveal delay-2">
+                <div class="card-icon"><i class="fas fa-bullseye"></i></div>
+                <h3>Posicionamento & Inteligência de Mercado</h3>
+                <p>Análise ambiental competitiva. Cruzamento de dados comportamentais e benchmarking para decodificar oportunidades de crescimento e diferenciação.</p>
+                <div class="price-badge"><i class="fas fa-tag"></i> R$ 20.000,00 a R$ 40.000,00</div>
+            </div>
+            
+            <!-- Serviço 6 -->
             <div class="card reveal delay-3">
-                <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
-                <h3>Consultoria Acadêmica</h3>
-                <p>Suporte metodológico e análise de dados científica rigorosa para pesquisadores, projetos e instituições de ensino superior.</p>
+                <div class="card-icon"><i class="fas fa-sitemap"></i></div>
+                <h3>Estrutura Organizacional e Fluxos</h3>
+                <p>Redesenho da estrutura interna da empresa, definição clara de áreas, responsabilidades e padronização de processos operacionais e decisórios.</p>
+                <div class="price-badge"><i class="fas fa-tag"></i> R$ 50.000,00 a R$ 85.000,00</div>
+            </div>
+            
+            <!-- Serviço 7 -->
+            <div class="card reveal delay-1">
+                <div class="card-icon"><i class="fas fa-laptop-code"></i></div>
+                <h3>Desenvolvimento de Sistemas sob Demanda</h3>
+                <p>Engenharia de software utilizando arquitetura escalável (Python/MVC) e hospedagem Linux para criar aplicações web que resolvem as dores únicas do seu negócio.</p>
+                <div class="price-badge"><i class="fas fa-tag"></i> Orçamento Personalizado</div>
             </div>
         </div>
     </section>
@@ -612,18 +812,18 @@
     <!-- Liderança Técnica -->
     <section class="leadership">
         <div class="leadership-img reveal-left">
-            <img src="assets/lideranca.png" alt="Liderança Técnica">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800" alt="Liderança Técnica">
         </div>
         <div class="leadership-content reveal-right">
-            <h2>Liderança Técnica</h2>
-            <p>Atuamos na intersecção entre a Administração Clássica e a Ciência da Computação. Unimos o rigor científico da academia com a agilidade do mercado SaaS para desenhar soluções que não apenas organizam, mas revolucionam operações estruturais.</p>
+            <h2>Nossa Liderança Técnica</h2>
+            <p>Atuamos na intersecção entre a Administração Pública/Privada, o Rigor Estatístico Científico e a Ciência da Computação. Possuímos sólida experiência institucional e tecnológica, unindo a validação metodológica com o desenvolvimento robusto de aplicações Python, para entregar soluções que revolucionam operações estruturais.</p>
             
             <div class="tags-container">
-                <span class="tag">Engenharia de Software</span>
-                <span class="tag">Estatística Aplicada</span>
+                <span class="tag">Administração Estratégica</span>
+                <span class="tag">Estatística & Metodologia</span>
                 <span class="tag">Planejamento Financeiro</span>
-                <span class="tag">Soluções SaaS</span>
-                <span class="tag">Desenvolvimento WebService</span>
+                <span class="tag">Arquitetura Python / MVC</span>
+                <span class="tag">Soluções SaaS Customizadas</span>
             </div>
         </div>
     </section>
@@ -633,14 +833,14 @@
         <div class="footer-grid reveal">
             <div class="footer-brand">
                 <img src="assets/logo_metodo.png" alt="Método Soluções Logo">
-                <p>Onde a Administração encontra a Ciência da Computação. Sediados no Maranhão, impulsionando a governança em nível nacional.</p>
+                <p>Onde a Administração encontra a Ciência da Computação. Sediados no Maranhão, entregando Inteligência Corporativa e SaaS em nível nacional.</p>
             </div>
             
             <div>
                 <h4 class="footer-title">Links Rápidos</h4>
                 <ul class="footer-links">
                     <li><a href="index.html">Início</a></li>
-                    <li><a href="servicos.html">Nossos Serviços</a></li>
+                    <li><a href="servicos.html">Consultorias</a></li>
                     <li><a href="solucoes.html">Sistemas SaaS</a></li>
                 </ul>
             </div>
@@ -648,9 +848,9 @@
             <div>
                 <h4 class="footer-title">Soluções</h4>
                 <ul class="footer-links">
-                    <li><a href="solucoes.html">Mapeamento BPM</a></li>
-                    <li><a href="servicos.html">Consultoria Estatística</a></li>
-                    <li><a href="servicos.html">Gestão Financeira</a></li>
+                    <li><a href="servicos.html">Planejamento Estratégico</a></li>
+                    <li><a href="servicos.html">Consultoria Financeira</a></li>
+                    <li><a href="solucoes.html">SaaS de Gestão (BI)</a></li>
                 </ul>
             </div>
 
@@ -665,7 +865,7 @@
         </div>
         
         <div class="footer-bottom">
-            <p>&copy; 2026 Método Soluções. Todos os direitos reservados.</p>
+            <p>&copy; 2026 Método Soluções. Todos os direitos reservados. Inteligência baseada em evidências.</p>
         </div>
     </footer>
 
@@ -689,8 +889,6 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
-                        // Opcional: remover a observação depois que animar a primeira vez
-                        // observer.unobserve(entry.target); 
                     }
                 });
             }, observerOptions);

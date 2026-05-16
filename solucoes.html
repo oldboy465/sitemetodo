@@ -355,6 +355,26 @@
             transform: scale(1.03);
         }
 
+        /* Badge de Preço para a seção SaaS */
+        .price-badge-saas {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(31, 138, 166, 0.1);
+            color: var(--color-secondary);
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 25px;
+            border: 1px solid var(--color-secondary);
+            gap: 10px;
+            transition: var(--transition);
+        }
+        .price-badge-saas:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-white);
+        }
+
         /* ==========================================================================
            TECH STACK SECTION
            ========================================================================== */
@@ -629,57 +649,66 @@
     </div>
 
     <section class="products-section">
-        <h2 class="reveal">Nossos Produtos SaaS</h2>
-        <p class="section-subtitle reveal delay-1">Soluções tecnológicas robustas validadas por empresas, clínicas e universidades em todo o território nacional.</p>
+        <h2 class="reveal">Nossos Produtos SaaS e Desenvolvimentos</h2>
+        <p class="section-subtitle reveal delay-1">Soluções tecnológicas robustas validadas por empresas e instituições em todo o território nacional.</p>
 
         <!-- Produto 1 -->
         <div class="product-block">
             <div class="product-info reveal-left">
-                <span class="category">Governança & Controle</span>
-                <h3>Plataforma de Gestão à Vista & Helpdesk</h3>
-                <p>O coração operacional da sua empresa mapeado em Dashboards de alto impacto visual. Acompanhe SLAs, chamados e a satisfação do usuário com precisão cirúrgica.</p>
+                <span class="category">Produto Digital</span>
+                <h3>Gestão à Vista - Dashboard BI e Plataforma</h3>
+                <p>Plataforma interativa em ambiente web que consolida dados estratégicos, financeiros e operacionais em painéis visuais dinâmicos e intuitivos. O sistema facilita o acompanhamento de metas e Indicadores-Chave de Desempenho (KPIs) em tempo real, promovendo a cultura de transparência, agilidade na tomada de decisão pela alta gestão e alinhamento operacional.</p>
                 <ul class="product-features">
-                    <li>Indicadores "Farol" para priorização de atendimento tático.</li>
-                    <li>Módulo integrado de aprovações e controle de prazos.</li>
-                    <li>Exportação analítica de produtividade por setor.</li>
+                    <li>Centralização e confiabilidade da informação.</li>
+                    <li>Visão sistêmica do desempenho institucional.</li>
+                    <li>Respostas rápidas para a tomada de decisão gerencial.</li>
                 </ul>
+                <div class="price-badge-saas">
+                    <i class="fas fa-tag"></i> A partir de R$ 5.000,00
+                </div>
             </div>
             <div class="product-image reveal-right">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200" alt="Dashboard de Gestão e Helpdesk">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200" alt="Dashboard BI e Plataforma de Indicadores">
             </div>
         </div>
 
         <!-- Produto 2 -->
         <div class="product-block">
             <div class="product-info reveal-right">
-                <span class="category">Performance Clínica</span>
-                <h3>Prontuários e Saúde Baseada em Dados</h3>
-                <p>SaaS desenvolvido para clínicas e espaços terapêuticos. Mapeie a evolução clínica real dos pacientes com gráficos automáticos e controle rigoroso de históricos.</p>
+                <span class="category">Produto Digital</span>
+                <h3>Gerenciamento de Contratos e Certidões</h3>
+                <p>Plataforma desenvolvida para organizar, armazenar e monitorar de forma segura todo o ciclo de vida de contratos administrativos e documentações essenciais, como certidões fiscais e trabalhistas. O sistema conta com regras de negócios para emitir alertas automatizados sobre prazos de vigência, reajustes e renovações, mitigando riscos legais.</p>
                 <ul class="product-features">
-                    <li>Geração dinâmica de PDFs formatados para operadoras de saúde.</li>
-                    <li>Escala de intercorrências customizável pela coordenação médica.</li>
-                    <li>Segurança de dados e controle de níveis de acesso (Admin/Operador).</li>
+                    <li>Alertas automatizados de vencimentos e renovações de contratos.</li>
+                    <li>Mitigação ativa de riscos legais, trabalhistas e fiscais.</li>
+                    <li>Organização documental e conformidade (Compliance) em repositório centralizado.</li>
                 </ul>
+                <div class="price-badge-saas" style="background-color: rgba(242, 160, 61, 0.1); color: var(--color-accent); border-color: var(--color-accent);">
+                    <i class="fas fa-tag"></i> A partir de R$ 10.000,00
+                </div>
             </div>
             <div class="product-image reveal-left">
-                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1200" alt="Sistema Clínico e Prontuários">
+                <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=1200" alt="Sistema de Contratos e Documentos">
             </div>
         </div>
 
         <!-- Produto 3 -->
         <div class="product-block">
             <div class="product-info reveal-left">
-                <span class="category">Engenharia de Dados</span>
-                <h3>Mineração e Tratamento de Bases Legadas</h3>
-                <p>Sua organização possui dados, mas falta informação? Criamos algoritmos sob medida para limpar "falsos positivos", cruzar bases financeiras governamentais e entregar relatórios íntegros.</p>
+                <span class="category">Desenvolvimento de Software Customizado</span>
+                <h3>Desenvolvimento de Sistemas sob Demanda</h3>
+                <p>Serviço especializado de engenharia de software full-stack para a criação de aplicações web e sistemas gerenciais desenvolvidos do zero para solucionar os desafios únicos da sua operação. Utilizando arquitetura robusta e metodologias ágeis, transformamos fluxos de trabalho complexos e manuais em plataformas digitais seguras, escaláveis e sob medida.</p>
                 <ul class="product-features">
-                    <li>Scripts de automação para tratamento estatístico de dados.</li>
-                    <li>Preparação de bases para submissão de artigos científicos.</li>
-                    <li>Integração com bases estruturadas e não-estruturadas.</li>
+                    <li>Adequação total às regras de negócio e realidade do cliente.</li>
+                    <li>Escalabilidade da ferramenta de acordo com o crescimento do uso.</li>
+                    <li>Propriedade, segurança dos dados e independência tecnológica.</li>
                 </ul>
+                <div class="price-badge-saas" style="background-color: rgba(10, 61, 115, 0.1); color: var(--color-primary); border-color: var(--color-primary);">
+                    <i class="fas fa-file-invoice-dollar"></i> Orçamento Personalizado
+                </div>
             </div>
             <div class="product-image reveal-right">
-                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200" alt="Código Python e Tratamento de Dados">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200" alt="Desenvolvimento de Sistemas Customizados">
             </div>
         </div>
     </section>
@@ -710,6 +739,7 @@
                 <img src="assets/logo_metodo.png" alt="Método Soluções Logo">
                 <p>Onde a Administração encontra a Ciência da Computação. Sediados no Maranhão, impulsionando a governança em nível nacional.</p>
             </div>
+            
             <div>
                 <h4 class="footer-title">Links Rápidos</h4>
                 <ul class="footer-links">
@@ -718,6 +748,7 @@
                     <li><a href="solucoes.html">Sistemas SaaS</a></li>
                 </ul>
             </div>
+
             <div>
                 <h4 class="footer-title">Soluções</h4>
                 <ul class="footer-links">
@@ -726,6 +757,7 @@
                     <li><a href="servicos.html">Gestão Financeira</a></li>
                 </ul>
             </div>
+
             <div>
                 <h4 class="footer-title">Contato</h4>
                 <ul class="footer-links">
@@ -735,6 +767,7 @@
                 </ul>
             </div>
         </div>
+        
         <div class="footer-bottom">
             <p>&copy; 2026 Método Soluções. Liderança e Inteligência baseada em evidências.</p>
         </div>
@@ -742,19 +775,27 @@
 
     <script>
         function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
         }
 
         document.addEventListener("DOMContentLoaded", function() {
-            const observer = new IntersectionObserver((entries) => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
                     }
                 });
-            }, { threshold: 0.15 });
+            }, observerOptions);
 
-            document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+            const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+            revealElements.forEach(el => observer.observe(el));
         });
     </script>
 </body>
