@@ -93,7 +93,7 @@
     </div>
 
     <nav class="navbar">
-        <a href="index.html" class="brand-logo"><img src="assets/logo_metodo.png" alt="Método Soluções"></a>
+        <a href="index.html" class="brand-logo"><img src="/assets/logo_metodo.png" alt="Método Soluções"></a>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
             <li><a href="servicos.html">Serviços</a></li>
@@ -181,7 +181,7 @@
     <footer>
         <div class="footer-grid reveal">
             <div class="footer-brand">
-                <img src="assets/logo_metodo.png" alt="Método Soluções">
+                <img src="/assets/logo_metodo.png" alt="Método Soluções">
                 <p>Onde a Administração encontra a Ciência da Computação. Liderança e rigor técnico para sua empresa.</p>
             </div>
             <div>
@@ -210,6 +210,27 @@
                 entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
             }, { threshold: 0.15 });
             document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+            
+            // Interceptar o envio do formulário para abrir o WhatsApp
+            document.getElementById('diagnosticoForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const nome = document.getElementById('nome').value;
+                const organizacao = document.getElementById('organizacao').value;
+                const email = document.getElementById('email').value;
+                const whatsapp = document.getElementById('whatsapp').value;
+                
+                const pilarSelect = document.getElementById('pilar');
+                const pilar = pilarSelect.options[pilarSelect.selectedIndex].text;
+                
+                const detalhamento = document.getElementById('detalhamento').value;
+                
+                const mensagem = `Olá, vim pelo site e gostaria de solicitar um diagnóstico.\n\n*Nome:* ${nome}\n*Instituição:* ${organizacao}\n*E-mail:* ${email}\n*WhatsApp:* ${whatsapp}\n*Serviço de Interesse:* ${pilar}\n*Resumo da Demanda:* ${detalhamento}`;
+                
+                const url = `https://wa.me/5598981282658?text=${encodeURIComponent(mensagem)}`;
+                
+                window.open(url, '_blank');
+            });
         });
     </script>
 </body>
